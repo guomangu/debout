@@ -1,0 +1,68 @@
+color: null
+fieldLayouts:
+  c6628142-dc50-4013-b846-77bc07fc4280:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-05-13T23:58:16+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: ea18b754-04d8-455b-bf41-a404e114976a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-13T23:59:39+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 994fb679-4658-4e19-ab52-b452a3e5ff05 # userole
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f68d9f58-fdcf-4d29-a601-c458375d07b0
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 71ae5e4c-5fb1-433a-a649-2f870bcfe0b7
+        userCondition: null
+handle: anno
+hasTitleField: true
+icon: null
+name: anno
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

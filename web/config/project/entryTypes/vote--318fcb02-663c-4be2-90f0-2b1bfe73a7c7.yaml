@@ -1,0 +1,85 @@
+color: null
+fieldLayouts:
+  32338691-5323-4e86-ac59-e30d156936b4:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-05-13T23:52:48+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: ee96d8d7-916b-42fa-95ce-7ba7f96a579a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-13T23:54:29+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 69c3f5ac-014f-4f64-9af1-bb369028c37e # obj
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e371a0f9-0e77-4a8b-9b24-37220ee40d41
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-13T23:54:29+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 67053669-973b-4b91-b703-67ee8097172e # gens
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3eda5a6d-56ef-4277-90ef-c5aa8880eb86
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 67491ab8-af32-46ac-ab6a-eae3934041c1
+        userCondition: null
+handle: vote
+hasTitleField: true
+icon: null
+name: vote
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

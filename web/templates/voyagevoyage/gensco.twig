@@ -1,0 +1,76 @@
+{% block content %}
+
+
+<div class="card shadow-sm">
+    <div class="card-header text-center">
+        <h3>Connexion</h3>
+    </div>
+    <div class="card-body p-4">
+
+        {# Affichage des messages d'erreur généraux ou flash AVANT le formulaire #}
+        {% set generalErrors = (errors is defined and errors.general is defined) ? errors.general : [] %}
+        {% set flashError = craft.app.session.getFlash('error') %}
+        
+        {% if generalErrors is not empty or flashError %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul class="list-unstyled mb-0">
+                {% if flashError %}
+                        <li>{{ flashError }}</li>
+                {% endif %}
+                {% for error in generalErrors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+
+        {# Formulaire de connexion stylisé #}
+        <form id="connect" method="post" action="{{ actionUrl('/monplugingens/auth/login') }}">
+            {{ csrfInput() }}
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Adresse Email :</label>
+                <input type="email" id="email" name="mail" class="form-control {% if errors is defined and (errors.general is defined or errors.email is defined) %}is-invalid{% endif %}" required placeholder="nom@exemple.com">
+                {# Affichage d'erreur spécifique au champ email si disponible #}
+                {% if errors is defined and errors.email is defined %}
+                    <div class="invalid-feedback">
+                        {{ errors.email | join(', ') }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label for="password-field" class="form-label">Mot de passe :</label> {# ID changé pour éviter conflit si 'nom' est utilisé ailleurs #}
+                <input type="password" id="password-field" name="pass" class="form-control {% if errors is defined and (errors.general is defined or errors.password is defined) %}is-invalid{% endif %}" required placeholder="Votre mot de passe">
+                {# Affichage d'erreur spécifique au mot de passe #}
+                {% if errors is defined and errors.password is defined %}
+                    <div class="invalid-feedback">
+                            {{ errors.password | join(', ') }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="d-grid"> {# Pour un bouton pleine largeur #}
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right me-1" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                    </svg>
+                    Se Connecter
+                </button>
+            </div>
+            
+            {# Optionnel: Lien "Mot de passe oublié ?" #}
+            {# <div class="text-center mt-3">
+                <a href="/forgot-password" class="text-decoration-none"><small>Mot de passe oublié ?</small></a>
+            </div> #}
+
+        </form> {# Fin Formulaire Connexion #}
+    </div> {# Fin Card Body #}
+</div> {# Fin Card #}
+
+
+
+
+{% endblock %}

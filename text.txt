@@ -1,0 +1,230 @@
+
+docker run web-1 composer create-project craftcms/craft /app --ignore-platform-reqs  
+
+
+
+docker exec 4ead5c648e08e0347646b487d55192d84574019d53b8177d73878282154043ff php /app/craft setup
+
+docker exec 4ead5c648e08e0347646b487d55192d84574019d53b8177d73878282154043ff composer install
+
+
+
+ls -l 
+whoami
+docker exec -u 1000 3ff43409024f028eaabdb11b669d11e5fb715b747de86fac83ad40cec9663a13 composer install
+docker exec -u root 3ff43409024f028eaabdb11b669d11e5fb715b747de86fac83ad40cec9663a13 chmod -R 777 /app/storage
+
+
+
+
+v2//
+
+docker exec -u root 3721c310d8eb55471e0f4961f5f03024a70caf0dac9dbb87754c7ab0d1b9453e chmod -R 777 /app/storage
+docker exec -u root 3721c310d8eb55471e0f4961f5f03024a70caf0dac9dbb87754c7ab0d1b9453e chmod -R 777 /app/web
+docker exec -u root 3721c310d8eb55471e0f4961f5f03024a70caf0dac9dbb87754c7ab0d1b9453e chmod -R 777 /app/web
+
+
+sudo chown -R www-data:www-data /app/config/project
+sudo chmod -R u+w /app/config/project
+
+
+
+v3////////
+docker kill $(docker ps -q)
+
+docker ps
+docker exec -it b0066cc8461a id
+sudo chown -R 82:82 ./web/
+
+
+
+//dockervps
+
+sudo apt update
+sudo apt install ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo docker run hello-world
+
+sudo usermod -aG docker $USER
+
+
+
+
+ssh/////
+
+eeeeeeeeeeeeeee il faut redemarere ou reinstaller
+
+sudo rm /root/.ssh/id_ed25519.pub /root/.ssh/id_ed25519 
+sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "62.210.93.77"
+
+sudo ssh-keygen -t ed25519
+sudo ls -al /root/.ssh/
+sudo cat /root/.ssh/id_ed25519.pub
+
+sudo ssh root@62.210.93.77 /root/.ssh/id_ed25519
+OU
+sudo ssh root@62.210.93.77
+OU
+ssh -i /root/.ssh/id_ed25519 root@62.210.93.77
+
+
+
+
+
+
+
+
+
+
+git /////////////
+
+find . -type d -empty -exec touch {}/.gitkeep \;
+
+
+
+
+git pull origin prodtest
+OU
+git clone --branch prodtest https://github.com/guomangu/gucraftercmsforlove.git hate
+
+
+
+
+
+# (Optionnel) Vérifier/Changer de branche
+git checkout prodtest
+
+# Ajouter les fichiers modifiés
+git add .
+
+
+git config --global user.name "anguenot gu"
+git config --global user.email "gyomang@gmail.com"
+
+
+# Faire le commit
+git commit -m "Description"
+
+# Pousser vers le dépôt distant
+git push origin prodtest
+
+guomangu
+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
+
+
+
+
+rand/////
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+
+
+
+
+
+ssl1//////////////////////////
+
+sudo certbot certonly
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/guuu.fr/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/guuu.fr/privkey.pem
+
+
+ssl2//////////////////////////
+
+sudo apt update
+sudo apt install nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx # Pour qu'il démarre automatiquement au boot
+
+
+
+sudo nano /etc/nginx/sites-available/guuu.fr
+
+
+
+
+server {
+    listen 80;
+    server_name guuu.fr; # Ajoutez www.guuu.fr ici si votre certificat le couvre et que le DNS est configuré
+
+    # Redirection de tout le trafic HTTP vers HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name guuu.fr; # Ajoutez www.guuu.fr ici si votre certificat le couvre et que le DNS est configuré
+
+    client_max_body_size 100M;
+
+
+    # Chemins vers vos certificats SSL obtenus avec Certbot
+    ssl_certificate /etc/letsencrypt/live/guuu.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/guuu.fr/privkey.pem;
+
+    # Paramètres SSL recommandés (compatibilité intermédiaire Mozilla)
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    ssl_prefer_server_ciphers off;
+
+    # Optionnel : Fichier des paramètres DH (plus sécurisé)
+    # À générer une fois : sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048
+    # ssl_dhparam /etc/nginx/dhparam.pem;
+
+    # Optionnel : HSTS Header (décommentez après avoir testé que HTTPS fonctionne parfaitement)
+    # add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+
+    location / {
+        # IMPORTANT : Remplacez VOTRE_PORT_DOCKER_ICI par le port de votre application Docker
+        proxy_pass http://127.0.0.1:VOTRE_PORT_DOCKER_ICI;
+
+        # En-têtes proxy pour transmettre les informations correctes à votre application
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme; # Crucial pour que l'app sache qu'elle est en HTTPS
+
+        # Pour les WebSockets (si votre application les utilise)
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+    # Emplacements pour les logs (optionnel mais utile)
+    # access_log /var/log/nginx/guuu.fr.access.log;
+    # error_log /var/log/nginx/guuu.fr.error.log;
+}
+
+
+
+
+sudo ln -s /etc/nginx/sites-available/guuu.fr /etc/nginx/sites-enabled/
+
+
+sudo nginx -t
+
+
+sudo systemctl restart nginx
+or
+sudo systemctl reload nginx

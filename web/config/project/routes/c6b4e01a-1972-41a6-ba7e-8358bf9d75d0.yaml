@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 1
+template: voyagevoyage/gens.twig
+uriParts:
+  - gens/
+  -
+    - number
+    - \d+
+uriPattern: 'gens/<number:\d+>'

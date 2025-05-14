@@ -1,0 +1,26 @@
+columnSuffix: null
+handle: userole
+instructions: null
+name: userole
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: null
+  showCardsInGrid: false
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9' # gens
+    - 'section:c89a4029-d853-4c39-b675-224ad9decd9a' # role
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries
