@@ -41,23 +41,30 @@ class AuthController extends Controller
                     // Connexion réussie ...
                     // ... (logique de session, redirection) ...
                      Craft::$app->getSession()->set('loggedInGensId', $loggedInGens->id);
-                     return $this->redirect('/u');
+$referrer = Craft::$app->getRequest()->referrer; // Récupère l'URL de la page précédente
+return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente ou la page d'accueil par défaut         //  return $this->redirect('/u');
+                    //  return $this->redirect('/u');
                 } else {
                     // Échec ...
                     // ... (message d'erreur, redirection) ...
                      Craft::$app->getSession()->setError("Identifiant ou mot de passe incorrect.");
-                     return $this->redirect('/u');
+$referrer = Craft::$app->getRequest()->referrer; // Récupère l'URL de la page précédente
+return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente ou la page d'accueil par défaut         //  return $this->redirect('/u');
+                    //  return $this->redirect('/u');
                     //  return $this->redirectTo('/connexion');
                 }
             } else {
                  Craft::$app->getSession()->setError("Erreur interne du module.");
                  Craft::error('Module monplugingens non trouvé ou inactif.');
-                 return $this->redirect('/u');
+$referrer = Craft::$app->getRequest()->referrer; // Récupère l'URL de la page précédente
+return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente ou la page d'accueil par défaut         //  return $this->redirect('/u');
             }
         }
         // ... afficher le formulaire ...
         Craft::error('not post request boiiii.');
-        return $this->redirect('/u');
+$referrer = Craft::$app->getRequest()->referrer; // Récupère l'URL de la page précédente
+return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente ou la page d'accueil par défaut         //  return $this->redirect('/u');
+        // return $this->redirect('/u');
         //  return $this->renderTemplate('chemin/vers/template/loginForm');
     }
 
@@ -86,13 +93,15 @@ class AuthController extends Controller
                 return $gensEntry; // Succès
             }
         }
-        return null; // Échec
-    }
+$referrer = Craft::$app->getRequest()->referrer; // Récupère l'URL de la page précédente
+return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente ou la page d'accueil par défaut         //  return $this->redirect('/u');
+}
 
      public function actionLogout(): Response
      {
          Craft::$app->getSession()->remove('loggedInGensId');
-         return $this->redirect('/u');
+$referrer = Craft::$app->getRequest()->referrer; // Récupère l'URL de la page précédente
+return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente ou la page d'accueil par défaut         //  return $this->redirect('/u');
         //  reload();
         //  return $this->redirectTo('/');
      }

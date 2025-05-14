@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 2
+template: voyagevoyage/jean.twig
+uriParts:
+  - jean/
+  -
+    - number
+    - \d+
+uriPattern: 'jean/<number:\d+>'

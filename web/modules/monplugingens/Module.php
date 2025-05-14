@@ -60,7 +60,9 @@ class Module extends BaseModule
 
                     // Hasher si le mot de passe est fourni
                     if (!empty($plainPassword)) { // Utiliser !empty() est plus sûr
-                        $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
+                        // $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
+                        $hashedPassword = password_hash($plainPassword);
+
                         $entry->setFieldValue('pass', $hashedPassword);
                         Craft::info('Module Gens : Mot de passe hashé pour l\'entrée ID: ' . ($entry->id ?? 'Nouvelle'), __METHOD__);
                     }
