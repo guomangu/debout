@@ -1,4 +1,4 @@
-dateModified: 1747274586
+dateModified: 1747316672
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -24,6 +24,7 @@ meta:
     9c9f6981-8090-489f-8538-a1951cc17589: img # img
     9c632554-a190-480a-a78e-ad96ba997b07: pass # pass
     24f213a4-a991-4525-bca3-2df7a8363c59: mail # mail
+    31c9f996-5cd8-4e53-bee4-a5b67a4d54f1: 'Public Schema' # Public Schema
     69c3f5ac-014f-4f64-9af1-bb369028c37e: obj # obj
     78d55181-c699-49ed-b79c-f5ebc485e8a0: desc # desc
     109c879d-6651-4af3-82d5-c40e884515f0: voyage # voyage
@@ -50,6 +51,7 @@ meta:
     d722116d-af1a-4bab-be40-011270cb86ae: abo # abo
     dd47950a-e2dc-4e5d-b507-006a2629150a: etape # etape
     e526d7b1-2116-4739-a365-e2788f483864: etape # etape
+    edd5eb1b-ad48-4b1b-b88a-fda3189bce72: guuumod # guuumod
     fc5f9eb4-f7b5-4b15-b4f8-40734fe2c56e: anno # anno
 plugins:
   guest-entries:

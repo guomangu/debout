@@ -119,6 +119,9 @@ git commit -m "Description"
 
 # Pousser vers le dépôt distant
 git push origin prodtest
+# OU
+git push origin main
+
 
 guomangu
 

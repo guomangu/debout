@@ -1,0 +1,18 @@
+isPublic: false
+name: guuumod
+scope:
+  - 'sites.b30a01d7-c759-48e9-8f48-21317d371ddc:read' # a
+  - 'elements.drafts:read'
+  - 'elements.revisions:read'
+  - 'elements.inactive:read'
+  - 'sections.4269450f-fd7c-46a8-a8bd-e3de97e45a4b:read' # abo
+  - 'sections.d2855a8a-5c35-417b-b805-0c265b314bbf:read' # alert
+  - 'sections.fc5f9eb4-f7b5-4b15-b4f8-40734fe2c56e:read' # anno
+  - 'sections.78d55181-c699-49ed-b79c-f5ebc485e8a0:read' # desc
+  - 'sections.e526d7b1-2116-4739-a365-e2788f483864:read' # etape
+  - 'sections.d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9:read' # gens
+  - 'sections.2dddfe37-8a4c-4b9b-9571-b01263c8747d:read' # img
+  - 'sections.42451543-abcb-4cf1-8051-f71d3999f379:read' # real
+  - 'sections.c89a4029-d853-4c39-b675-224ad9decd9a:read' # role
+  - 'sections.6040607e-af45-4ff2-a846-f600ab7d159f:read' # vote
+  - 'sections.109c879d-6651-4af3-82d5-c40e884515f0:read' # voyage
