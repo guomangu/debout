@@ -1,9 +1,6 @@
 {% include "voyagevoyage/menu.twig" %}
 
-
-{% block content %}
-
-
+{# //////////////////// #}
 {# Si l'utilisateur est connecté, récupérer ses informations #}
 {% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
 
@@ -13,6 +10,11 @@
 {# {% else %}
     {% set user = craft.entries().id(257).one() %} #}
 {% endif %}
+{# ///////////////////// #}
+
+
+{% block content %}
+
 
 
 {% if user %}

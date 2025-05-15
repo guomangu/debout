@@ -1,0 +1,68 @@
+color: null
+fieldLayouts:
+  05d9d2a9-187d-4c65-a502-4d687d914475:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-05-15T01:05:58+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 3901d306-663c-436a-a822-98b8eae2c5e5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-15T01:07:24+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 67053669-973b-4b91-b703-67ee8097172e # gens
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 83453ea1-8876-43c8-9cf7-1d653bb0b641
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: aeae7f93-7040-42d2-b997-da21de64b7bb
+        userCondition: null
+handle: voyage
+hasTitleField: true
+icon: null
+name: voyage
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -1,0 +1,67 @@
+{% include "voyagevoyage/menu.twig" %}
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+
+
+
+
+{% block content %}
+
+
+
+{% include "role/rolein.twig" with {
+    user: user
+} %}
+
+
+
+
+
+
+
+{% if user %}
+
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    {{ csrfInput() }} {# Important pour la sécurité CSRF #}
+    {{ actionInput('guest-entries/save') }} {# Action Craft pour sauvegarder #}
+    {{ hiddenInput('sectionId', 2) }} {# ID de la section où sauvegarder #}
+    {{ hiddenInput('enabled', '1') }}
+    <input id="user" type="hidden" name="fields[gens][]" class="form-control" value="{{user.id}}" required>
+
+
+    {# Champ Titre #}
+    <div class="mb-3">
+        <label for="title" class="form-label">Titre du Groupe:</label>
+        <input id="title" type="text" name="title" class="form-control" required placeholder="Votre pseudo">
+    </div>
+
+    {# Bouton de soumission #}
+    <div class="d-grid mt-4"> {# d-grid pour bouton pleine largeur #}
+        <button type="submit" class="btn btn-primary btn-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg me-1" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+            </svg>
+            Creer le Groupe
+        </button>
+    </div>
+</form>
+
+{% else %}
+    <p>pas connecter pour creer le groupe</p>
+{% endif %}
+
+
+{% endblock %}

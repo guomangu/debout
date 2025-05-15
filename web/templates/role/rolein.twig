@@ -1,0 +1,28 @@
+{% block content %}
+
+
+{% if user %}
+    {% set role = craft.entries()
+    .section('role')
+    .relatedTo({
+        targetElement: user,
+        field: 'gens'
+    })
+    .limit(9)
+    .all() %}
+{% endif %}
+
+
+
+{% if role %}
+{% for r in role %}
+   <a href="role/{{r.id}}">{{r.title}}</a>
+{% endfor %}
+{% endif %}
+
+
+
+<hr>
+
+
+{% endblock %}

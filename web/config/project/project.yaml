@@ -1,4 +1,4 @@
-dateModified: 1747184642
+dateModified: 1747274586
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -13,22 +13,30 @@ fs:
     url: $PRIMARY_SITE_URL/imgs
 meta:
   __names__:
+    1f2c85dc-5cd1-4832-a32e-4c60d5535d27: dt # dt
     2dddfe37-8a4c-4b9b-9571-b01263c8747d: img # img
     3c5ed36b-c006-4f27-8b03-fc8650ea8a17: gens # gens
     4f24ce8b-3261-40e5-8aca-a05d3bccaf60: etape # etape
     5e91ed90-f5e3-4aa8-9423-61a37bb77917: anno # anno
+    07c9bcb9-821e-40fc-87b7-600d07df1385: real # real
+    7df43cfb-822b-4393-9cea-f95c274c89bd: lieu # lieu
     8dba8da5-80a5-4037-8275-09211e173f1f: alert # alert
     9c9f6981-8090-489f-8538-a1951cc17589: img # img
     9c632554-a190-480a-a78e-ad96ba997b07: pass # pass
     24f213a4-a991-4525-bca3-2df7a8363c59: mail # mail
     69c3f5ac-014f-4f64-9af1-bb369028c37e: obj # obj
     78d55181-c699-49ed-b79c-f5ebc485e8a0: desc # desc
+    109c879d-6651-4af3-82d5-c40e884515f0: voyage # voyage
     184e9cf2-7ee6-4f12-8061-7857317e846b: img # img
     262fd559-19c4-4ceb-9bfa-9c751e02f956: phone # phone
+    306dff20-c17b-4130-a8e4-6a9fad9bbf99: voyage # voyage
     318fcb02-663c-4be2-90f0-2b1bfe73a7c7: vote # vote
+    380e1fd7-f86c-4a02-8444-9c55021cbd37: voyage # voyage
+    973cf1c7-299c-4b63-a065-6dd23ea7314b: zone # zone
     994fb679-4658-4e19-ab52-b452a3e5ff05: userole # userole
     4269450f-fd7c-46a8-a8bd-e3de97e45a4b: abo # abo
     6040607e-af45-4ff2-a846-f600ab7d159f: vote # vote
+    42451543-abcb-4cf1-8051-f71d3999f379: real # real
     67053669-973b-4b91-b703-67ee8097172e: gens # gens
     69783038-459d-47e1-8b2b-ec799a371a3c: a # a
     acf2011f-27b9-42d7-a21b-8d1501ade2f8: imgsvol # imgsvol
@@ -212,6 +220,44 @@ plugins:
                 -
                   - sectionUid
                   - 6040607e-af45-4ff2-a846-f600ab7d159f # vote
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+          -
+            - 42451543-abcb-4cf1-8051-f71d3999f379 # real
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 42451543-abcb-4cf1-8051-f71d3999f379 # real
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+          -
+            - 109c879d-6651-4af3-82d5-c40e884515f0 # voyage
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 109c879d-6651-4af3-82d5-c40e884515f0 # voyage
                 -
                   - allowGuestSubmissions
                   - '1'

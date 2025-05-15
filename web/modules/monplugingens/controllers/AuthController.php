@@ -95,7 +95,7 @@ return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente 
         }
 $referrer = Craft::$app->getRequest()->referrer; // Récupère l'URL de la page précédente
 return $this->redirect($referrer ?: '/'); // Redirige vers la page précédente ou la page d'accueil par défaut         //  return $this->redirect('/u');
-}
+    }
 
      public function actionLogout(): Response
      {

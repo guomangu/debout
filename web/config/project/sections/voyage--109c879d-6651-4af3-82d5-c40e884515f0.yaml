@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 380e1fd7-f86c-4a02-8444-9c55021cbd37 # voyage
+handle: voyage
+maxAuthors: 1
+name: voyage
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: voyage/_entry.twig
+    uriFormat: 'voyage/{slug}'
+type: channel
