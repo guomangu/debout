@@ -19,22 +19,12 @@
 
 
 
-
-
-
-
-
-
-
-
 {% if number %}
     {% set role = craft.entries()
     .section('role')
     .id(number)
     .one() %}
 {% endif %}
-
-
 
 {% if role %}
     {% set anno = craft.entries()
@@ -47,123 +37,34 @@
     .all() %}
 {% endif %}
 
-<pre>
-    {{ dump(anno) }}
-</pre>
-
-<h3>{{role.title}}</h3>
-{% if anno %}
-    {% for a in anno %}
-        <p>{{a.title}} <small>{{a.gens[0].title}}</small></p>
-        {# <a href="role/{{a.obj2[0].gens[0].id}}"></a> #}
-        <p>{{a.obj2[0].title}}</p>
-    {% endfor %}
-{% endif %}
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% if user and role %}
-{% if role.gens[0].id == user.id %}
-<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
-    {{ csrfInput() }} {# Important pour la sécurité CSRF #}
-    {{ actionInput('guest-entries/save') }} {# Action Craft pour sauvegarder #}
-    {{ hiddenInput('sectionId', 9) }} {# ID de la section où sauvegarder #}
-    {{ hiddenInput('enabled', '1') }}
-    <input id="user" type="hidden" name="fields[gens][]" class="form-control" value="{{user.id}}" required>
-
-
-    {# Champ Titre #}
-    <div class="mb-3">
-        <label for="title" class="form-label">Message d'invitation:</label>
-        <input id="title" type="text" name="title" class="form-control" required>
-    </div>
-    
-
-    <input id="user" type="hidden" name="fields[obj][]" class="form-control" value="{{role.id}}" required>
-    {# <input id="user" type="hidden" name="fields[obj2][]" class="form-control" value="" required> #}
-    <div class="mb-3">
-        <label for="search_id_user" class="form-label">Recherche user:</label>
-        <input id="search_id_user" type="text" name="" class="form-control">
-        <select id="recois_id_user" name="fields[obj2][]" class="form-control" required>
-        </select>
-    </div>
-
-    {# Bouton de soumission #}
-    <div class="d-grid mt-4"> {# d-grid pour bouton pleine largeur #}
-        <button type="submit" class="btn btn-primary btn-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg me-1" viewBox="0 0 16 16">
-                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-            </svg>
-            Creer le Groupe
-        </button>
-    </div>
-</form>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInputs = document.querySelectorAll('#search_id_user'); // Sélectionner TOUS les inputs avec l'ID 'sea'
-
-    searchInputs.forEach(searchInput => { // Ajouter un écouteur d'événements à chaque input
-        searchInput.addEventListener('input', function() {
-            const q = this.value; // 'this' fait référence à l'input 'sea' actuel
-            if (q.length < 1) {return}; // Ne pas effectuer la recherche si moins de 3 caractères{
-                
-            const form = this.closest('form'); // Remonter dans le DOM pour trouver le formulaire parent le plus proche
-            const resultContainer = form.querySelector('#recois_id_user'); // Sélectionner le select DANS ce formulaire
-
-            // Effectuer une requête AJAX pour récupérer les résultats de recherche
-            fetch('/index.php?action=graphql/api', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer _IWG8dj76ycy27AtXLFae5izZOyUJkAa'
-                },
-                body: JSON.stringify({
-                    query : `
-                        query MyQuery {
-                            gensEntries(search: "`+q+`" , limit:9) {
-                                ... on gens_Entry {
-                                    id
-                                    title
-                                }
-                            }
-                        }
-
-                    `
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // console.log(data); // Afficher la réponse dans la console pour le débogage
-                
-                // Traiter les résultats de la recherche et mettre à jour le conteneur de résultats
-                const results = data.data.gensEntries;
-                resultContainer.innerHTML = ''; // Vider le conteneur avant d'ajouter les nouveaux résultats
-
-                results.forEach(entry => {
-                    const option = document.createElement('option');
-                    option.value = entry.id; // ID du pilote
-                    option.textContent = entry.title; // Nom du pilote
-                    resultContainer.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Erreur lors de la recherche :', error));
-        });
-    });
-});
-</script>
+    {% set annonced = craft.entries()
+    .section('anno')
+    .obj2(user)
+    .obj(role)
+    .one() %}
 {% endif %}
+
+
+
+{# //////// #}
+
+{% if role %}
+
+<h3>{{role.title}} <small>({{role.gens[0].title}})</small></h3>
+
+<hr>
+
+{% if annonced %}
+
+{% include "role/roleusers.twig" with {
+    role: role,
+    user: user
+}%}
+
+{% endif %}
+
 {% endif %}
 
 

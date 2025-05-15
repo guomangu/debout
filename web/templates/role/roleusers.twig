@@ -1,0 +1,39 @@
+
+{% block content %}
+
+{% if role %}
+    {% set anno = craft.entries()
+    .section('anno')
+    .relatedTo({
+        targetElement: role,
+        field: 'obj'
+    })
+    .limit(9)
+    .all() %}
+{% endif %}
+
+{% if anno %}
+
+
+{% for a in anno %}
+    <p>{{a.title}} <small>{{a.gens[0].title}}</small></p>
+    {# <a href="role/{{a.obj2[0].gens[0].id}}"></a> #}
+    <p>{{a.obj2[0].title}}</p>
+{% endfor %}
+
+
+
+{% endif %}
+
+
+
+
+{% include "voyagevoyage/ajaxanno.twig" with {
+    user: user,
+    obj: role,
+    obj2: "gens"
+} %}
+
+
+
+{% endblock %}
