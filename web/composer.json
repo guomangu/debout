@@ -2,7 +2,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "craftcms/cms": "5.7.5",
+    "craftcms/cms": "5.7.6",
     "craftcms/guest-entries": "4.0.1",
     "vlucas/phpdotenv": "^5.4.0"
   },
