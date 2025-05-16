@@ -16,13 +16,14 @@
 
 {% if role %}
 {% for r in role %}
-   <a href="role/{{r.id}}">{{r.title}}</a>
+    <div class="card card-body">
+        <a href="/role/{{r.id}}">{{r.title}}</a>
+    </div>
 {% endfor %}
 {% endif %}
 
 
 
-<hr>
 
 
 {% endblock %}

@@ -1,0 +1,28 @@
+obj1
+(base)(point de depart) obj fixe
+/
+obj2
+(flexible)(cible) obj mobile qui se lie
+=
+j'ai un obj1 je veux un obj2
+
+
+obj
+voyage
+role
+user
+obj2
+
+
+
+utile:::
+
+{% set resultatsRecherche = craft.entries().search(query).all() %}
+
+
+
+.id([1, 2, 3])
+
+
+
+{% if craft.entries().section('evenements').dateEvenement('>= ' ~ now|date('Y-m-d')).exists() %}

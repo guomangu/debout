@@ -1,6 +1,6 @@
 siteUid: null
 sortOrder: 4
-template: role/roleon.twig
+template: role/r.twig
 uriParts:
   - role/
   -

@@ -1,39 +1,35 @@
 
 {% block content %}
-
 {% if role %}
-    {% set anno = craft.entries()
-    .section('anno')
+
+    {% set abbo = craft.entries()
+    .section('abo')
     .relatedTo({
         targetElement: role,
         field: 'obj'
     })
     .limit(9)
     .all() %}
+
+    {% set admin = role.gens[0] %}
+
+
+    <p>{{admin.title}}</p>
+    <p><small>ADMIN</small></p>
+    {% if abbo %}
+    {% for a in abbo %}
+    <div class="card card-body">
+        <p>{{a.title}} <small>{{a.gens[0].title}}</small></p>
+        <p>{{a.obj[0].title}}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    {% include "voyagevoyage/ajaxabbo.twig" with {
+        user: user,
+        obj: role,
+        obj2: "gens"
+    } %}
 {% endif %}
-
-{% if anno %}
-
-
-{% for a in anno %}
-    <p>{{a.title}} <small>{{a.gens[0].title}}</small></p>
-    {# <a href="role/{{a.obj2[0].gens[0].id}}"></a> #}
-    <p>{{a.obj2[0].title}}</p>
-{% endfor %}
-
-
-
-{% endif %}
-
-
-
-
-{% include "voyagevoyage/ajaxanno.twig" with {
-    user: user,
-    obj: role,
-    obj2: "gens"
-} %}
-
-
-
 {% endblock %}

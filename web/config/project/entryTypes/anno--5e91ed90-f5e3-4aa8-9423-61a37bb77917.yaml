@@ -60,7 +60,7 @@ fieldLayouts:
             handle: obj2
             includeInCards: false
             instructions: null
-            label: null
+            label: obj2
             providesThumbs: false
             required: false
             tip: null

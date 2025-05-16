@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 5
+template: voyage/v.twig
+uriParts:
+  - voyage/
+  -
+    - number
+    - \d+
+uriPattern: 'voyage/<number:\d+>'

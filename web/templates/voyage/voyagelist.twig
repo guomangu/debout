@@ -1,0 +1,28 @@
+{% block content %}
+
+
+
+
+{% if role and user %}
+    {% set annovoyage = craft.entries()
+    .section('anno')
+    .obj(role)
+    .limit(9)
+    .all() %}
+{% endif %}
+
+{% if annovoyage %}
+
+{% for av in annovoyage %}
+<div class="card card-body">
+    <a href="/voyage/{{ av.obj2[0].id }}"><p>{{av.obj2[0].title}}</p></a>
+</div>
+{% endfor %}
+
+{% endif %}
+
+
+
+
+
+{% endblock %}

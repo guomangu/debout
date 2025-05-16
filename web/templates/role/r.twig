@@ -1,0 +1,99 @@
+{% include "voyagevoyage/menu.twig" %}
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+{% block content %}
+
+
+
+
+{% if number %}
+    {% set role = craft.entries()
+    .section('role')
+    .id(number)
+    .one() %}
+{% endif %}
+
+{% if role %}
+    {% set abbo = craft.entries()
+    .section('abo')
+    .relatedTo({
+        targetElement: role,
+        field: 'obj2'
+    })
+    .limit(9)
+    .all() %}
+{% endif %}
+
+{% if user and role %}
+    {% set annonced = craft.entries()
+    .section('abo')
+    .obj(user)
+    .obj2(role)
+    .one() %}
+{% endif %}
+
+{% if user.id == role.gens[0].id %}
+    {% set admin = role.gens[0] %}
+{% endif %}
+
+
+
+
+{# //////// #}
+
+{% if role %}
+
+<h3>{{role.title}} <small>({{role.gens[0].title}})</small></h3>
+
+{% if annonced or admin %}
+
+<div class="m-5">
+{% include "role/roleusers.twig" with {
+    role: role,
+    user: user
+}%}
+</div>
+
+<hr>
+
+<div class="m-5">
+{% include "voyage/voyagelist.twig" with {
+    role: role,
+    user: user,
+}%}
+</div>
+
+<hr>
+
+<div class="m-5">
+{% include "voyage/voyage.twig" with {
+    role: role,
+    user: user,
+}%}
+</div>
+
+{% endif %}
+
+
+
+
+{% endif %}
+
+
+
+
+
+{% endblock %}
