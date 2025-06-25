@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: a290bbdd-6af4-4850-aabb-b9fbdc2cf25d # texte
+handle: texte
+maxAuthors: 1
+name: texte
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: texte/_entry.twig
+    uriFormat: 'texte/{slug}'
+type: channel

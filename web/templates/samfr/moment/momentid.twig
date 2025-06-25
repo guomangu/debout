@@ -1,0 +1,74 @@
+
+
+
+
+{% block content %}
+{% include "samfr/gens/menu.twig" %}
+
+
+
+{% set v = craft.entries()
+    .section('versionmoment')
+    .id(craft.app.request.getSegment(2))
+    .one() %}
+
+{% if v %}
+    {% set n = craft.entries()
+    .section('note')
+    .versionmoment(v.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+<h3>{{ v.moment[0].title }}</h3>
+
+{% if n %}
+    {% set notesGroupees = n|group(note => note.gens|length ? note.gens[0].id : 'sans-groupe') %}
+
+    {% for genId, notesDuGroupe in notesGroupees %}
+
+        {#
+           ===================================================================
+           C'EST ICI que l'on récupère le titre que vous voulez afficher.
+           On le fait UNE SEULE FOIS par groupe, avant de lister les notes.
+           ===================================================================
+        #}
+        {% set titreDuGroupe = "Notes non classées" %}
+        {% if genId != 'sans-groupe' %}
+            {#
+               On prend la PREMIÈRE note du tableau (`notesDuGroupe[0]`),
+               on accède à son champ `gens`, on prend le PREMIER élément (`.first() ou [0]`)
+               et on récupère son titre (`.title`).
+            #}
+            {% set titreDuGroupe = notesDuGroupe[0].gens[0].title %}
+        {% endif %}
+
+        <div class="card card-body mb-3">
+            {# Et ici, on AFFICHE le titre du groupe #}
+            <h4 class="card-title">{{ titreDuGroupe }}</h4>
+
+            {# Ensuite, on boucle sur les notes de ce groupe #}
+            {% for note in notesDuGroupe %}
+                <div class="note-item border-top pt-2 mt-2">
+                    <p>V {{ note.dateCreated|date("d/m/Y H:i") }}</p>
+                    <p>{{ note.title }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% include "samfr/moment/notecreate.twig" with {
+    v: v
+} %}
+
+
+
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

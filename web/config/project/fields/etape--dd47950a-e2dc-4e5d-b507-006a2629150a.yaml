@@ -16,7 +16,7 @@ settings:
   showUnpermittedEntries: false
   showUnpermittedSections: false
   sources:
-    - 'section:e526d7b1-2116-4739-a365-e2788f483864' # etape
+    - 'section:e526d7b1-2116-4739-a365-e2788f483864'
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

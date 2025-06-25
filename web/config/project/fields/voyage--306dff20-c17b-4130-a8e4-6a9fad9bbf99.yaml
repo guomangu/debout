@@ -16,7 +16,7 @@ settings:
   showUnpermittedEntries: false
   showUnpermittedSections: false
   sources:
-    - 'section:109c879d-6651-4af3-82d5-c40e884515f0' # voyage
+    - 'section:109c879d-6651-4af3-82d5-c40e884515f0'
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

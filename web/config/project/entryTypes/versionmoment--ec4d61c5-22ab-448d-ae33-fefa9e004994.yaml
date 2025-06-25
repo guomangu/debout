@@ -1,0 +1,68 @@
+color: null
+fieldLayouts:
+  e0963c4e-1ff0-43c9-8895-59792e329c5a:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-06-22T10:41:45+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 4895705d-f8ea-436e-9d6d-adc05043905b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-06-22T10:43:46+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 221a2b9b-2b23-4323-9fd7-c62512c41c97 # moment
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a819d68e-b359-45f0-b87c-af89fd33971a
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: ce5320ef-6fac-4e4e-821d-f52694031301
+        userCondition: null
+handle: versionmoment
+hasTitleField: true
+icon: null
+name: versionmoment
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

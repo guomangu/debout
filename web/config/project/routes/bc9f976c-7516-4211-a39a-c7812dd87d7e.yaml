@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 2
+template: samfr/moment/moment.twig
+uriParts:
+  - moment
+uriPattern: moment

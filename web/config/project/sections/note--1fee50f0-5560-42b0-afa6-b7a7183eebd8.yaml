@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 4a5d9ad2-7db0-4763-b109-a7a2e264d13d # note
+handle: note
+maxAuthors: 1
+name: note
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: note/_entry.twig
+    uriFormat: 'note/{slug}'
+type: channel

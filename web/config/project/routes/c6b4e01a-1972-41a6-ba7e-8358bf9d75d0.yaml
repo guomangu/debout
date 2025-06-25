@@ -1,6 +1,0 @@
-siteUid: null
-sortOrder: 1
-template: voyagevoyage/gens.twig
-uriParts:
-  - gens
-uriPattern: gens

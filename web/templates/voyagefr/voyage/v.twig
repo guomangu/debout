@@ -1,0 +1,68 @@
+{% include "voyagevoyage/menu.twig" %}
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+{% block content %}
+
+
+
+
+{% if number %}
+    {% set voyage = craft.entries()
+    .section('voyage')
+    .id(number)
+    .one() %}
+{% endif %}
+
+
+{% if voyage %}
+    {% set etape = craft.entries()
+    .section('real')
+    .voyage(user)
+    .all() %}
+{% endif %}
+
+
+{% if voyage %}
+    {{voyage.title}}
+{% endif %}
+
+
+{% if etape %}
+    {% for e in etape %}
+        
+    {% endfor %}
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

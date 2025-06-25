@@ -1,0 +1,78 @@
+
+
+
+{% block content %}
+
+
+
+{# {% if user %} #}
+    {% set moment = craft.entries()
+    .section('moment')
+    .orderBy('dateCreated DESC')
+    .limit(9)
+    .all() %}
+{# {% endif %} #}
+
+{% if moment %}
+{% for av in moment %}
+    {% set v = craft.entries()
+    .section('versionmoment')
+    .moment(av)
+    .limit(9)
+    .orderBy('dateCreated DESC')
+    .one() %}
+
+
+    {% if v %}
+        {% set n = craft.entries()
+            .section('note')
+            .versionmoment(v.id)
+            .with('gens')
+            .all() %}
+        {% set uniqueGensIds = n|column('gens.0.id')|filter(v => v)|unique %}
+
+        {% if uniqueGensIds|length < 10 %}
+            <div class="card card-body">
+                <a href="/moment/{{ v.id }}"><p>{{ v.title }}</p></a>
+                <p>{{ n|length }} notes ({{ uniqueGensIds|length }}/9 participants)</p>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {# {% if not v %} #}
+    
+    {# {% endif %} #}
+{% endfor %}
+
+
+{% for av in moment %}
+    <div class="card card-body">
+        <p>{{ av.title }}</p>
+
+        <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            {# Champ Titre #}
+            <div class="mb-3">
+                <input id="title" type="hidden" name="title" class="form-control" value="{{av.title}}" required>
+            </div>
+            {{ redirectInput('/moment') }}
+            {{ csrfInput() }} {# Important pour la sécurité CSRF #}
+            {{ actionInput('guest-entries/save') }} {# Action Craft pour sauvegarder #}
+            {{ hiddenInput('sectionId', 6) }} {# ID de la section où sauvegarder #}
+            <input id="user" type="hidden" name="fields[moment][]" class="form-control" value="{{ av.id }}" required>
+
+            {# submit         #}
+
+            <button type="submit" class="btn btn-primary">Crrer new salle</button>
+        </form>
+        
+    
+    </div>
+{% endfor %}
+
+{% endif %}
+
+
+
+
+
+{% endblock %}

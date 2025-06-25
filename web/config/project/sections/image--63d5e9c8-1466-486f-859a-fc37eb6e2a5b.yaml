@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 9c83564b-daca-48c5-b427-99f12a40d4d2 # image
+handle: image
+maxAuthors: 1
+name: image
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: image/_entry.twig
+    uriFormat: 'image/{slug}'
+type: channel

@@ -1,9 +1,0 @@
-siteUid: null
-sortOrder: 4
-template: role/r.twig
-uriParts:
-  - role/
-  -
-    - number
-    - \d+
-uriPattern: 'role/<number:\d+>'

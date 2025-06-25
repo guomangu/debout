@@ -1,6 +1,0 @@
-siteUid: null
-sortOrder: 3
-template: role/role.twig
-uriParts:
-  - role
-uriPattern: role

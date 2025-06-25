@@ -1,0 +1,98 @@
+{% block content %}
+
+{% include "samfr/gens/menu.twig" %}
+
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+
+
+
+
+
+
+
+
+{% if user %}
+
+{#
+  1. OPTIMISATION : On utilise .with(['versionmoment'])
+  C'est ce qu'on appelle "Eager Loading". Craft va pré-charger toutes les entrées
+  'versionmoment' associées en une seule requête supplémentaire, au lieu de faire
+  une nouvelle requête pour chaque note dans la boucle plus tard.
+  C'est le changement le plus important pour la performance.
+#}
+{% set n = craft.entries()
+    .section('note')
+    .gens(user.id)
+    .limit(99)
+    .with(['versionmoment'])
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{# On s'assure qu'il y a des notes avant de continuer #}
+{% if n %}
+
+{#
+  2. FIABILITÉ : On groupe de manière plus sûre.
+  - note.versionmoment.one() : Récupère la première entrée reliée (ou null si aucune). C'est plus sûr que note.versionmoment[0].
+  - ?? 'sans-groupe' : C'est l'opérateur "null coalescing". Si ce qui est à gauche est null (aucune entrée 'versionmoment' trouvée),
+    il utilise la valeur de droite comme clé de groupe. C'est plus court et plus lisible.
+#}
+{% set notesGroupees = n|group(note => note.versionmoment.one().id ?? 'sans-groupe') %}
+
+{#
+  3. LOGIQUE : On boucle correctement sur les groupes.
+  Le filtre 'group' crée un objet où les clés sont ce par quoi vous groupez (l'ID ou 'sans-groupe')
+  et les valeurs sont un tableau des éléments de ce groupe.
+  La syntaxe correcte est donc : for cle_du_groupe, elements_du_groupe in ...
+#}
+{% for groupId, notesInGroup in notesGroupees %}
+
+    {# On détermine le titre du groupe #}
+    {% set titreDuGroupe = "Notes non classées" %}
+    {% if groupId != 'sans-groupe' %}
+        {#
+          Puisqu'on a pré-chargé avec .with(), on peut accéder au titre directement
+          depuis la première note du groupe, sans nouvelle requête à la base de données !
+          Toutes les notes dans ce groupe partagent le même 'versionmoment'.
+        #}
+        {% set titreDuGroupe = notesInGroup[0].versionmoment.one().title %}
+    {% endif %}
+
+    <h3 class="group-title">{{ titreDuGroupe }}</h3>
+
+    {# On boucle ensuite sur chaque note à l'intérieur de ce groupe #}
+    {% for note in notesInGroup %}
+        <div class="note-item">
+            <h4>{{ note.title }}</h4>
+            <p>Créée le : {{ note.dateCreated|date("d/m/Y") }}</p>
+        </div>
+    {% endfor %}
+
+{% endfor %}
+
+
+
+
+
+
+{% endif %}
+
+
+{% endif %}
+
+
+{% endblock %}
