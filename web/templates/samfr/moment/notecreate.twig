@@ -17,10 +17,8 @@
         {{ hiddenInput('sectionId', 4) }} {# ID de la section où sauvegarder #}
 {# Redirige vers l'URL de la page actuelle #}
 {{ redirectInput('/moment/'~ v.id) }}
-        <div class="mb-3">
-            <label for="title" class="form-label">Note :</label>
-            <input id="title" type="text" name="title" class="form-control" required placeholder="titte">
-        </div>
+        
+        <input id="title" type="hidden" name="title" class="form-control" required value="{{ v.moment[0].title }} - {{ user.title }}">
 
 
         <input type="hidden" name="fields[versionmoment][]" value="{{ v.id }}" />
@@ -33,7 +31,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg me-1" viewBox="0 0 16 16">
                     <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
                 </svg>
-                Enregistrer
+                creer une nouvelle version
             </button>
         </div>
     </form>

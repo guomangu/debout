@@ -1,4 +1,14 @@
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
 
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
 
 
 
@@ -23,8 +33,9 @@
 <h3>{{ v.moment[0].title }}</h3>
 
 {% if n %}
+{% set azer = 0 %}
 {% for note in n %}
-    <div class="card card-body mb-3">
+    <div class="card card-body m-2">
         <p>V {{ note.dateCreated|date("d/m/Y") }}</p>
 
         <div>
@@ -58,34 +69,73 @@
                 </div>
             {% endif %}
 
+            {% if azer == 0 %}
+            
+                <button onclick="addimg({{ note.id }})" class="btn btn-primary">
+                    add img
+                </button>
 
-            <button onclick="addimg({{ note.id }})" class="btn btn-primary">
-                add img
-            </button>
+            {% endif %}
         </div>
 
     <div class="card card-body border-top pt-2 mt-2">
-        <p>{{note.gens[0].title}}
-        <p>{{ note.title }}</p>
-
-
         {% set t = craft.entries()
             .section('texte')
             .obj(note.id)
+            .orderBy('dateCreated DESC')
             .all() %}
 
-        {% if t %}
-            {% for item in t %}
-                <p>{{ item.gens[0].title }}</p>
-                <p>{{ item.title }}</p>
-            {% endfor %}
-        {% endif %}
+        {% set groupedByGens = t | group('gens[0].title') %}
 
-        <button onclick="addsa({{ note.id }})" class="btn btn-primary">
-            add votre version
-        </button>
+        {# 3. Loop through the grouped entries to display them.
+        We loop through 'groupedByGens' where 'groupTitle' will be the name of the person ('gens'),
+        and 'entriesInGroup' will be all the 'texte' entries associated with them.
+        #}
+        {# On initialise le drapeau. Il passera à `false` si on trouve une note de l'utilisateur. #}
+{% set dejala = true %}
+
+{# On boucle sur les entrées qui ont été préalablement groupées par auteur. #}
+{% for groupTitle, entriesInGroup in groupedByGens %}
+    <div class="person-group">
+
+        {# On affiche le nom de l'auteur pour ce groupe. #}
+        <h2 class="person-name">{{ groupTitle }}</h2>
+
+        {# On affiche chaque texte de ce groupe. #}
+        {% for entry in entriesInGroup|reverse %}
+            <h6>{{ entry.title }}</h6>
+        {% endfor %}
+
+        {#
+          CORRECTION CLÉ :
+          On vérifie si l'utilisateur est connecté ET si l'auteur du premier
+          élément de ce groupe (`entriesInGroup[0]`) est bien l'utilisateur.
+        #}
+        {% if azer == 0 and user and entriesInGroup[0].gens.one() and entriesInGroup[0].gens.one().id == user.id %}
+            {# Si c'est le cas, on met le drapeau à `false`... #}
+            {% set dejala = false %}
+
+            {# ...et on affiche le bouton pour compléter. #}
+            <button onclick="addsa({{ note.id }})" class="btn btn-primary">
+                Complétez votre note
+            </button>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{#
+  Après la boucle, vous pouvez utiliser la variable `dejala`.
+  Si elle est toujours `true`, cela signifie que l'utilisateur n'avait aucune note.
+#}
+{% if azer == 0 and user and dejala %}
+    <button onclick="addsa({{ note.id }})" class="btn btn-primary">
+        Ajouter votre note
+    </button>
+{% endif %}
+
     </div>
 </div>
+{% set azer = azer + 1 %}
 {% endfor %}
 {% endif %}
 

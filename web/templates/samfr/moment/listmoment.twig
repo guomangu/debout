@@ -5,47 +5,40 @@
 
 
 
-{# {% if user %} #}
-    {% set moment = craft.entries()
-    .section('moment')
-    .orderBy('dateCreated DESC')
-    .limit(9)
-    .all() %}
-{# {% endif %} #}
+{% set v = craft.entries()
+.section('versionmoment')
+.limit(9)
+.orderBy('dateCreated DESC')
+.all() %}
 
-{% if moment %}
-{% for av in moment %}
-    {% set v = craft.entries()
-    .section('versionmoment')
-    .moment(av)
-    .limit(9)
-    .orderBy('dateCreated DESC')
-    .one() %}
-
-
-    {% if v %}
+{% for item in v %}
+    {% if item %}
         {% set n = craft.entries()
             .section('note')
-            .versionmoment(v.id)
+            .versionmoment(item.id)
             .with('gens')
             .all() %}
-        {% set uniqueGensIds = n|column('gens.0.id')|filter(v => v)|unique %}
+        {% set uniqueGensIds = n|column('gens.0.id')|filter(item => item)|unique %}
 
         {% if uniqueGensIds|length < 10 %}
             <div class="card card-body">
-                <a href="/moment/{{ v.id }}"><p>{{ v.title }}</p></a>
+                <a href="/moment/{{ item.id }}"><p>{{ item.title }}</p></a>
                 <p>{{ n|length }} notes ({{ uniqueGensIds|length }}/9 participants)</p>
             </div>
         {% endif %}
     {% endif %}
-
+{% endfor %}
     {# {% if not v %} #}
     
     {# {% endif %} #}
-{% endfor %}
 
+{% set m = craft.entries()
+.section('moment')
+.limit(9)
+.orderBy('dateCreated DESC')
+.all() %}
 
-{% for av in moment %}
+{% for av in m %}
     <div class="card card-body">
         <p>{{ av.title }}</p>
 
@@ -69,7 +62,7 @@
     </div>
 {% endfor %}
 
-{% endif %}
+
 
 
 

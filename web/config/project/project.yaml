@@ -1,4 +1,4 @@
-dateModified: 1751030663
+dateModified: 1751491850
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -178,7 +178,7 @@ plugins:
                   - '1'
                 -
                   - authorUid
-                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
           -
             - 2dddfe37-8a4c-4b9b-9571-b01263c8747d
             -
@@ -292,7 +292,7 @@ plugins:
                   - '1'
                 -
                   - authorUid
-                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
           -
             - 65a653aa-888c-47ec-8f68-7c85bf874a46 # moment
             -
@@ -311,7 +311,7 @@ plugins:
                   - '1'
                 -
                   - authorUid
-                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
           -
             - 1fee50f0-5560-42b0-afa6-b7a7183eebd8 # note
             -
@@ -330,7 +330,7 @@ plugins:
                   - '1'
                 -
                   - authorUid
-                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
           -
             - a3732d22-9a25-4d2c-92d6-e9d37f1dc0b7 # texte
             -
@@ -349,7 +349,7 @@ plugins:
                   - '1'
                 -
                   - authorUid
-                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
           -
             - aeba1fc8-271e-46b8-bc9c-c2362a048adc # versionmoment
             -
@@ -368,7 +368,7 @@ plugins:
                   - '1'
                 -
                   - authorUid
-                  - 6aedeb60-106d-4680-a70b-e765c2765d75
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
 system:
   edition: solo
   live: true
