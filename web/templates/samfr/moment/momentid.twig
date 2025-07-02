@@ -23,40 +23,72 @@
 <h3>{{ v.moment[0].title }}</h3>
 
 {% if n %}
-    {% set notesGroupees = n|group(note => note.gens|length ? note.gens[0].id : 'sans-groupe') %}
+{% for note in n %}
+    <div class="card card-body mb-3">
+        <p>V {{ note.dateCreated|date("d/m/Y") }}</p>
 
-    {% for genId, notesDuGroupe in notesGroupees %}
+        <div>
+            {% set i = craft.entries()
+                .section('image')
+                .obj(note.id)
+                .all() %}
 
-        {#
-           ===================================================================
-           C'EST ICI que l'on récupère le titre que vous voulez afficher.
-           On le fait UNE SEULE FOIS par groupe, avant de lister les notes.
-           ===================================================================
-        #}
-        {% set titreDuGroupe = "Notes non classées" %}
-        {% if genId != 'sans-groupe' %}
-            {#
-               On prend la PREMIÈRE note du tableau (`notesDuGroupe[0]`),
-               on accède à son champ `gens`, on prend le PREMIER élément (`.first() ou [0]`)
-               et on récupère son titre (`.title`).
-            #}
-            {% set titreDuGroupe = notesDuGroupe[0].gens[0].title %}
+            {% if i %}
+            
+                {% for item in i %}
+                    {% set image = item.img[0] %}
+
+                    <img src="{{ image.getUrl({width: 120, height: 120, mode: 'crop'}) }}" {# Taille image source légèrement plus grande, qualité ajustée #}
+                    alt="{{ image.alt ?? image.title ?? action.title }}"
+                    class="img-fluid rounded-start" {# img-fluid + w/h-100 + object-fit pour remplir #}
+                    style="object-fit: cover;     height: 120px;
+        width: 120px;">
+                {% endfor %}
+            
+
+                {# Affichage de l'image avec une taille et qualité ajustées #}
+                
+            {% else %}
+                {# Placeholder si pas d'image #}
+                <div class="bg-light rounded-start w-100 h-100 d-flex align-items-center justify-content-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-image text-muted" viewBox="0 0 16 16">
+                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+                    </svg>
+                </div>
+            {% endif %}
+
+
+            <button onclick="addimg({{ note.id }})" class="btn btn-primary">
+                add img
+            </button>
+        </div>
+
+    <div class="card card-body border-top pt-2 mt-2">
+        <p>{{note.gens[0].title}}
+        <p>{{ note.title }}</p>
+
+
+        {% set t = craft.entries()
+            .section('texte')
+            .obj(note.id)
+            .all() %}
+
+        {% if t %}
+            {% for item in t %}
+                <p>{{ item.gens[0].title }}</p>
+                <p>{{ item.title }}</p>
+            {% endfor %}
         {% endif %}
 
-        <div class="card card-body mb-3">
-            {# Et ici, on AFFICHE le titre du groupe #}
-            <h4 class="card-title">{{ titreDuGroupe }}</h4>
-
-            {# Ensuite, on boucle sur les notes de ce groupe #}
-            {% for note in notesDuGroupe %}
-                <div class="note-item border-top pt-2 mt-2">
-                    <p>V {{ note.dateCreated|date("d/m/Y H:i") }}</p>
-                    <p>{{ note.title }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
+        <button onclick="addsa({{ note.id }})" class="btn btn-primary">
+            add votre version
+        </button>
+    </div>
+</div>
+{% endfor %}
 {% endif %}
+
 
 {% include "samfr/moment/notecreate.twig" with {
     v: v

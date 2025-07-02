@@ -2,7 +2,7 @@ baseUrl: 'http://localhost:88/'
 enabled: true
 handle: default
 hasUrls: true
-language: en-US
+language: fr
 name: a
 primary: true
 siteGroup: 69783038-459d-47e1-8b2b-ec799a371a3c # a

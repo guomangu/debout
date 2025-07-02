@@ -34,7 +34,8 @@
 {% if user %}
 <a href="/jean/{{ user.id }}"><button class="btn btn-outline-primary">{{ user.title }}</button></a>
 {% endif %}
-<a href="/moment"><button class="btn btn-outline-primary">MOMENT</button></a>
+
+<a href="/moment"><button class="btn btn-outline-primary">JOURNAUX</button></a>
 
 {% if user %}
     <a>{% include "samfr/gens/jean.twig" %}</a>
@@ -81,6 +82,7 @@
 </script>
 
 
-
+{% include "samfr/rep/adding.twig" %}
+{% include "samfr/rep/addingnote.twig" %}
 
 {% endblock %}
