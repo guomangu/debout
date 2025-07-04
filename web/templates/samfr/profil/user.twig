@@ -52,7 +52,7 @@
         .section('note')
         .id(obj)
         .one() %}
-        <p>{{ n.versionmoment[0].title }}</p>
+        <a href="/moment/{{ n.versionmoment[0].id }}"><p>{{ n.versionmoment[0].title }}</p></a>
         <p>V {{ n.dateCreated|date("d/m/Y") }}</p>
         <div>
             {% for texte in textes|reverse %}
