@@ -1,0 +1,133 @@
+
+{% block content %}
+
+
+
+
+
+{% set taggggggg = craft.entries()
+    .section('tagg')
+    .caracteristique(cara.id)
+    .limit(null)
+    .all() %}
+
+{# Or, a more modern and cleaner way using the `map` filter #}
+{% set itemIds = taggggggg|map(item => item.id) %}
+
+{# Now, use that array in your query #}
+{% set t = craft.entries()
+    .section('active')
+    .gens(user.id)
+    .obj(itemIds)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+
+
+
+
+{% if t or taggggggg %}
+<div class="card card-body mb-3">
+{% for item in t %}
+   <h5>{{item.obj[0].title}}
+
+   {# {% if user %}
+   
+   {% set deja = craft.entries()
+       .section('active')
+       .gens(user.id)
+       .relatedTo({
+           targetElement: item.obj[0],
+           field: 'obj'
+       })
+       .one() %}
+
+        {% if deja %}
+            <span class="badge bg-success">Déjà sur profil</span>
+        {% else %}
+            <span class="badge"><form style="display: contents;" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+                    {{ csrfInput() }} 
+                    {{ actionInput('guest-entries/save') }} 
+                    {{ hiddenInput('sectionId', 11) }} 
+                
+                    <input type="hidden" name="slug" value="{{ item.id }}-{{user.id}}" required>
+                <input type="hidden" name="fields[gens][]" value="{{ user.id }}" required>
+                <input type="hidden" name="fields[obj][]" value="{{ item.id }}" required>
+                <button type="submit" class="btn btn-outline-danger">Ajouter à profil</button>
+            </form></span>
+        {% endif %}
+
+    {% endif %} #}
+    </h5>
+   {% include "stackfr/version/version.twig" with {
+            'user': user,
+            'tagg': item.obj[0],
+        }
+    %}
+   
+{% endfor %}
+
+
+{% for item in taggggggg %}
+
+
+   {% if user %}
+   {% set deja = craft.entries()
+       .section('active')
+       .gens(user.id)
+       .relatedTo({
+           targetElement: item.id,
+           field: 'obj'
+       })
+       .one() %}
+
+        {% if deja %}
+        {% else %}
+           <h5>{{item.title}}
+
+            <span class="badge"><form style="display: contents;" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+                    {{ csrfInput() }} 
+                    {{ actionInput('guest-entries/save') }} 
+                    {{ hiddenInput('sectionId', 11) }} 
+                
+                    <input type="hidden" name="slug" value="{{ item.id }}-{{user.id}}" required>
+                <input type="hidden" name="fields[gens][]" value="{{ user.id }}" required>
+                <input type="hidden" name="fields[obj][]" value="{{ item.id }}" required>
+                <button type="submit" class="btn btn-outline-danger">Ajouter à profil</button>
+            </form></span></h5>
+        {% endif %}
+
+    {% endif %}
+    </h5>
+   {# {% include "stackfr/version/version.twig" with {
+            'user': user,
+            'tagg': item.obj[0],
+        }
+    %} #}
+{% endfor %}
+
+
+ </div>
+{% endif %}
+
+
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    {{ csrfInput() }}
+    {{ actionInput('guest-entries/save') }}
+    {{ hiddenInput('sectionId', 9) }}
+
+    <input id="caracteristique" type="hidden" name="fields[caracteristique][]" class="form-control" value="{{ cara.id }}" required>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Titre du tagg de {{ cara.title }}</label>
+        <input id="title" type="text" name="title" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Créer new tagg</button>
+</form>
+
+
+
+{% endblock %}

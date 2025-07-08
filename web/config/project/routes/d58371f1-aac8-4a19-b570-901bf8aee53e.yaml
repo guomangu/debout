@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 2
+template: stackfr/profil/profil.twig
+uriParts:
+  - profil/
+  -
+    - '*'
+    - '[^\/]+'
+uriPattern: 'profil/<any:[^\/]+>'

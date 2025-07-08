@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 3
+template: stackfr/accueil/accueil.twig
+uriParts:
+  - accueil
+uriPattern: accueil

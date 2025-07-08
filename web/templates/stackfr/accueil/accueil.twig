@@ -1,0 +1,24 @@
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+{% block content %}
+
+{% include "stackfr/gens/menu.twig" %}
+
+<div class="container mt-4">
+{% include "stackfr/cara/cara.twig" with {
+    'user': user
+} %}
+</div>
+{% endblock %}

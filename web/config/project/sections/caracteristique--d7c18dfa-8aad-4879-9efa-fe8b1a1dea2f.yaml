@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: bc6f2f8d-e16b-4597-9283-5b0a7f078ffe # caracteristique
+handle: caracteristique
+maxAuthors: 1
+name: caracteristique
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: caracteristique/_entry.twig
+    uriFormat: 'caracteristique/{slug}'
+type: channel

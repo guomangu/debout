@@ -16,7 +16,7 @@ settings:
   showUnpermittedEntries: false
   showUnpermittedSections: false
   sources:
-    - 'section:65a653aa-888c-47ec-8f68-7c85bf874a46' # moment
+    - 'section:65a653aa-888c-47ec-8f68-7c85bf874a46'
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

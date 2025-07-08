@@ -1,6 +1,6 @@
 siteUid: null
 sortOrder: 1
-template: samfr/gens/gens.twig
+template: stackfr/gens/gens.twig
 uriParts:
   - gens
 uriPattern: gens

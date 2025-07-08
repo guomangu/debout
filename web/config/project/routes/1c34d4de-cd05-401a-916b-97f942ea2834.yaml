@@ -1,9 +1,0 @@
-siteUid: null
-sortOrder: 4
-template: samfr/profil/user.twig
-uriParts:
-  - jean/
-  -
-    - '*'
-    - '[^\/]+'
-uriPattern: 'jean/<any:[^\/]+>'

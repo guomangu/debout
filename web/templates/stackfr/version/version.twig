@@ -1,0 +1,40 @@
+
+{% block content %}
+
+
+{% set t = craft.entries()
+    .section('version')
+    .tagg(tagg.id)
+    .gens(user.id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+
+{% for item in t %}
+   <p class="card card-body">V{{ loop.revindex }}: {{ item.title }}</p>
+{% endfor %}
+
+
+
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    {{ csrfInput() }}
+    {{ actionInput('guest-entries/save') }}
+    {{ hiddenInput('sectionId', 10) }} 
+
+    <input type="hidden" name="fields[tagg][]" class="form-control" value="{{ tagg.id }}" required>
+    <input type="hidden" name="fields[gens][]" class="form-control" value="{{ user.id }}" required>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Version de {{ tagg.title }}</label>
+        <input id="title" type="text" name="title" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Créer new version</button>
+</form>
+
+
+
+
+{% endblock %}

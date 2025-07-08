@@ -1,9 +1,0 @@
-siteUid: null
-sortOrder: 3
-template: samfr/moment/momentid.twig
-uriParts:
-  - moment/
-  -
-    - '*'
-    - '[^\/]+'
-uriPattern: 'moment/<any:[^\/]+>'

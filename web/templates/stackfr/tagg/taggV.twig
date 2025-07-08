@@ -1,0 +1,74 @@
+
+{% block content %}
+
+{# order by count version ! #}
+{% set t = craft.entries()
+    .section('tagg')
+    .caracteristique(cara.id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{% if t %}
+<div class="card card-body mb-3">
+{% for item in t %}
+   <h5>{{item.title}}
+
+   {% if user %}
+   
+   {# test si l'user a pour cette caracteristique: #}
+   {% set deja = craft.entries()
+       .section('active')
+       .gens(user.id)
+       .relatedTo({
+           targetElement: item,
+           field: 'obj'
+       })
+       .one() %}
+
+        {% if deja %}
+            <span class="badge bg-success">Déjà sur profil</span>
+        {% else %}
+            <span class="badge"><form style="display: contents;" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+                    {{ csrfInput() }} {# Important pour la sécurité CSRF #}
+                    {{ actionInput('guest-entries/save') }} {# Action Craft pour sauvegarder #}
+                    {{ hiddenInput('sectionId', 11) }} {# ID de la section où sauvegarder #}
+                
+                    <input type="hidden" name="slug" value="{{ item.id }}-{{user.id}}" required>
+                <input type="hidden" name="fields[gens][]" value="{{ user.id }}" required>
+                <input type="hidden" name="fields[obj][]" value="{{ item.id }}" required>
+                <button type="submit" class="btn btn-outline-danger">Ajouter à profil</button>
+            </form></span>
+        {% endif %}
+
+    {% endif %}
+    </h5>
+   {# {% include "stackfr/version/version.twig" with {
+            'user': user,
+            'tagg': item,
+        }
+    %} #}
+   
+{% endfor %}
+ </div>
+{% endif %}
+
+{# 
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    {{ csrfInput() }}
+    {{ actionInput('guest-entries/save') }}
+    {{ hiddenInput('sectionId', 9) }}
+
+    <input id="caracteristique" type="hidden" name="fields[caracteristique][]" class="form-control" value="{{ cara.id }}" required>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Titre du tagg de {{ cara.title }}</label>
+        <input id="title" type="text" name="title" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Créer new tagg</button>
+</form> #}
+
+
+
+{% endblock %}

@@ -54,6 +54,7 @@ use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\caching\TagDependency;
+use yii\helpers\Markdown;
 
 /**
  * The Entries service provides APIs for managing entries in Craft.
@@ -711,7 +712,7 @@ class Entries extends Component
             Db::delete(Table::SECTIONS_ENTRYTYPES, ['sectionId' => $sectionRecord->id]);
             Db::batchInsert(
                 Table::SECTIONS_ENTRYTYPES,
-                ['sectionId', 'typeId', 'sortOrder', 'name', 'handle'],
+                ['sectionId', 'typeId', 'sortOrder', 'name', 'handle', 'description'],
                 Collection::make($data['entryTypes'] ?? [])
                     ->map(fn($entryType) => $this->getEntryType($entryType))
                     ->filter()
@@ -721,6 +722,7 @@ class Entries extends Component
                         $i + 1,
                         isset($entryType->original) && $entryType->name !== $entryType->original->name ? $entryType->name : null,
                         isset($entryType->original) && $entryType->handle !== $entryType->original->handle ? $entryType->handle : null,
+                        isset($entryType->original) && $entryType->description !== $entryType->original->description ? $entryType->description : null,
                     ])
                     ->all(),
             );
@@ -1374,7 +1376,7 @@ SQL)->execute();
         }
 
         $entryTypes = (new Query())
-            ->select(['id' => 'typeId', 'name', 'handle'])
+            ->select(['id' => 'typeId', 'name', 'handle', 'description'])
             ->from(Table::SECTIONS_ENTRYTYPES)
             ->where(['sectionId' => $sectionId])
             ->orderBy(['sortOrder' => SORT_ASC])
@@ -1434,6 +1436,9 @@ SQL)->execute();
         if ($db->columnExists(Table::ENTRYTYPES, 'showSlugField')) {
             $query->addSelect('showSlugField');
         }
+        if ($db->columnExists(Table::ENTRYTYPES, 'description')) {
+            $query->addSelect('description');
+        }
         if ($db->columnExists(Table::ENTRYTYPES, 'icon')) {
             $query->addSelect('icon');
         }
@@ -1486,6 +1491,7 @@ SQL)->execute();
                     'fieldLayoutId',
                     'name',
                     'handle',
+                    'description',
                     'hasTitleField',
                     'titleTranslationMethod',
                     'titleTranslationKeyFormat',
@@ -1566,11 +1572,13 @@ SQL)->execute();
             return null;
         }
 
-        if (isset($config['name']) || isset($config['handle'])) {
+        if (isset($config['name']) || isset($config['handle']) || isset($config['description']) || isset($config['group'])) {
             $original = $entryType;
             $entryType = clone $original;
             $entryType->name = $config['name'] ?? $original->name;
             $entryType->handle = $config['handle'] ?? $original->handle;
+            $entryType->description = $config['description'] ?? $original->description;
+            $entryType->group = $config['group'] ?? null;
             $entryType->original = $original;
         }
 
@@ -1656,6 +1664,11 @@ SQL)->execute();
             $entryTypeRecord->slugTranslationKeyFormat = $data['slugTranslationKeyFormat'] ?? null;
             $entryTypeRecord->showStatusField = $data['showStatusField'] ?? true;
             $entryTypeRecord->uid = $entryTypeUid;
+
+            // todo: remove after the next breakpoint
+            if (Craft::$app->getDb()->columnExists(Table::ENTRYTYPES, 'description')) {
+                $entryTypeRecord->description = $data['description'] ?? null;
+            }
 
             if (!empty($data['fieldLayouts'])) {
                 // Save the field layout
@@ -1942,14 +1955,23 @@ SQL)->execute();
 
         foreach ($entryTypes as $entryType) {
             $label = $entryType->getUiLabel();
-            $tableData[] = [
-                'id' => $entryType->id,
-                'title' => $label,
-                'chip' => Cp::chipHtml($entryType, [
+            $chipCellContent = Html::beginTag('div', ['class' => 'inline-chips']) .
+                Cp::chipHtml($entryType, [
                     'labelHtml' => Html::a($label, $entryType->getCpEditUrl(), [
                         'class' => ['chip-label', 'cell-bold'],
                     ]),
-                ]),
+                ]);
+            if ($entryType->description) {
+                $chipCellContent .= Html::tag('span',
+                    Html::decodeDoubles(Markdown::process(Html::encodeInvalidTags(Html::encode($entryType->description)), 'gfm-comment')),
+                    ['class' => 'info']);
+            }
+            $chipCellContent .= Html::endTag('div');
+
+            $tableData[] = [
+                'id' => $entryType->id,
+                'title' => $label,
+                'chip' => $chipCellContent,
                 'handle' => $entryType->handle,
                 'usages' => Cp::componentPreviewHtml($usages[$entryType->id] ?? []),
             ];

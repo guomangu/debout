@@ -1,0 +1,69 @@
+{% block content %}
+
+{% include "stackfr/gens/menu.twig" %}
+
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+<div class="container mt-4">
+{% if user %}
+    <p>Profil de <h3>{{ user.title }}</h3></p>
+
+{% set a = craft.entries()
+    .section('active')
+    .gens(user.id)
+    .relatedTo({
+        targetElement: craft.entries().type('caracteristique'),
+        field: 'obj'
+    })
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+
+
+
+
+{% if a %}
+
+{% for item in a %}
+    <div class="card card-body mb-3">
+   <h3>{{item.obj[0].title}}</h3>
+
+   {# {% set a = craft.entries()
+    .section('tagg')
+    .caracteristique(item.obj[0].id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %} #}
+
+    {% include "stackfr/tagg/tagg.twig" with {
+                'user': user,
+                'cara': item.obj[0],
+    } %}
+    </div>
+{% endfor %}
+
+{% endif %}
+
+
+
+
+
+{% endif %}
+</div>
+
+
+
+{% endblock %}
