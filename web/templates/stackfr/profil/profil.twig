@@ -17,8 +17,8 @@
 
 <div class="container mt-4">
 {% if user %}
-    <p>Profil de <h3>{{ user.title }}</h3></p>
-
+    <span>Profil de <h3 style="display: contents;">{{ user.title }}</h3><br></span>    
+<div><br></div>
 {% set a = craft.entries()
     .section('active')
     .gens(user.id)

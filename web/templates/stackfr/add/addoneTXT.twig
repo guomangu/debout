@@ -1,0 +1,93 @@
+
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+
+
+<div id="add-overlaytxt111" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:absolute; background-color: #faebd7e6; z-index:99;">
+    <div class="text-primary" style="    margin-top: 50vh;
+    transform: translateY(-50%);
+    width: 80vw;
+    place-self: center;" role="status">
+        <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            {{ csrfInput() }}
+            {{ actionInput('guest-entries/save') }}
+            {{ hiddenInput('sectionId', 7) }} 
+            {{ hiddenInput('enabled', '1') }}
+
+            <div class="mb-3">
+                <input id="title11" type="text" name="title" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <input id="obj11111" type="hidden" name="fields[obj][]" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <input id="user11" type="hidden" name="fields[gens][]" class="form-control" required value="{{ user.id }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+                Ajouter du texte
+            </button>
+        </form>
+
+
+
+
+
+        <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-overlaytxt111').style.display='none';">
+            Annuler
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>    
+    function addonetxt(id) {
+        // 1. On sélectionne le calque de chargement grâce à son nouvel id
+        const loadingOverlay = document.getElementById('add-overlaytxt111');
+
+        // S'il n'existe pas, on arrête le script pour éviter des erreurs
+        if (!loadingOverlay) {
+            return;
+        }
+        loadingOverlay.style.display = 'block';
+
+        document.getElementById('obj11111').value=id;
+        document.getElementById('title11').value='Textedoc pour ' + id;
+    }
+</script>

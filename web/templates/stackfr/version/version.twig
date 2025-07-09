@@ -1,5 +1,8 @@
 
 {% block content %}
+<button onclick="addoneVersion( {{ tagg.id }}, '{{ tagg.title }}', {{user.id}})" class="btn btn-outline-secondary">
+        add version
+    </button>
 
 
 {% set t = craft.entries()
@@ -11,14 +14,61 @@
     .all() %}
 
 
-
+<hr>
+<div>
 {% for item in t %}
-   <p class="card card-body">V{{ loop.revindex }}: {{ item.title }}</p>
+   <p class=""><strong>V{{ loop.revindex }}:</strong> {{ item.title }}
+
+
+    <button onclick="addoneimg({{ item.id }})" class="btn btn-outline-primary">
+        + image
+    </button>
+
+    <button onclick="addonetxt({{ item.id }})" class="btn btn-outline-primary">
+        + texte
+    </button>
+   </p>
+
+   <div>
+        {% set txt = craft.entries()
+            .section('texte')
+            .obj(item.id)
+            .orderBy('dateCreated ASC')
+            .all() %}
+
+        {% if txt %}
+            {% for item in txt %}
+                <p class="">{{ item.title }}</p>
+            {% endfor %}
+        {% endif %}
+   </div>
+
+   <div>
+        {% set i = craft.entries()
+            .section('image')
+            .obj(item.id)
+            .all() %}
+
+        {% if i %}
+            {% for item in i %}
+                {% set image = item.img[0] %}
+
+                <img src="{{ image.getUrl({width: 120, height: 120, mode: 'crop'}) }}" {# Taille image source légèrement plus grande, qualité ajustée #}
+                alt="{{ image.alt ?? image.title ?? action.title }}"
+                class="img-fluid" {# img-fluid + w/h-100 + object-fit pour remplir #}
+                style="object-fit: cover;     height: 120px; width: 120px;">
+            {% endfor %}
+        {% endif %}
+    </div>
+
+     {% if not loop.last %}
+            <hr>
+        {% endif %}
 {% endfor %}
+</div>
 
 
-
-<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+{# <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
     {{ csrfInput() }}
     {{ actionInput('guest-entries/save') }}
     {{ hiddenInput('sectionId', 10) }} 
@@ -32,9 +82,12 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Créer new version</button>
-</form>
+</form> #}
 
 
 
 
+
+{# <hr style="width: 50%;
+    place-self: flex-end;"> #}
 {% endblock %}
