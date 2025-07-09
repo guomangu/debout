@@ -1,0 +1,111 @@
+{% block content %}
+
+{% include "stackfr/gens/menu.twig" %}
+
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+<div class="container mt-4">
+
+{% if craft.app.request.getSegment(2) %}
+    {% set idcara = craft.app.request.getSegment(2) %}
+{% endif %}
+
+
+{% set cara = craft.entries()
+    .section('caracteristique')
+    .id(idcara)
+    .one() %}
+
+
+{% if cara %}
+    <span>Caractéristique de <h3 style="display: contents;">{{ cara.title }}</h3><br></span>
+
+    {% set a = craft.entries()
+    .section('active')
+    .obj(cara.id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+<div class="card card-body mb-3">
+    membres: {{ a|length }}
+    <hr>
+    <span>
+        {% for item in a %}
+            {% if item.gens|length > 0 %}
+                <a href="/ami/{{ item.gens[0].id }}" class="text-decoration-none">
+                    <span class="badge bg-outline-secondary text-dark border border-black" style="min-height: 50px;min-width: 50px;border-radius: 776px;"><h3>{{ item.gens[0].title }}</h3></span>
+                </a>
+            {% elseif item.gens|length == 0 %}
+                <span class="text-muted">Aucun membre</span>
+            {% endif %}
+            {% if not loop.last %}
+                <span class="text-muted">, </span>
+            {% endif %}
+        {% endfor %}
+    </span>
+</div>
+
+
+
+
+    <div><br></div>
+
+    {% set a = craft.entries()
+        .section('tagg')
+        .caracteristique(cara.id)
+        .limit(99)
+        .orderBy('dateCreated DESC')
+        .all() %}
+
+    {% if a %}
+        {% for item in a %}
+            <div class="card card-body mb-3">
+                <h3>{{ item.title }}
+                </h3>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Aucun tag associé à cette caractéristique.</p>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endif %}
+</div>
+
+{% endblock %}

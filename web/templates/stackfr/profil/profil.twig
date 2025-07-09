@@ -39,7 +39,9 @@
 
 {% for item in a %}
     <div class="card card-body mb-3">
-   <h3>{{item.obj[0].title}}</h3>
+   <h3>{{item.obj[0].title}}
+    <span><a href="/caracteristique/{{ item.obj[0].id }}"><button class="btn btn-secondary">Voir</button></a></span>  
+   </h3>
 
    {# {% set a = craft.entries()
     .section('tagg')

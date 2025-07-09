@@ -70,7 +70,8 @@
         {% if deja %}
         {% else %}
            <h5>{{item.title}}
-
+        {% if user != "invited" %}
+        
             <span class="badge"><form style="display: contents;" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                     {{ csrfInput() }} 
                     {{ actionInput('guest-entries/save') }} 
@@ -81,6 +82,8 @@
                 <input type="hidden" name="fields[obj][]" value="{{ item.id }}" required>
                 <button type="submit" class="btn btn-outline-danger">Ajouter à profil</button>
             </form></span></h5>
+            
+        {% endif %}
         {% endif %}
 
     {% endif %}
@@ -114,10 +117,12 @@
 </form> #}
 
 
+        {% if user != "invited" %}
+
 <button onclick="addone({{ cara.id }}, '{{ cara.title }}')" style="align-self: flex-end;" class="btn btn-outline-secondary">
     add tagg
 </button>
-
+{% endif %}
 
 
 {% endblock %}

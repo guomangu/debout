@@ -1,9 +1,10 @@
 
 {% block content %}
+{% if user != "invited" %}
 <button onclick="addoneVersion( {{ tagg.id }}, '{{ tagg.title }}', {{user.id}})" class="btn btn-outline-secondary">
         add version
     </button>
-
+{% endif %}
 
 {% set t = craft.entries()
     .section('version')
@@ -19,7 +20,7 @@
 {% for item in t %}
    <p class=""><strong>V{{ loop.revindex }}:</strong> {{ item.title }}
 
-
+{% if user != "invited" %}
     <button onclick="addoneimg({{ item.id }})" class="btn btn-outline-primary">
         + image
     </button>
@@ -27,6 +28,7 @@
     <button onclick="addonetxt({{ item.id }})" class="btn btn-outline-primary">
         + texte
     </button>
+{% endif %}
    </p>
 
    <div>
