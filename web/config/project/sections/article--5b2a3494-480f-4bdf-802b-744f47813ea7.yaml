@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: b3130d18-b952-4e21-8f70-2aff973bb2b6 # article
+handle: article
+maxAuthors: 1
+name: article
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: article/_entry.twig
+    uriFormat: 'article/{slug}'
+type: channel

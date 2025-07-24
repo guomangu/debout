@@ -1,0 +1,54 @@
+{% block content %}
+
+
+
+{% set tags = craft.entries()
+    .section('genstag')
+    .gens(user)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+{# On garde le même début pour trier la liste chronologiquement #}
+{% set currentHour = now|date('G', 'Europe/Paris') %}
+{% set upcomingItems = [] %}
+{% set pastItems = [] %}
+
+{% for item in tags %}
+    {% set itemHour = item.dt|date('G') %}
+    {% if itemHour >= currentHour %}
+        {% set upcomingItems = upcomingItems|merge([item]) %}
+    {% else %}
+        {% set pastItems = pastItems|merge([item]) %}
+    {% endif %}
+{% endfor %}
+
+{% set upcomingItems = upcomingItems|sort((a, b) => a.dt <=> b.dt) %}
+{% set pastItems = pastItems|sort((a, b) => a.dt <=> b.dt) %}
+{% set sortedAgenda = upcomingItems|merge(pastItems) %}
+
+{# NOUVELLE PARTIE : On groupe les items triés par heure #}
+{% set groupedAgenda = sortedAgenda|group(item => item.dt|date('H')) %}
+
+
+{# --- AFFICHAGE REGROUPÉ --- #}
+{# On boucle sur les heures (les clés du groupe) #}
+{% for hour, itemsInHour in groupedAgenda %}
+    {# On affiche l'heure une seule fois #}
+    <h3>{{ hour }}h</h3>
+    
+    <div>
+        {# Puis on boucle sur les items de cette heure #}
+        {% for item in itemsInHour %}
+            <div class="card card-body">{{ item.title }}</div>
+            <br>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+
+
+
+{% endblock %}
+

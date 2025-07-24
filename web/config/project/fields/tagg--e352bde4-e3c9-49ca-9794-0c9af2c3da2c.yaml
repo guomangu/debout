@@ -16,7 +16,7 @@ settings:
   showUnpermittedEntries: false
   showUnpermittedSections: false
   sources:
-    - 'section:8af7f98b-7a5f-473f-a84f-4ce5ccb86560' # tagg
+    - 'section:8af7f98b-7a5f-473f-a84f-4ce5ccb86560' # Tagg
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

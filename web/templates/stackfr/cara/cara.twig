@@ -34,6 +34,8 @@
 {% for item in c %}
     <div class="card card-body mb-3">
    <h3>{{item.title}}
+    <span><a href="/caracteristique/{{ item.id }}"><button class="btn btn-secondary">Voir</button></a></span>  
+
    
 
    {% if user %}

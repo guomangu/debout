@@ -243,4 +243,4 @@ https://github.com/guomangu/sam-craft.git
 
 git remote -vvvv
 git remote remove origin
-git remote add origin https://github.com/guomangu/sam.git
+git remote add origin https://github.com/guomangu/debout.git

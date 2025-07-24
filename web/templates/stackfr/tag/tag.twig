@@ -1,0 +1,16 @@
+{% set a = craft.entries()
+    .section('arttag')
+    .article(item.id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{% for item in a %}
+    <h2 class="btn btn-outline-primary">{{ item.tagg[0].title }}</h2>
+{% endfor %}
+
+<br>
+
+{% include "stackfr/version2/saVersion.twig" with { item:item, user:user, a:a } %}
+
+

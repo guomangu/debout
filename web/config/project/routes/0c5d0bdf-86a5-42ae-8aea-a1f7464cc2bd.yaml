@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 6
+template: stackfr/article/article.twig
+uriParts:
+  - article
+uriPattern: article

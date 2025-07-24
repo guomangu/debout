@@ -1,0 +1,48 @@
+{% block content %}
+
+{% set b = craft.entries()
+    .section('tagg')
+    .limit(22)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+
+{% set idsAExclure = a|map(item => item.tagg[0].id) %}
+{% set tagsFiltres = b|filter(tag => tag.id not in idsAExclure) %}
+
+
+
+{% for item in tagsFiltres %}
+    <h2 class="btn btn-outline-danger">{{ item.title }}
+
+
+
+
+
+    <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+        {{ csrfInput() }}
+        {{ actionInput('guest-entries/save') }}
+        {{ hiddenInput('sectionId', 13) }} 
+
+        <input type="hidden" name="fields[tagg][]" class="form-control" value="{{ item.id }}" required>
+        <input type="hidden" name="fields[version][]" class="form-control" value="{{ version.id }}" required>
+
+        <div class="mb-3">
+            <input id="title" type="text" name="title" class="form-control" required placeholder="Pourquooi {{ item.title }} ?"> 
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary">{{ item.title }}</button>
+    </form>
+    </h2>
+{% endfor %}
+
+
+{# <button onclick="addoneTAG()" class="btn btn-outline-primary">
+    + tag
+</button> #}
+
+
+
+
+{% endblock %}

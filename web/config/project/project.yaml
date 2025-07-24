@@ -1,4 +1,4 @@
-dateModified: 1752095917
+dateModified: 1753386965
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -13,15 +13,18 @@ fs:
     url: $PRIMARY_SITE_URL/imgs
 meta:
   __names__:
+    1c5eafe9-3607-46fa-9bc3-ad3ab113db4f: arttag # arttag
     1f2c85dc-5cd1-4832-a32e-4c60d5535d27: dt # dt
     3c5ed36b-c006-4f27-8b03-fc8650ea8a17: gens # gens
+    3c780697-6783-459b-98c7-29237423bf8e: article # article
     4a5d9ad2-7db0-4763-b109-a7a2e264d13d: note # note
     4ddf2db2-8cc7-4ae8-8f6a-48121be92459: active # active
     4f24ce8b-3261-40e5-8aca-a05d3bccaf60: etape # etape
+    5b2a3494-480f-4bdf-802b-744f47813ea7: article # article
     5e91ed90-f5e3-4aa8-9423-61a37bb77917: anno # anno
     07c9bcb9-821e-40fc-87b7-600d07df1385: real # real
     7df43cfb-822b-4393-9cea-f95c274c89bd: lieu # lieu
-    8af7f98b-7a5f-473f-a84f-4ce5ccb86560: tagg # tagg
+    8af7f98b-7a5f-473f-a84f-4ce5ccb86560: Tagg # Tagg
     8dba8da5-80a5-4037-8275-09211e173f1f: alert # alert
     9c9f6981-8090-489f-8538-a1951cc17589: img # img
     9c83564b-daca-48c5-b427-99f12a40d4d2: image # image
@@ -33,35 +36,45 @@ meta:
     184e9cf2-7ee6-4f12-8061-7857317e846b: img # img
     221a2b9b-2b23-4323-9fd7-c62512c41c97: moment # moment
     262fd559-19c4-4ceb-9bfa-9c751e02f956: phone # phone
+    293ffd56-b277-41a3-8301-cac69c3b584e: arttag # arttag
     304cd698-b2e5-461c-a9f0-10c849c2acd3: active # active
     306dff20-c17b-4130-a8e4-6a9fad9bbf99: voyage # voyage
     318fcb02-663c-4be2-90f0-2b1bfe73a7c7: vote # vote
     380e1fd7-f86c-4a02-8444-9c55021cbd37: voyage # voyage
     973cf1c7-299c-4b63-a065-6dd23ea7314b: zone # zone
     994fb679-4658-4e19-ab52-b452a3e5ff05: userole # userole
-    3589b5bf-6fb3-43bb-8294-37d78c659f0b: version # version
+    1414ef98-f838-4a14-8d53-afefb8aecb9d: Genstag # Genstag
+    3589b5bf-6fb3-43bb-8294-37d78c659f0b: Version # Version
     4718b1b0-6cbc-46c1-a42f-40ba14078b4c: caracteristique # caracteristique
     75770ca1-8311-4f39-81c8-20e99b9bb03f: versionmoment # versionmoment
+    085882e1-b95e-483d-9af0-41f4adbb0804: agenda # agenda
+    416946b7-7b50-49d0-81e1-beff9b17a49d: genstag # genstag
     438474b0-8857-43a4-8e54-c3ae4dcda3bc: tagg # tagg
     67053669-973b-4b91-b703-67ee8097172e: gens # gens
     69783038-459d-47e1-8b2b-ec799a371a3c: a # a
     a290bbdd-6af4-4850-aabb-b9fbdc2cf25d: texte # texte
+    a39796f4-2ce8-4e56-9ec8-d8aab14b7f45: version # version
     a62216ec-f89c-455f-ae05-0b38ece91f3a: version # version
+    a607403e-1888-495d-8edc-0db53dd209a5: agenda # agenda
     aaa18eea-f177-476e-bdac-282240f23be7: moment # moment
     acf2011f-27b9-42d7-a21b-8d1501ade2f8: imgsvol # imgsvol
     ae4cfa98-5b15-4613-b8c9-67459f28d815: tag # tag
     b4ce6bb9-4b2f-494a-a3f9-372cd84da076: role # role
     b30a01d7-c759-48e9-8f48-21317d371ddc: a # a
+    b3130d18-b952-4e21-8f70-2aff973bb2b6: article # article
     bc6f2f8d-e16b-4597-9283-5b0a7f078ffe: caracteristique # caracteristique
     cfdea3fe-70d2-49e7-aded-a86ea2b3a5f5: desc # desc
+    d0d920c2-5803-4a13-90c1-49c76231a2a4: desc # desc
     d7c18dfa-8aad-4879-9efa-fe8b1a1dea2f: caracteristique # caracteristique
-    d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9: gens # gens
+    d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9: Gens # Gens
     d722116d-af1a-4bab-be40-011270cb86ae: abo # abo
     dd47950a-e2dc-4e5d-b507-006a2629150a: etape # etape
+    e5bd54f7-a73b-46a5-bfc2-b7057fcaa455: vertag # vertag
     e352bde4-e3c9-49ca-9794-0c9af2c3da2c: tagg # tagg
     ec4d61c5-22ab-448d-ae33-fefa9e004994: versionmoment # versionmoment
     edd5eb1b-ad48-4b1b-b88a-fda3189bce72: guuumod # guuumod
     f1017c71-c97e-4d79-84ba-5f9cde6dfd5d: texte # texte
+    f604862b-998a-42c2-b81f-5ba606dbfb05: vertag # vertag
 plugins:
   guest-entries:
     edition: standard
@@ -168,12 +181,12 @@ plugins:
                   - authorUid
                   - 6aedeb60-106d-4680-a70b-e765c2765d75
           -
-            - d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9 # gens
+            - d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9 # Gens
             -
               __assoc__:
                 -
                   - sectionUid
-                  - d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9 # gens
+                  - d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9 # Gens
                 -
                   - allowGuestSubmissions
                   - '1'
@@ -396,12 +409,12 @@ plugins:
                   - authorUid
                   - 0f378e12-6438-4246-853e-3f21d474d87b
           -
-            - 8af7f98b-7a5f-473f-a84f-4ce5ccb86560 # tagg
+            - 8af7f98b-7a5f-473f-a84f-4ce5ccb86560 # Tagg
             -
               __assoc__:
                 -
                   - sectionUid
-                  - 8af7f98b-7a5f-473f-a84f-4ce5ccb86560 # tagg
+                  - 8af7f98b-7a5f-473f-a84f-4ce5ccb86560 # Tagg
                 -
                   - allowGuestSubmissions
                   - '1'
@@ -434,12 +447,12 @@ plugins:
                   - authorUid
                   - 0f378e12-6438-4246-853e-3f21d474d87b
           -
-            - 3589b5bf-6fb3-43bb-8294-37d78c659f0b # version
+            - 3589b5bf-6fb3-43bb-8294-37d78c659f0b # Version
             -
               __assoc__:
                 -
                   - sectionUid
-                  - 3589b5bf-6fb3-43bb-8294-37d78c659f0b # version
+                  - 3589b5bf-6fb3-43bb-8294-37d78c659f0b # Version
                 -
                   - allowGuestSubmissions
                   - '1'
@@ -459,6 +472,82 @@ plugins:
                 -
                   - sectionUid
                   - 4ddf2db2-8cc7-4ae8-8f6a-48121be92459 # active
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 5b2a3494-480f-4bdf-802b-744f47813ea7 # article
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 5b2a3494-480f-4bdf-802b-744f47813ea7 # article
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 1c5eafe9-3607-46fa-9bc3-ad3ab113db4f # arttag
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 1c5eafe9-3607-46fa-9bc3-ad3ab113db4f # arttag
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - f604862b-998a-42c2-b81f-5ba606dbfb05 # vertag
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - f604862b-998a-42c2-b81f-5ba606dbfb05 # vertag
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 1414ef98-f838-4a14-8d53-afefb8aecb9d # Genstag
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 1414ef98-f838-4a14-8d53-afefb8aecb9d # Genstag
                 -
                   - allowGuestSubmissions
                   - '1'

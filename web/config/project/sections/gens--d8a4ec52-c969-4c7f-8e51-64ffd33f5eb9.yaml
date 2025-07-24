@@ -5,7 +5,7 @@ entryTypes:
     uid: 3c5ed36b-c006-4f27-8b03-fc8650ea8a17 # gens
 handle: gens
 maxAuthors: 1
-name: gens
+name: Gens
 previewTargets:
   -
     __assoc__:

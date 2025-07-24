@@ -17,16 +17,16 @@
 
 {% if craft.app.request.getSegment(2) %}
     {% set iduser = craft.app.request.getSegment(2) %}
-    {% set user = craft.entries().id(iduser).one() %}
+    {% set userAMI = craft.entries().id(iduser).one() %}
 {% endif %}
 
 <div class="container mt-4">
-{% if user %}
-    <span>Profil de <h3 style="display: contents;">{{ user.title }}</h3><br></span>    
+{% if userAMI %}
+    <span>Profil de <h3 style="display: contents;">{{ userAMI.title }}</h3><br></span>    
 <div><br></div>
 {% set a = craft.entries()
     .section('active')
-    .gens(user.id)
+    .gens(userAMI.id)
     .relatedTo({
         targetElement: craft.entries().type('caracteristique'),
         field: 'obj'
@@ -55,8 +55,9 @@
     .orderBy('dateCreated DESC')
     .all() %} #}
 
-    {% include "stackfr/tagg/tagg.twig" with {
-                'user': "invited",
+    {% include "stackfr/tagg/taggAMI.twig" with {
+                'user': user,
+                'userAMI': userAMI,
                 'cara': item.obj[0],
     } %}
     </div>

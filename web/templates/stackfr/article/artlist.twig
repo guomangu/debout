@@ -1,0 +1,38 @@
+{% set a = craft.entries()
+    .section('article')
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+
+
+{% for item in a %}
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.desc }}</p>
+    {% include "stackfr/get/gettxt.twig" with { item:item } %}
+    {% include "stackfr/get/getimg.twig" with { item:item } %}    
+    <p>
+    {% if user.id == item.gens[0].id %}
+        <button onclick="addoneimg({{ item.id }})" class="btn btn-outline-primary">
+            + image
+        </button>
+        <button onclick="addonetxt({{ item.id }})" class="btn btn-outline-primary">
+            + texte
+        </button>
+    {% endif %}
+    </p>
+
+    <hr>
+
+    {% include "stackfr/tag/tag.twig" with { item:item } %}    
+
+{% endfor %}
+
+
+
+<hr>
+
+<button onclick="addoneart({{ item.id }})" class="btn btn-outline-primary">
+    + article
+</button>

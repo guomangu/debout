@@ -17,7 +17,7 @@ settings:
   showUnpermittedEntries: false
   showUnpermittedSections: false
   sources:
-    - 'section:d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9' # gens
+    - 'section:d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9' # Gens
   targetSiteId: null
   validateRelatedElements: true
   viewMode: list

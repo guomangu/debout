@@ -1,0 +1,14 @@
+{% block content %}
+{% set vers = craft.entries()
+    .section('version')
+    .article(item.id)
+    .gens(user.id)
+    .orderBy('dateCreated DESC')
+    .one() %}
+
+{% if vers %}
+    {% include "stackfr/version2/version.twig" with { version:vers, user:user, a:a } %}
+{% else %}
+    {% include "stackfr/version2/versionCREATE.twig" with { art:item, user:user } %}
+{% endif %}
+{% endblock %}

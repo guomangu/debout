@@ -10,7 +10,7 @@ scope:
   - 'sections.fc5f9eb4-f7b5-4b15-b4f8-40734fe2c56e:read'
   - 'sections.78d55181-c699-49ed-b79c-f5ebc485e8a0:read'
   - 'sections.e526d7b1-2116-4739-a365-e2788f483864:read'
-  - 'sections.d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9:read' # gens
+  - 'sections.d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9:read' # Gens
   - 'sections.2dddfe37-8a4c-4b9b-9571-b01263c8747d:read'
   - 'sections.42451543-abcb-4cf1-8051-f71d3999f379:read'
   - 'sections.c89a4029-d853-4c39-b675-224ad9decd9a:read'

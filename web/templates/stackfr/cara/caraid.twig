@@ -62,7 +62,14 @@
 
     <div><br></div>
 
-    {% set a = craft.entries()
+
+    {% include "stackfr/tagg/taggALL.twig" with {
+            'user': user,
+            'cara': cara,
+        }
+    %}
+
+    {# {% set a = craft.entries()
         .section('tagg')
         .caracteristique(cara.id)
         .limit(99)
@@ -78,7 +85,7 @@
         {% endfor %}
     {% else %}
         <p>Aucun tag associé à cette caractéristique.</p>
-    {% endif %}
+    {% endif %} #}
 
 
 

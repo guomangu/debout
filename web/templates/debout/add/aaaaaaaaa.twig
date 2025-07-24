@@ -1,0 +1,90 @@
+
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+{% block content %}
+
+
+<div id="add-overlay22" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd7e6; z-index:99;">
+    <div class="text-primary" style="    margin-top: 50vh;
+    transform: translateY(-50%);
+    width: 80vw;
+    place-self: center;" role="status">
+
+
+
+
+
+        <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            {{ csrfInput() }}
+            {{ actionInput('guest-entries/save') }}
+            {{ hiddenInput('sectionId', 15) }}
+
+            <input id="caracteristique22" type="hidden" name="fields[gens][]" class="form-control" required value="{{ user.id }}">
+
+            <div class="mb-3">
+                {# <label id="title22" for="title" class="form-label"></label> #}
+                <input id="title" type="text" name="title" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Créer new tagg</button>
+        </form>
+
+
+
+
+
+        <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-overlay22').style.display='none';">
+            Annuler
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>    
+    function addoneAgenda(id, title) {
+        // 1. On sélectionne le calque de chargement grâce à son nouvel id
+        const loadingOverlay = document.getElementById('add-overlay22');
+
+        // S'il n'existe pas, on arrête le script pour éviter des erreurs
+        if (!loadingOverlay) {
+            return;
+        }
+        loadingOverlay.style.display = 'block';
+
+        document.getElementById('caracteristique22').value=id;
+        // document.getElementById('title22').innerHTML=title;
+    }
+</script>
+
+
+{% endblock %}

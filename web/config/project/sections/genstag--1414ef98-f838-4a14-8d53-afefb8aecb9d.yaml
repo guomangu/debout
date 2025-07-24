@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 416946b7-7b50-49d0-81e1-beff9b17a49d # genstag
+handle: genstag
+maxAuthors: 1
+name: Genstag
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: genstag/_entry.twig
+    uriFormat: 'genstag/{slug}'
+type: channel

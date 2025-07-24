@@ -37,8 +37,13 @@
 
 {% if a %}
 
+  
+
 {% for item in a %}
+    <span>Agenda:<br></span>
     <div class="card card-body mb-3">
+    <span>Caractéristique de : {{ item.obj[0].title }}<br></span>
+
    <h3>{{item.obj[0].title}}
     <span><a href="/caracteristique/{{ item.obj[0].id }}"><button class="btn btn-secondary">Voir</button></a></span>  
    </h3>

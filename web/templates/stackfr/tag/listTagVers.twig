@@ -1,0 +1,24 @@
+{% set ttt = craft.entries()
+    .section('vertag')
+    .version(vers.id)
+    .limit(11)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{% if ttt %}
+    {% for item in ttt %}
+        <h2 class="btn btn-outline-primary">{{ item.tagg[0].title }}</h2>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    {% endfor %}
+{% endif %}

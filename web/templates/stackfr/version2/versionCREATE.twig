@@ -1,0 +1,25 @@
+
+{% block content %}
+
+
+
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    {{ csrfInput() }}
+    {{ actionInput('guest-entries/save') }}
+    {{ hiddenInput('sectionId', 10) }} 
+
+    <input type="hidden" name="fields[article][]" class="form-control" value="{{ art.id }}" required>
+    <input type="hidden" name="fields[gens][]" class="form-control" value="{{ user.id }}" required>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Votre version de {{ art.title }}</label>
+        <input id="title" type="text" name="title" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Créer new version</button>
+</form>
+
+
+
+
+{% endblock %}

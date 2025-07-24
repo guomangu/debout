@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: e5bd54f7-a73b-46a5-bfc2-b7057fcaa455 # vertag
+handle: vertag
+maxAuthors: 1
+name: vertag
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: vertag/_entry.twig
+    uriFormat: 'vertag/{slug}'
+type: channel

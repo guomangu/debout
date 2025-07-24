@@ -1,0 +1,32 @@
+{% block content %}
+
+{% include "stackfr/gens/menu.twig" %}
+
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+<hr>
+
+{% include "stackfr/article/artlist.twig" with { user: user } %}    
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -5,7 +5,7 @@ entryTypes:
     uid: a62216ec-f89c-455f-ae05-0b38ece91f3a # version
 handle: version
 maxAuthors: 1
-name: version
+name: Version
 previewTargets:
   -
     __assoc__:

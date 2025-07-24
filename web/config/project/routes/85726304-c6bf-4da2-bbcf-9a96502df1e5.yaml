@@ -1,6 +1,6 @@
 siteUid: null
-sortOrder: 4
-template: stackfr/accueil/accueil.twig
+sortOrder: 1
+template: debout/accueil/accueil.twig
 uriParts:
   - accueil
 uriPattern: accueil

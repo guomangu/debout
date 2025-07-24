@@ -1,0 +1,13 @@
+<div>
+        {% set txt = craft.entries()
+            .section('texte')
+            .obj(item.id)
+            .orderBy('dateCreated ASC')
+            .all() %}
+
+        {% if txt %}
+            {% for item in txt %}
+                <p class="">{{ item.title }}</p>
+            {% endfor %}
+        {% endif %}
+   </div>

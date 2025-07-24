@@ -1,0 +1,15 @@
+{% block content %}
+
+<div>
+    <p>{{version.title}}</p>
+    <div>
+        {% include "stackfr/tag/listTagVers.twig" with { vers:version, user:user, a:a } %}
+    </div>
+</div>
+
+
+
+
+{% include "stackfr/tag/addTagVers.twig" with { version:version, user:user, a:a } %}
+
+{% endblock %}

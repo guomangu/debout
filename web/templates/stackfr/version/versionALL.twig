@@ -1,0 +1,117 @@
+
+{% block content %}
+
+{# Étape 1: Récupérer toutes les entrées candidates, triées par date.
+   On met 'null' à la limite pour être sûr de ne manquer aucun auteur. #}
+{% set candidates = craft.entries()
+    .section('version')
+    .tagg(tagg.id)
+    .orderBy('dateCreated DESC')
+    .limit(99) 
+    .all() %}
+
+{# Étape 2: Préparer les tableaux pour stocker le résultat final et les auteurs déjà vus. #}
+{% set entreesFinales = [] %}
+{% set auteursVus = [] %}
+
+{# Étape 3: Boucler sur les candidats pour ne garder que le premier de chaque auteur. #}
+{% for entry in candidates %}
+    {# Si l'ID de l'auteur n'est pas encore dans notre liste 'auteursVus'... #}
+    {% if entry.gens[0].id not in auteursVus %}
+        {# ... on ajoute l'entrée au tableau final... #}
+        {% set entreesFinales = entreesFinales|merge([entry]) %}
+        {# ... et on ajoute l'ID de l'auteur à la liste pour ne pas le reprendre. #}
+        {% set auteursVus = auteursVus|merge([entry.gens[0].id]) %}
+    {% endif %}
+{% endfor %}
+
+{# Étape 4: Trier les entrées finales par date de création, du plus récent au plus ancien. #}
+{% set entreesFinales = entreesFinales|sort((a, b) => b.dateCreated <=> a.dateCreated) %}
+
+
+
+
+<hr>
+<div>
+{% for item in entreesFinales %}
+   <p class=""><strong>V{{ item.gens[0].title }} ({{ item.dateCreated|date("d/m/Y") }}):</strong> {{ item.title }}
+
+
+
+{% if user.id == item.gens[0].id %}
+    <button onclick="addoneimg({{ item.id }})" class="btn btn-outline-primary">
+        + image
+    </button>
+
+    <button onclick="addonetxt({{ item.id }})" class="btn btn-outline-primary">
+        + texte
+    </button>
+{% else %}
+    <button onclick="addVOTE({{ item.id }})" class="btn btn-outline-secondary">
+        a voté!
+    </button>
+{% endif %}
+   </p>
+
+   <div>
+        {% set txt = craft.entries()
+            .section('texte')
+            .obj(item.id)
+            .orderBy('dateCreated ASC')
+            .all() %}
+
+        {% if txt %}
+            {% for item in txt %}
+                <p class="">{{ item.title }}</p>
+            {% endfor %}
+        {% endif %}
+   </div>
+
+   <div>
+        {% set i = craft.entries()
+            .section('image')
+            .obj(item.id)
+            .all() %}
+
+        {% if i %}
+            {% for item in i %}
+                {% set image = item.img[0] %}
+
+                <img src="{{ image.getUrl({width: 120, height: 120, mode: 'crop'}) }}" {# Taille image source légèrement plus grande, qualité ajustée #}
+                alt="{{ image.alt ?? image.title ?? action.title }}"
+                class="img-fluid" {# img-fluid + w/h-100 + object-fit pour remplir #}
+                style="object-fit: cover;     height: 120px; width: 120px;">
+            {% endfor %}
+        {% endif %}
+    </div>
+
+     {% if not loop.last %}
+            <hr>
+        {% endif %}
+{% endfor %}
+</div>
+
+
+{# <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    {{ csrfInput() }}
+    {{ actionInput('guest-entries/save') }}
+    {{ hiddenInput('sectionId', 10) }} 
+
+    <input type="hidden" name="fields[tagg][]" class="form-control" value="{{ tagg.id }}" required>
+    <input type="hidden" name="fields[gens][]" class="form-control" value="{{ user.id }}" required>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Version de {{ tagg.title }}</label>
+        <input id="title" type="text" name="title" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Créer new version</button>
+</form> #}
+
+
+
+
+
+{# <hr style="width: 50%;
+    place-self: flex-end;"> #}
+{% endblock %}
