@@ -41,7 +41,16 @@
     <div>
         {# Puis on boucle sur les items de cette heure #}
         {% for item in itemsInHour %}
-            <div class="card card-body">{{ item.title }}</div>
+            <div class="card card-body">
+                <span><small>Element:</small></span>
+
+                {{ item.title }}
+            
+                {% include "debout/accueil/listVers.twig" with {
+                    tag: item,
+                    user: user
+                } %}            
+            </div>
             <br>
         {% endfor %}
     </div>

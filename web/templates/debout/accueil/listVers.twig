@@ -1,0 +1,34 @@
+{% block content %}
+
+
+{% include "debout/accueil/createVers.twig" with {
+        tag:tag,
+        user:user
+    }
+%}
+
+<hr>
+
+{% set vers = craft.entries()
+    .section('version')
+    .limit(9)
+    .tagg(tag.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+
+{% for item in vers %}
+    <div class="card card-body">
+        {{ item.title }} (version du {{ item.dateCreated|date('d M', 'Europe/Paris') }})
+        <div style="align-self: flex-end;">{{ user.title }}</div>
+
+
+
+        {% include "debout/get/ALL.twig" with {
+            obj:item,
+        }   %}
+    </div>
+{% endfor %}
+
+{% endblock %}

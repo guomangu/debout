@@ -1,0 +1,26 @@
+{% block content %}
+
+
+{% include "debout/get/gettxt.twig" with {
+    item:obj
+} %}
+{% include "debout/get/getimg.twig" with {
+    item:obj
+} %}
+
+
+
+
+
+<button onclick="addoneimg({{obj.id}})" class="btn btn-outline-danger">
+    + Image
+</button>
+<button onclick="addonetxt({{obj.id}})" class="btn btn-outline-danger">
+    + Text
+</button>
+
+
+
+
+
+{% endblock %}
