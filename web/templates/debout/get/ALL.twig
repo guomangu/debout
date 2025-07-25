@@ -1,6 +1,6 @@
 {% block content %}
 
-
+<div>
 {% include "debout/get/gettxt.twig" with {
     item:obj
 } %}
@@ -9,16 +9,18 @@
 } %}
 
 
+<hr style="border-block-color:rgb(0 20 255);">
 
-
-
-<button onclick="addoneimg({{obj.id}})" class="btn btn-outline-danger">
+<div style="place-self: flex-end;">
+<span><div class="btn btn-outline-secondary">{{user.title}}</div>  |  </span>
+<button onclick="addoneimg({{obj.id}})" class="btn btn-outline-danger" >
     + Image
 </button>
-<button onclick="addonetxt({{obj.id}})" class="btn btn-outline-danger">
+<button onclick="addonetxt({{obj.id}})" class="btn btn-outline-danger" >
     + Text
 </button>
-
+</div>
+</div>
 
 
 

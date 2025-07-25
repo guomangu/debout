@@ -1,13 +1,6 @@
 {% block content %}
 
 
-{% include "debout/accueil/createVers.twig" with {
-        tag:tag,
-        user:user
-    }
-%}
-
-<hr>
 
 {% set vers = craft.entries()
     .section('version')
@@ -16,19 +9,30 @@
     .orderBy('dateCreated DESC')
     .all() %}
 
-
+{% if vers[0] is null or vers.dt|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}
+    {% include "debout/accueil/createVers.twig" with {
+            tag:tag,
+            user:user
+        }
+    %}
+{% endif %}
 
 {% for item in vers %}
-    <div class="card card-body">
-        {{ item.title }} (version du {{ item.dateCreated|date('d M', 'Europe/Paris') }})
-        <div style="align-self: flex-end;">{{ user.title }}</div>
-
+    <div class="card card-body border border-primary" >
+        <span><small>version du {{ item.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
+        <span><h3>{{ item.title }}</h3></span>
+        <br>
 
 
         {% include "debout/get/ALL.twig" with {
             obj:item,
         }   %}
     </div>
+
+    {% if not loop.last %}
+        <br>
+    {% endif %}
+    
 {% endfor %}
 
 {% endblock %}

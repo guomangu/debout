@@ -1,0 +1,60 @@
+{% block content %}
+
+
+
+
+
+{# 1. Récupérer toutes les versions triées par date #}
+{% set allVersions = craft.entries()
+    .section('version')
+    .tagg(tag.id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{# 2. Créer un dictionnaire pour stocker la dernière version de chaque utilisateur #}
+{% set latestVersionsByUser = {} %}
+
+{# 3. Parcourir toutes les versions pour filtrer #}
+{% for version in allVersions %}
+    {# On vérifie si l'ID de l'auteur n'est pas encore une clé dans notre dictionnaire. #}
+    {# Si l'auteur n'y est pas, c'est que c'est sa version la plus récente qu'on rencontre. #}
+    {% if latestVersionsByUser[version.gens[0].id] is not defined %}
+        {# On ajoute la version au dictionnaire, en utilisant l'ID de l'auteur comme clé. #}
+        {% set latestVersionsByUser = latestVersionsByUser|merge({ (version.gens[0].id): version }) %}
+    {% endif %}
+{% endfor %}
+
+{# --- Utilisation --- #}
+
+
+{% for userId, versionEntry in latestVersionsByUser %}
+    <div class="card card-body border border-primary" >
+        <span><small>version du {{ versionEntry.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
+        <span><h3>{{ versionEntry.title }}</h3></span>
+
+
+        {% include "debout/get/ALL.twig" with {
+            obj:versionEntry,
+        }   %}
+    </div>
+
+    {% if not loop.last %}
+        <br>
+    {% endif %}
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

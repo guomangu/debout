@@ -1,0 +1,18 @@
+{% block content %} 
+
+
+<div class="m-5">
+    <span class="card m-1 p-1">Agenda de <h3>{{ user.title }}</h3>
+
+    <hr>
+
+    {% include "debout/get/ALL.twig" with{
+        obj:user,
+        user:user
+    } %}
+
+
+    </span>
+</div>
+
+{% endblock %}

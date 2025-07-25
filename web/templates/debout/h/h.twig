@@ -1,0 +1,31 @@
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+{% block content %}
+
+{% include "debout/gens/menu.twig" %}
+
+{% if craft.app.request.getSegment(2) %}
+    {% set id = craft.app.request.getSegment(2) %}
+{% endif %}
+
+<div class="container mt-4">
+    {% include "debout/h/listTag.twig" with {
+        'user': user,
+        'id': id
+    } %}
+</div>
+
+
+{% endblock %}

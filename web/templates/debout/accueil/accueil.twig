@@ -17,16 +17,22 @@
 {% include "debout/gens/menu.twig" %}
 
 <div class="container mt-4">
+    {% include "debout/gens/present.twig" with {
+        'user': user
+    } %}   
 
+    <small>Agenda:<br><br></small>
      {% include "debout/accueil/listTag.twig" with {
         'user': user
     } %}
 
-    <hr>
+    <br><br><br>
 
     {% include "debout/accueil/createTag.twig" with {
         'user': user
     } %}
+
+    <br>
 </div>
 
 

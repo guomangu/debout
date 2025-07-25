@@ -1,0 +1,65 @@
+{% block content %}
+
+
+{% set hour = '%02d:00:00'|format(id) %}
+
+{% set tags = craft.entries()
+    .section('genstag')
+    .dt(hour)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+{# On garde le même début pour trier la liste chronologiquement #}
+{% set currentHour = now|date('G', 'Europe/Paris') %}
+{% set upcomingItems = [] %}
+{% set pastItems = [] %}
+
+{% for item in tags %}
+    {% set itemHour = item.dt|date('G') %}
+    {% if itemHour >= currentHour %}
+        {% set upcomingItems = upcomingItems|merge([item]) %}
+    {% else %}
+        {% set pastItems = pastItems|merge([item]) %}
+    {% endif %}
+{% endfor %}
+
+{% set upcomingItems = upcomingItems|sort((a, b) => a.dt <=> b.dt) %}
+{% set pastItems = pastItems|sort((a, b) => a.dt <=> b.dt) %}
+{% set sortedAgenda = upcomingItems|merge(pastItems) %}
+
+{# NOUVELLE PARTIE : On groupe les items triés par heure #}
+{% set groupedAgenda = sortedAgenda|group(item => item.dt|date('H')) %}
+
+
+{# --- AFFICHAGE REGROUPÉ --- #}
+{# On boucle sur les heures (les clés du groupe) #}
+{% for hour, itemsInHour in groupedAgenda %}
+    {# On affiche l'heure une seule fois #}
+    <a href="h/{{ hour }}"><h3 class="btn btn-outline-secondary">{{ hour }}h </h3></a>
+    
+    <div>
+        {# Puis on boucle sur les items de cette heure #}
+        {% for item in itemsInHour %}
+            <div class="card card-body">
+                <span><small>Objectif de {{hour}}h : </small><div class="btn btn-outline-secondary">{{item.gens[0].title}}</div></span>
+                <h3>{{ item.tagg[0].title }}</h3>
+                <small>{{ item.title }}</small>
+            
+                <br>
+                {% include "debout/h/listVers.twig" with {
+                    tag: item,
+                    user: user
+                } %}            
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+
+
+
+{% endblock %}
+

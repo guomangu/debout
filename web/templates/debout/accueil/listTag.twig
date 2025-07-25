@@ -36,16 +36,17 @@
 {# On boucle sur les heures (les clés du groupe) #}
 {% for hour, itemsInHour in groupedAgenda %}
     {# On affiche l'heure une seule fois #}
-    <h3>{{ hour }}h</h3>
+    <a href="h/{{ hour }}"><h3 class="btn btn-outline-secondary">{{ hour }}h </h3></a>
     
     <div>
         {# Puis on boucle sur les items de cette heure #}
         {% for item in itemsInHour %}
             <div class="card card-body">
-                <span><small>Element:</small></span>
-
-                {{ item.title }}
+                <span><small>Objectif de {{hour}}h : </small></span>
+                <h3>{{ item.tagg[0].title }}</h3>
+                <small>{{ item.title }}</small>
             
+                <br>
                 {% include "debout/accueil/listVers.twig" with {
                     tag: item,
                     user: user
