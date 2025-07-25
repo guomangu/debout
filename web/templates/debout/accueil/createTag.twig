@@ -27,7 +27,7 @@
             <label class="form-label">Choisissez un Objectif :</label>
             <div class="d-flex flex-wrap gap-2">
                 <button onclick="addoneTAG()" class="btn btn-outline-danger">
-                    + Tag
+                    + Ajoutez un Objectif
                 </button>
 
                 
@@ -53,13 +53,13 @@
 
         {# 2. Champ pour le TITRE #}
         <div class="mb-3">
-            <label for="title" class="form-label">Precisez la Tache :</label>
-            <input id="title" type="text" name="title" class="form-control" required placeholder="Pourquoi ce tag ?">
+            <label for="title" class="form-label">Pourquoi cet Objectif ?</label>
+            <input id="title" type="text" name="title" class="form-control" required placeholder="Quel est votre Motivation ?">
         </div>
 
         {# 3. Champ pour l'HEURE #}
         <div class="mb-3">
-            <label for="horaire-select" class="form-label">Horaire de l'activité récurrente :</label>
+            <label for="horaire-select" class="form-label">Horaire d'Effort Récurrent :</label>
             <select id="horaire-select" name="fields[dt]" class="form-select" required>
                 {% set startHour = now|date('G', 'Europe/Paris') %}
                 {% for i in 0..23 %}
@@ -74,6 +74,10 @@
     </form>
 {% else %}
     <p>Aucun tag n'est disponible pour le moment.</p>
+    <br>
+    <button onclick="addoneTAG()" class="btn btn-outline-danger">
+        + Ajoutez un Objectif
+    </button>
 {% endif %}
 
 {% endblock %}

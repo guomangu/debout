@@ -1,0 +1,104 @@
+color: null
+description: null
+fieldLayouts:
+  d448c5dd-6e53-4ae5-953f-932346371ba1:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-07-25T19:36:20+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 627db83e-1579-4b85-801d-1cac9fe3528f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-25T19:37:48+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 3c780697-6783-459b-98c7-29237423bf8e # article
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e8f24089-4963-42c0-a11b-bd38ca2ce214
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-25T19:37:48+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a39796f4-2ce8-4e56-9ec8-d8aab14b7f45 # version
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6560fa6b-1f8b-49f8-9197-0673d1af2b25
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-25T19:37:48+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 67053669-973b-4b91-b703-67ee8097172e # gens
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 038ab7f4-412f-47c5-8ae3-c0b47d7fcc60
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 76f0bd0a-6ad3-40ee-af5b-5a37ceada6ac
+        userCondition: null
+handle: artvers
+hasTitleField: true
+icon: null
+name: artvers
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

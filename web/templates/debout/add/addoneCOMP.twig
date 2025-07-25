@@ -1,0 +1,131 @@
+
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+
+{% block content %}
+
+
+<div id="add-overlay22COMP" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd7e6; z-index:99;">
+    <div class="text-primary" style="    margin-top: 50vh;
+    transform: translateY(-50%);
+    width: 80vw;
+    place-self: center;" role="status">
+
+
+
+
+
+        <form method="post" 
+              id="competence-form" 
+              accept-charset="UTF-8" 
+              enctype="multipart/form-data" 
+              data-redirect-url="{{ url('accueil') }}">
+
+            {# Champs cachés pour Craft CMS #}
+            {{ csrfInput() }}
+            {{ actionInput('guest-entries/save') }}
+            {{ hiddenInput('sectionId', 14) }}
+
+            {# Relation avec l'utilisateur courant #}
+            <input type="hidden" name="fields[gens][]" value="{{ user.id ?? '' }}">
+
+            {# Champ de saisie pour la compétence #}
+            <div class="mb-3">
+                <label for="title" class="form-label">Compétence</label>
+                <input id="title" type="text" name="title" class="form-control" required placeholder="Entrez une compétence">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Créer le tag</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-overlay22COMP').style.display='none';">
+                Annuler
+            </button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const competenceForm = document.getElementById('competence-form');
+
+    if (competenceForm) {
+        competenceForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche l'envoi classique du formulaire
+
+            // L'élément externe qui contient une information nécessaire pour la redirection.
+            // Ce code suppose que #chainonahaa existe sur la page.
+            const sourceElement = document.getElementById('chainonahaa');
+            if (!sourceElement) {
+                console.error("Erreur critique : L'élément source #chainonahaa est introuvable.");
+                alert("Une erreur de configuration est survenue.");
+                return; // Arrête l'exécution
+            }
+
+            const iddat = sourceElement.dataset.id;
+            const formData = new FormData(competenceForm);
+            
+            // On récupère l'URL de base depuis l'attribut data-* du formulaire
+            const redirectUrlBase = competenceForm.dataset.redirectUrl;
+
+            fetch(competenceForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
+
+                }
+            })
+            .then(response => {
+                // Si la réponse est 'ok' (statut 200-299), on considère que la sauvegarde a réussi.
+                if (response.ok) {
+                    // Pas besoin de lire le JSON, on redirige directement !
+                    const finalRedirectUrl = `${redirectUrlBase}?message=merciboss&deriendieu=${iddat}`;
+                    window.location.href = finalRedirectUrl;
+                } else {
+                    // Si le serveur a renvoyé une erreur (4xx, 5xx), on la génère pour le catch.
+                    // On peut essayer de lire une erreur JSON au cas où le serveur en enverrait une.
+                    return response.json().then(err => { throw err; });
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la soumission AJAX :', error);
+                // Affiche un message d'erreur plus précis s'il est disponible
+                const errorMessage = error.error || 'Une erreur réseau ou serveur est survenue. Veuillez réessayer.';
+                alert(errorMessage);
+            });
+        });
+    }
+});
+
+
+
+    function addoneCOMP() {
+        // 1. On sélectionne le calque de chargement grâce à son nouvel id
+        const loadingOverlay = document.getElementById('add-overlay22COMP');
+
+        // S'il n'existe pas, on arrête le script pour éviter des erreurs
+        if (!loadingOverlay) {
+            return;
+        }
+        loadingOverlay.style.display = 'block';
+        // idat=document.getElementById('chainonahaa').dataset.id;
+        // document.getElementById('alalaidversion').value += String(idat);        // document.getElementById('title22').innerHTML=title;
+    }
+</script>
+
+
+{% endblock %}

@@ -42,15 +42,17 @@
         {# Puis on boucle sur les items de cette heure #}
         {% for item in itemsInHour %}
             <div class="card card-body">
-                <span><small>Objectif de {{hour}}h : </small></span>
-                <h3>{{ item.tagg[0].title }}</h3>
-                <small>{{ item.title }}</small>
-            
+                <div class="card card-body">
+                    <span><small>Objectif de {{hour}}h : </small></span>
+                    <h3>{{ item.tagg[0].title }}</h3>
+                    <small>{{ item.title }}</small>                 
+                </div>
+
                 <br>
                 {% include "debout/accueil/listVers.twig" with {
-                    tag: item,
-                    user: user
-                } %}            
+                        tag: item,
+                        user: user
+                    } %}   
             </div>
             <br>
         {% endfor %}

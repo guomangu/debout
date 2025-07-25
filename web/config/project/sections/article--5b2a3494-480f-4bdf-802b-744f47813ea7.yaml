@@ -5,7 +5,7 @@ entryTypes:
     uid: b3130d18-b952-4e21-8f70-2aff973bb2b6 # article
 handle: article
 maxAuthors: 1
-name: article
+name: Article
 previewTargets:
   -
     __assoc__:

@@ -17,7 +17,7 @@ settings:
   showUnpermittedEntries: false
   showUnpermittedSections: false
   sources:
-    - 'section:5b2a3494-480f-4bdf-802b-744f47813ea7' # article
+    - 'section:5b2a3494-480f-4bdf-802b-744f47813ea7' # Article
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

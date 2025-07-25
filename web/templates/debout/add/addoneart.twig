@@ -16,42 +16,96 @@
 {% block content %}
 
 
-<div id="add-overlay33art" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd7e6; z-index:99;">
+{# ================ #}
+
+
+{% set art = craft.entries()
+    .section('article')
+    .limit(22)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{% if craft.app.request.getQueryParam('message') == 'merciboss' %}
+    {% set displaa = "" %}
+    {# {% set idversion = craft.app.request.getQueryParam('deriendieu') %} #}
+{% else %}
+    {% set displaa = "display:none;" %}
+{% endif %}
+
+
+<div id="add-overlay33art" style="{{displaa}} width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd7e6; z-index:99;">
     <div class="text-primary" style="    margin-top: 50vh;
     transform: translateY(-50%);
     width: 80vw;
     place-self: center;" role="status">
 
+{% if art is defined and art|length %}
+    <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+        {{ csrfInput() }}
+        {{ actionInput('guest-entries/save') }}
+        {{ hiddenInput('sectionId', 17) }}
+        
+        {# Champ caché pour lier l'entrée à l'utilisateur actuel #}
+        {% if user is defined and user %}
+            {{ hiddenInput('fields[gens][]', user.id) }}
+        {% endif %}
+
+        <input id="caracteristique22fghj" type="hidden" name="fields[version][]" class="form-control" required value="{{ craft.app.request.getQueryParam('deriendieu') }}">
 
 
+        {# 1. Champ de sélection pour les TAGS #}
+        {# Champ de sélection pour les TAGS sous forme de boutons #}
+        <div class="mb-3">
+            <label class="form-label">Choisissez un Objectif :</label>
+            <div class="d-flex flex-wrap gap-2">
+                <button id="chainonahaa" onclick="addoneCOMP()" data-id="" class="btn btn-outline-danger">
+                    + Ajoutez une Competence
+                </button>
 
-
-        <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
-            {{ csrfInput() }}
-            {{ actionInput('guest-entries/save') }}
-            {{ hiddenInput('sectionId', 14) }}
-
-            <input id="gens" type="hidden" name="fields[gens][]" class="form-control" required value="{{ user.id }}">
-
-            <div class="mb-3">
-                <label id="title223" for="title" class="form-label">Ajout article</label>
-                <input id="title223" type="text" name="title" class="form-control" required>
-                <input id="tagg33" type="text" name="fields[desc]" class="form-control" required>
-
+                
+                {% for art in art %}
+                    {# 
+                    Chaque "bouton" est une paire d'un input radio caché 
+                    et d'un label stylisé en bouton.
+                    #}
+                    <input 
+                        type="radio" 
+                        class="btn-check" 
+                        name="fields[article][]" 
+                        id="tag-{{ art.id }}" 
+                        value="{{ art.id }}"
+                        autocomplete="off"
+                        required
+                        data-title="{{ art.title|e('html_attr') }}"
+                    >
+                    <label class="btn btn-outline-primary" for="tag-{{ art.id }}">{{ art.title }}</label>
+                {% endfor %}
             </div>
+        </div>
+
+        {# 2. Champ pour le TITRE #}
+        <div class="mb-3">
+            <label for="title" class="form-label">Pourquoi cet Competence ?</label>
+            <input id="title" type="text" name="title" class="form-control" required placeholder="A quoi vous sert cette Competence ?">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter l'activité</button>
 
 
-            <button type="submit" class="btn btn-primary">Créer new tagg</button>
-        </form>
-
-
-
-
-
-        <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-overlay33art').style.display='none';">
+         <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-overlay33art').style.display='none';">
             Annuler
         </button>
-    </div>
+    </form>
+{% else %}
+    <p>Aucune Competence n'est disponible pour le moment.</p>
+    <br>
+    <button id="chainonahaa" onclick="addoneCOMP()" data-id="" class="btn btn-outline-danger">
+        + Ajoutez une Competence
+    </button>
+{% endif %}
+
+
+</div>
 </div>
 
 
@@ -69,12 +123,8 @@
 
 
 
-
-
-
-
 <script>    
-    function addoneart(id, title) {
+    function addoneart(id) {
         // 1. On sélectionne le calque de chargement grâce à son nouvel id
         const loadingOverlay = document.getElementById('add-overlay33art');
 
@@ -84,8 +134,8 @@
         }
         loadingOverlay.style.display = 'block';
 
-        // document.getElementById('caracteristique22').value=id;
-        // document.getElementById('title22').innerHTML=title;
+        document.getElementById('caracteristique22fghj').value=id;
+        document.getElementById('chainonahaa').dataset.id=id;
     }
 </script>
 

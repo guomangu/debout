@@ -1,0 +1,42 @@
+{% block content %}
+
+{% if vers %}
+
+
+
+
+
+
+
+{% set mestaches = craft.entries()
+    .section('artvers')
+    .version(vers.id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{# {% set leurtaches = craft.entries()
+    .section('artvers')
+    .version(vers.id)
+    .gens('not ' ~ user.id)
+    .limit(99)
+    .orderBy('dateCreated DESC')
+    .all() %} #}
+
+{% for item in mestaches %}
+    {{item.title}}
+{% endfor %}
+
+
+
+
+
+
+{% endif %}
+
+<div onclick="addoneart({{ vers.id }})" class="btn btn-outline-primary w-100" >Ajouter une Competence utile</div>
+
+{% endblock %}
+
+
+

@@ -30,7 +30,7 @@
 
 {% for userId, versionEntry in latestVersionsByUser %}
     <div class="card card-body border border-primary" >
-        <span><small>version du {{ versionEntry.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
+        <span><small>Tache du {{ versionEntry.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
         <span><h3>{{ versionEntry.title }}</h3></span>
 
 

@@ -1,4 +1,4 @@
-dateModified: 1753408316
+dateModified: 1753473193
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -20,7 +20,7 @@ meta:
     4a5d9ad2-7db0-4763-b109-a7a2e264d13d: note # note
     4ddf2db2-8cc7-4ae8-8f6a-48121be92459: active # active
     4f24ce8b-3261-40e5-8aca-a05d3bccaf60: etape # etape
-    5b2a3494-480f-4bdf-802b-744f47813ea7: article # article
+    5b2a3494-480f-4bdf-802b-744f47813ea7: Article # Article
     5e91ed90-f5e3-4aa8-9423-61a37bb77917: anno # anno
     07c9bcb9-821e-40fc-87b7-600d07df1385: real # real
     7df43cfb-822b-4393-9cea-f95c274c89bd: lieu # lieu
@@ -41,6 +41,7 @@ meta:
     306dff20-c17b-4130-a8e4-6a9fad9bbf99: voyage # voyage
     318fcb02-663c-4be2-90f0-2b1bfe73a7c7: vote # vote
     380e1fd7-f86c-4a02-8444-9c55021cbd37: voyage # voyage
+    952d3b04-497f-4276-8dd1-a70b114efa98: Artvers # Artvers
     973cf1c7-299c-4b63-a065-6dd23ea7314b: zone # zone
     994fb679-4658-4e19-ab52-b452a3e5ff05: userole # userole
     1414ef98-f838-4a14-8d53-afefb8aecb9d: Genstag # Genstag
@@ -52,6 +53,7 @@ meta:
     438474b0-8857-43a4-8e54-c3ae4dcda3bc: tagg # tagg
     67053669-973b-4b91-b703-67ee8097172e: gens # gens
     69783038-459d-47e1-8b2b-ec799a371a3c: a # a
+    a6fd3d62-1ce1-4231-b404-a4197ec7b048: artvers # artvers
     a290bbdd-6af4-4850-aabb-b9fbdc2cf25d: texte # texte
     a39796f4-2ce8-4e56-9ec8-d8aab14b7f45: version # version
     a62216ec-f89c-455f-ae05-0b38ece91f3a: version # version
@@ -485,12 +487,12 @@ plugins:
                   - authorUid
                   - 0f378e12-6438-4246-853e-3f21d474d87b
           -
-            - 5b2a3494-480f-4bdf-802b-744f47813ea7 # article
+            - 5b2a3494-480f-4bdf-802b-744f47813ea7 # Article
             -
               __assoc__:
                 -
                   - sectionUid
-                  - 5b2a3494-480f-4bdf-802b-744f47813ea7 # article
+                  - 5b2a3494-480f-4bdf-802b-744f47813ea7 # Article
                 -
                   - allowGuestSubmissions
                   - '1'
@@ -548,6 +550,25 @@ plugins:
                 -
                   - sectionUid
                   - 1414ef98-f838-4a14-8d53-afefb8aecb9d # Genstag
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 952d3b04-497f-4276-8dd1-a70b114efa98 # Artvers
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 952d3b04-497f-4276-8dd1-a70b114efa98 # Artvers
                 -
                   - allowGuestSubmissions
                   - '1'
