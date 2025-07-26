@@ -17,6 +17,8 @@
 {% include "debout/gens/menu.twig" %}
 
 <div class="container mt-4">
+{% if user %}
+
     {% include "debout/gens/present.twig" with {
         'user': user
     } %}   
@@ -33,6 +35,9 @@
     } %}
 
     <br>
+{% else %}
+    <a href="/gens" style="position:fixed;left:50vw;top: 45vh;transform: translateY(-50%);transform: translateX(-50%);"><button class="btn btn-outline-danger" style="font-size: xx-large;"><ahahah>Connectez vous donc ?<ahahah></button></a>
+{% endif %}
 </div>
 
 

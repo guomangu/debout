@@ -5,7 +5,7 @@ entryTypes:
     uid: a290bbdd-6af4-4850-aabb-b9fbdc2cf25d # texte
 handle: texte
 maxAuthors: 1
-name: texte
+name: Texte
 previewTargets:
   -
     __assoc__:

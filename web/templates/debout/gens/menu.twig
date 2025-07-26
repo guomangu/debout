@@ -40,7 +40,7 @@
 {# <a href="/profil/{{ user.id }}"><button class="btn btn-outline-primary">{{ user.title }}</button></a> #}
 {% endif %}
 
-<a href="/accueil"><button class="btn btn-outline-primary">Accueil</button></a>
+<a href="/accueil"><button class="btn btn-outline-secondary">Accueil de <b>{{ user.title }}</b></button></a>
 
 {% if user %}
     <a>{% include "debout/gens/jean.twig" %}</a>
@@ -89,5 +89,8 @@
 {% include "debout/add/addoneVersion.twig" %}
 {% include "debout/add/addoneIMG.twig" %} 
 {% include "debout/add/addoneTXT.twig" %} 
+
+{% include "debout/addOR/addoneIMG.twig" %} 
+{% include "debout/addOR/addoneTXT.twig" %} 
 
 {% endblock %}

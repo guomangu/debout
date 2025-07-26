@@ -1,0 +1,48 @@
+{% block content %}
+
+
+
+{% set vers = craft.entries()
+    .section('version')
+    .id(vers)
+    .one() %}
+
+{% if vers is null or vers[0].dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}
+    {% include "debout/accueil/createVers.twig" with {
+            tag:tag,
+            user:user
+        }
+    %}
+{% endif %}
+
+{% set item = vers %}
+{# {% for item in vers %} #}
+<div class="" >
+    <span><small>Etape du {{ item.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
+    <span><h3>{{ item.title }}</h3></span>
+
+
+
+    {# <br> #}
+    {% include "debout/get/ALL.twig" with {
+        obj:item,
+    }   %}
+
+
+    {# <div class="card card-body" style="display:block;">
+        {% include "debout/accueil/createTache.twig" with {
+            vers:item,
+            user:user
+        } %}
+    </div> #}
+</div>
+
+    {# {% if not loop.last %}
+        <br>
+        <br>
+        <hr>
+    {% endif %} #}
+    
+{# {% endfor %} #}
+
+{% endblock %}

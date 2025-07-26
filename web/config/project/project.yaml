@@ -1,4 +1,4 @@
-dateModified: 1753473193
+dateModified: 1753492424
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -59,6 +59,7 @@ meta:
     a62216ec-f89c-455f-ae05-0b38ece91f3a: version # version
     a607403e-1888-495d-8edc-0db53dd209a5: agenda # agenda
     aaa18eea-f177-476e-bdac-282240f23be7: moment # moment
+    abe94e59-a6b7-4073-be98-194ddcf3c177: or # or
     acf2011f-27b9-42d7-a21b-8d1501ade2f8: imgsvol # imgsvol
     ae4cfa98-5b15-4613-b8c9-67459f28d815: tag # tag
     b4ce6bb9-4b2f-494a-a3f9-372cd84da076: role # role
@@ -75,7 +76,7 @@ meta:
     e352bde4-e3c9-49ca-9794-0c9af2c3da2c: tagg # tagg
     ec4d61c5-22ab-448d-ae33-fefa9e004994: versionmoment # versionmoment
     edd5eb1b-ad48-4b1b-b88a-fda3189bce72: guuumod # guuumod
-    f1017c71-c97e-4d79-84ba-5f9cde6dfd5d: texte # texte
+    f1017c71-c97e-4d79-84ba-5f9cde6dfd5d: Texte # Texte
     f604862b-998a-42c2-b81f-5ba606dbfb05: vertag # vertag
 plugins:
   guest-entries:
@@ -430,12 +431,12 @@ plugins:
                   - authorUid
                   - 0f378e12-6438-4246-853e-3f21d474d87b
           -
-            - f1017c71-c97e-4d79-84ba-5f9cde6dfd5d # texte
+            - f1017c71-c97e-4d79-84ba-5f9cde6dfd5d # Texte
             -
               __assoc__:
                 -
                   - sectionUid
-                  - f1017c71-c97e-4d79-84ba-5f9cde6dfd5d # texte
+                  - f1017c71-c97e-4d79-84ba-5f9cde6dfd5d # Texte
                 -
                   - allowGuestSubmissions
                   - '1'

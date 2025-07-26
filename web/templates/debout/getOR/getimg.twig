@@ -1,0 +1,27 @@
+{% block content %}
+
+
+
+{# <div>
+    {% set i = craft.entries()
+        .section('image')
+        .obj(item)
+        .all() %}
+
+    {% if i %}
+        {% for item in i %}
+            {% set image = item.img[0] %}
+
+            <img src="{{ image.getUrl({width: 120, height: 120, mode: 'crop'}) }}"
+            alt="{{ image.alt ?? image.title ?? action.title }}"
+            class="img-fluid" 
+            style="object-fit: cover;     height: 120px; width: 120px;">
+        {% endfor %}
+    {% endif %}
+</div> #}
+
+
+
+
+
+{% endblock %}

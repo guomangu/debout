@@ -1,0 +1,38 @@
+{% block content %}
+
+{% set comp = craft.entries()
+    .section('artvers')
+    .id(id)
+    .one() %}
+
+<div class="card card-body">
+    <h2>{{ comp.article[0].title }}</h2>
+    <span><small><p>car {{comp.title}}</p></small></span>
+
+    <br>
+    <span><small>Dans le cadre de :</small></span>
+    <div class="card card-body">
+        {% include "debout/competence/listVers.twig" with {
+            vers: comp.version[0].id,
+            user: user
+        } %}   
+
+        {# <hr> #}
+        {# <span><small>Objectif :</small></span>
+        <h4>{{comp.version[0].tagg[0].tagg[0].title}}</h4>
+        <span><small><p>pour {{comp.version[0].tagg[0].title}}</p></small></span> #}
+    </div>
+    <br><br>
+    <small>Tutoriel :</small>
+
+    {% include "debout/competence/formation.twig" with {
+        obj: comp.article[0].id,
+        user: user
+    } %}
+</div>
+
+
+
+
+
+{% endblock %}

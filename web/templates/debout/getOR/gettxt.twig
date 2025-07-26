@@ -1,0 +1,47 @@
+ <div>
+        {% set txt = craft.entries()
+            .section('texte')
+            .obj(item)
+            .orderBy('or ASC')
+            .all() %}
+
+        {% if txt %}
+            <hr>
+           {% for t in txt %}
+                <span>
+                    {# This button appears ONLY before the first item #}
+                    {% if loop.first %}
+                        <button style="display:flow;" onclick="addonetxtOR({{item}}, {{t.or}}, 'pre')" class="btn btn-outline-danger m-2">
+                            +
+                        </button>
+                    {% endif %}
+
+                    <span class="btn-outline-secondary">
+                        <div style="place-self: self-end;">
+                            <b>{{ t.title }}</b>
+                            <span style="font-size: xx-small; border-radius:100px;" class="btn btn-outline-secondary">{{ t.gens[0].title }}</span>
+                        </div>
+                        <div>
+                            {# <span class="btn btn-outlined-secondary">{{ t.gens[0].title }}</span> |  #}
+                            <span>
+                                {% include "debout/get/ALL.twig" with {
+                                    obj:t,
+                                    user:user
+                                } %}
+                            </span>
+                        </div>
+                    </span>
+
+                    <hr>
+                    {# This button appears after EVERY item #}
+                    <button style="display:flow;" onclick="addonetxtOR({{item}}, {{t.or}}, {% if not loop.last %}{% set nextItem = txt[loop.index0 + 1] %}{{ nextItem.or }}{% else %}'post'{% endif %})" class="btn btn-outline-danger m-2">
+                        +
+                    </button>
+                </span>
+            {% endfor %}
+        {% else %}
+            <button onclick="addonetxtOR({{item}},1000)" class="btn btn-outline-danger" >
+                + Text
+            </button>
+        {% endif %}
+   </div>
