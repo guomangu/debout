@@ -1,4 +1,4 @@
-dateModified: 1753492424
+dateModified: 1753586487
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -13,6 +13,7 @@ fs:
     url: $PRIMARY_SITE_URL/imgs
 meta:
   __names__:
+    0f030b2c-2afd-4400-8cf8-8d9f6e0f4d30: Vote # Vote
     1c5eafe9-3607-46fa-9bc3-ad3ab113db4f: arttag # arttag
     1f2c85dc-5cd1-4832-a32e-4c60d5535d27: dt # dt
     3c5ed36b-c006-4f27-8b03-fc8650ea8a17: gens # gens
@@ -33,6 +34,7 @@ meta:
     31c9f996-5cd8-4e53-bee4-a5b67a4d54f1: 'Public Schema' # Public Schema
     63d5e9c8-1466-486f-859a-fc37eb6e2a5b: image # image
     69c3f5ac-014f-4f64-9af1-bb369028c37e: obj # obj
+    99ea5d91-1dc8-4cb0-893d-79ad72df9167: texte # texte
     184e9cf2-7ee6-4f12-8061-7857317e846b: img # img
     221a2b9b-2b23-4323-9fd7-c62512c41c97: moment # moment
     262fd559-19c4-4ceb-9bfa-9c751e02f956: phone # phone
@@ -66,6 +68,7 @@ meta:
     b30a01d7-c759-48e9-8f48-21317d371ddc: a # a
     b3130d18-b952-4e21-8f70-2aff973bb2b6: article # article
     bc6f2f8d-e16b-4597-9283-5b0a7f078ffe: caracteristique # caracteristique
+    c3a81b8b-98ea-40b0-b2e5-37f85ba24937: valence # valence
     cfdea3fe-70d2-49e7-aded-a86ea2b3a5f5: desc # desc
     d0d920c2-5803-4a13-90c1-49c76231a2a4: desc # desc
     d7c18dfa-8aad-4879-9efa-fe8b1a1dea2f: caracteristique # caracteristique
@@ -73,9 +76,12 @@ meta:
     d722116d-af1a-4bab-be40-011270cb86ae: abo # abo
     dd47950a-e2dc-4e5d-b507-006a2629150a: etape # etape
     e5bd54f7-a73b-46a5-bfc2-b7057fcaa455: vertag # vertag
+    e7d3fd6a-2ef6-4dbd-872d-c8bf220ec16e: vot # vot
     e352bde4-e3c9-49ca-9794-0c9af2c3da2c: tagg # tagg
+    e79726c5-a736-483f-a2f6-9fb057f93870: valide # valide
     ec4d61c5-22ab-448d-ae33-fefa9e004994: versionmoment # versionmoment
     edd5eb1b-ad48-4b1b-b88a-fda3189bce72: guuumod # guuumod
+    f10abd48-cab0-4d9a-aa36-0daa17a9dea3: Valide # Valide
     f1017c71-c97e-4d79-84ba-5f9cde6dfd5d: Texte # Texte
     f604862b-998a-42c2-b81f-5ba606dbfb05: vertag # vertag
 plugins:
@@ -570,6 +576,44 @@ plugins:
                 -
                   - sectionUid
                   - 952d3b04-497f-4276-8dd1-a70b114efa98 # Artvers
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 0f030b2c-2afd-4400-8cf8-8d9f6e0f4d30 # Vote
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 0f030b2c-2afd-4400-8cf8-8d9f6e0f4d30 # Vote
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - f10abd48-cab0-4d9a-aa36-0daa17a9dea3 # Valide
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - f10abd48-cab0-4d9a-aa36-0daa17a9dea3 # Valide
                 -
                   - allowGuestSubmissions
                   - '1'

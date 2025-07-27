@@ -1,6 +1,6 @@
 {% block content %}
 
-<div>
+<div style="place-self: end; text-align:right;">
     {% include "debout/get/gettxt.twig" with {
         item:obj
     } %}
@@ -21,6 +21,9 @@
         <button onclick="addonetxt({{obj.id}})" class="btn btn-outline-danger" >
             + Text
         </button>
+        {% include "debout/vote/vote.twig" with {
+            obj:obj,
+        } %}
     </div>
 </div>
 

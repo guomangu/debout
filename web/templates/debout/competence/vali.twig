@@ -1,0 +1,29 @@
+{% block content %}
+
+
+
+{% set vali = craft.entries()
+    .section('valide')
+    .gens(user.id)
+    .version(vers.id)
+    .all() %}
+
+
+{% if vali %}
+    <div style="border-left: solid; padding: 5px;">
+
+        <span><small>Validé :</small></span>
+        <br>
+        {% for item in vali %}
+            {# {% if vers.dateCreated|date('d-M-Y' , 'Europe/Paris') == item.dateCreated|date('d-M-Y', 'Europe/Paris') %} #}
+                {{ item.obj[0].title }}
+            {# {% endif %} #}
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+
+{% endblock %}

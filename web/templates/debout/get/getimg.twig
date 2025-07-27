@@ -2,7 +2,7 @@
 
 
 
-<div>
+<div style="justify-self: center;">
     {% set i = craft.entries()
         .section('image')
         .obj(item.id)
@@ -12,7 +12,7 @@
         {% for item in i %}
             {% set image = item.img[0] %}
 
-            <img src="{{ image.getUrl({width: 120, height: 120, mode: 'crop'}) }}" {# Taille image source légèrement plus grande, qualité ajustée #}
+            <img class="h-120 w-120" src="{{ image.getUrl({width: 120, height: 120, mode: 'crop'}) }}" {# Taille image source légèrement plus grande, qualité ajustée #}
             alt="{{ image.alt ?? image.title ?? action.title }}"
             class="img-fluid" {# img-fluid + w/h-100 + object-fit pour remplir #}
             style="object-fit: cover;     height: 120px; width: 120px;">

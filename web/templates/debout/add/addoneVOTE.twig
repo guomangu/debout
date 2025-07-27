@@ -1,0 +1,146 @@
+{% block content %}
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+
+
+<div id="add-overlayvoo" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd7e6; z-index:99;">
+    <div class="text-primary" style="    margin-top: 50vh;
+    transform: translateY(-50%);
+    width: 80vw;
+    place-self: center;" role="status">
+        <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            {{ csrfInput() }}
+            {{ actionInput('guest-entries/save') }}
+            {{ hiddenInput('sectionId', 18) }} 
+            {{ hiddenInput('enabled', '1') }}
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Pourquoi ce vote ?</label>
+                <input id="title11" type="text" name="title" class="form-control"placeholder="Donnez des arguments pour ce vote" required>
+            </div>
+
+            <div class="mb-3">
+                <input id="objvoo" type="hidden" name="fields[obj][]" class="form-control" required>
+                <input id="user1221" type="hidden" name="fields[gens][]" class="form-control" required value="{{ user.id }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Like, Dislike, ou Superlike ?</label>
+                <div class="d-flex flex-wrap gap-2">
+                    
+
+                    
+    
+                        {# 
+                        Chaque "bouton" est une paire d'un input radio caché 
+                        et d'un label stylisé en bouton.
+                        #}
+                    <input 
+                            type="radio" 
+                            class="btn-check" 
+                            name="fields[valence]" 
+                            id=1
+                            value=1
+                            autocomplete="off"
+                            required
+                            data-title="{{ obj.title|e('html_attr') }}"
+                        >
+                        <label class="btn btn-outline-primary" for=1>lIKE</label>
+                
+                     <input 
+                            type="radio" 
+                            class="btn-check" 
+                            name="fields[valence]" 
+                            id=0 
+                            value=0
+                            autocomplete="off"
+                            required
+                            data-title="{{ obj.title|e('html_attr') }}"
+                        >
+                        <label class="btn btn-outline-primary" for=0>DISlIKE</label>
+                
+                     <input 
+                            type="radio" 
+                            class="btn-check" 
+                            name="fields[valence]" 
+                            id=2
+                            value=2
+                            autocomplete="off"
+                            required
+                            data-title="{{ obj.title|e('html_attr') }}"
+                        >
+                        <label class="btn btn-outline-primary" for=2>SUPERlIKE</label>
+                
+                
+                
+                
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+                Voter
+            </button>
+        </form>
+
+
+
+
+
+        <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-overlayvoo').style.display='none';">
+            Annuler
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>    
+    function addonevote(id) {
+        // 1. On sélectionne le calque de chargement grâce à son nouvel id
+        const loadingOverlay = document.getElementById('add-overlayvoo');
+
+        // S'il n'existe pas, on arrête le script pour éviter des erreurs
+        if (!loadingOverlay) {
+            return;
+        }
+        loadingOverlay.style.display = 'block';
+
+        document.getElementById('objvoo').value=id;
+    }
+</script>
+
+
+{% endblock %}

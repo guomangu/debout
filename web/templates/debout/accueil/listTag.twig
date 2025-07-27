@@ -41,11 +41,13 @@
     <div>
         {# Puis on boucle sur les items de cette heure #}
         {% for item in itemsInHour %}
-            <div class="card card-body">
-                <div class="card card-body">
+            <div class=" card-body" style="border-left: solid;
+    padding: 10px;
+    border-radius: 15px;">
+                <div class="card card-body border-secondary">
                     <span><small>Objectif de {{hour}}h : </small></span>
-                    <h3>{{ item.tagg[0].title }}</h3>
-                    <small>{{ item.title }}</small>                 
+                    <b><h3>{{ item.tagg[0].title }}</b><a href="/o/{{ item.tagg[0].id }}"><button class="btn btn-light m-1" style="font: small-caption;">VOIR</button></h3></a>
+                    <small><b>{{ item.title }}</b></small>                 
                 </div>
 
                 <br>
@@ -53,6 +55,25 @@
                         tag: item,
                         user: user
                     } %}   
+
+
+
+                <br>
+                <div class="card card-body border-secondary" style="display:block;">
+                    {% include "debout/accueil/createTache.twig" with {
+                        tagg:item.tagg[0],
+                        user:user
+                    } %}
+                </div>
+
+
+
+
+                {# <br>
+                {% include "debout/accueil/listVersOR.twig" with {
+                    tag: item,
+                    user: user
+                } %} #}
             </div>
             <br>
         {% endfor %}

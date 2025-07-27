@@ -1,0 +1,20 @@
+{% block content %}
+
+{% set v = craft.entries()
+    .section('vote')
+    .obj(obj.id)
+    .all() %}
+
+{% set count = 0 %}
+{% for vote in v %}
+    {% set count = count + vote.valence  %}
+{% endfor %}
+
+{% if user.id not in v %}
+    <button class="btn btn-outline-danger" onclick="addonevote({{ obj.id }})">
+        + Vote ({{ count }})
+    </button>
+{% endif %}
+
+
+{% endblock %}

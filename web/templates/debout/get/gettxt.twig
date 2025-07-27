@@ -9,8 +9,8 @@
             {# <br> #}
             {% for item in txt %}
                 <span class="">
-                    {{ item.title }}
-                    <span style="font-size: xx-small; border-radius:100px;" class="btn btn-outline-secondary">{{ item.gens[0].title }}</span>
+                    <b>{{ item.title }}</b>
+                    <span style="font-size: small; border-radius:100px;" class="btn btn-outline-secondary">{{ item.gens[0].title }}</span>
                 </span>
             {% endfor %}
         {% endif %}

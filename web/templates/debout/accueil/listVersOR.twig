@@ -1,0 +1,35 @@
+{% block content %}
+
+
+{% set genstags = craft.entries()
+    .section('genstag')
+    .limit(12)
+    .tagg(tag.tagg[0].id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+<div class="card card-body text-bg-secondary">
+    <span><small>Etapes disponibles :</small></span>
+    <br>
+    {% for genstag in genstags %}
+        {% set vers = craft.entries()
+        .section('version')
+        .limit(3)
+        .tagg(genstag.id)
+        .orderBy('dateCreated DESC')
+        .all() %}
+
+        <div style="display:flex;">
+            {% for ver in vers %}
+                <a><button class="btn btn-light m-1">
+                    {{ver.title}}
+                </button></a>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

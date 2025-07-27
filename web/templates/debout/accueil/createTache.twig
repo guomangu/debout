@@ -1,6 +1,6 @@
 {% block content %}
 
-{% if vers %}
+{% if tagg %}
 
 
 
@@ -10,7 +10,7 @@
 
 {% set mestaches = craft.entries()
     .section('artvers')
-    .version(vers.id)
+    .tagg(tagg.id)
     .limit(99)
     .orderBy('dateCreated DESC')
     .all() %}
@@ -25,9 +25,9 @@
 
 {% endif %}
 
-        <span><small>Competences Utiles :<br><br></small></span>
+        <span><small>Ressources Utiles :<br><br></small></span>
 
-<div onclick="addoneart({{ vers.id }})" class="btn btn-outline-danger" >+ Competence</div>
+<div onclick="addoneart({{ tagg.id }})" class="btn btn-outline-danger" >+ Ressource</div>
 |
 {% for item in mestaches %}
     <a href="/c/{{ item.id }}"><div class="btn btn-outline-secondary" >{{item.article[0].title}}</div></a>

@@ -1,0 +1,49 @@
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+{% if craft.app.request.getSegment(2) %}
+    {% set id = craft.app.request.getSegment(2) %}
+{% endif %}
+
+{% block content %}
+
+{% include "debout/gens/menu.twig" %}
+
+<div class="container mt-4">
+{% if user %}
+    {% set tagg = craft.entries()
+    .section('tagg')
+    .id(id)
+    .one() %}
+
+    <div class="">
+        <div class="">
+            <span><small>Objectif de : </small></span>
+            <h1>{{ tagg.title }}<a href="/o/{{ tagg.id }}"><button class="btn btn-outline-secondary m-1">VOIR</button></h1></a>
+        </div>
+    </div>
+    <br>
+
+
+    {% include "debout/tag/listVers.twig" with {
+        'user': user,
+        'tagg': tagg
+    } %}
+    <br>
+    <br>
+{% else %}
+    <a href="/gens" style="position:fixed;left:50vw;top: 45vh;transform: translateY(-50%);transform: translateX(-50%);"><button class="btn btn-outline-danger" style="font-size: xx-large;"><ahahah>Connectez vous donc ?<ahahah></button></a>
+{% endif %}
+</div>
+
+
+{% endblock %}

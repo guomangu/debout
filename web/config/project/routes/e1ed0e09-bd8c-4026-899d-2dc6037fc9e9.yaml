@@ -1,5 +1,5 @@
 siteUid: null
-sortOrder: 6
+sortOrder: 7
 template: stackfr/profil/ami.twig
 uriParts:
   - ami/

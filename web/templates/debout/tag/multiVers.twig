@@ -1,0 +1,53 @@
+{% block content %}
+
+
+
+{% set vers = craft.entries()
+    .section('version')
+    .limit(3)
+    .tagg(tag.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{% if vers[0] is null or vers[0].dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}
+    {% include "debout/accueil/createVers.twig" with {
+            tag:tag,
+            user:user
+        }
+    %}
+{% endif %}
+
+{% for item in vers %}
+    <div class="" >
+        <span><small>Etape {% if item.dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}<b>Passée</b>{% endif %} du {{ item.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
+        <span><h3 style="justify-self: right;">{{ item.title }}
+            <span style="font-size: small; border-radius:100px;" class="btn btn-outline-secondary">{{ item.gens[0].title }}</span>
+        </h3></span>
+
+
+
+        {# <br> #}
+        {% include "debout/get/ALL.twig" with {
+            obj:item,
+        }   %}
+
+
+        <div class="card card-body" style="display:block;">
+            {% include "debout/accueil/createTache.twig" with {
+                vers:item,
+                user:user
+            } %}
+        </div>
+    </div>
+
+    {% if not loop.last %}
+        <br>
+        <br>
+        <hr>
+    {% endif %}
+    
+{% endfor %}
+
+
+
+{% endblock %}

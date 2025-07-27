@@ -20,8 +20,8 @@
 
 {% for item in vers %}
     <div class="" >
-        <span><small>Etape {% if item.dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}<b>Passée</b>{% endif %} du {{ item.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
-        <span><h3>{{ item.title }}</h3></span>
+        <span><small>Etape {% if item.dateCreated|date('d-M-Y' , 'Europe/Paris') == now|date('d-M-Y', 'Europe/Paris') %}d'aujourd'hui{% endif %} du {{ item.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
+        <span><h3 style="justify-self: right;"><b>{{ item.title }}</b></h3></span>
 
 
 
@@ -30,19 +30,34 @@
             obj:item,
         }   %}
 
-
-        <div class="card card-body" style="display:block;">
-            {% include "debout/accueil/createTache.twig" with {
+        <div>
+            {% include "debout/competence/vali.twig" with {
                 vers:item,
                 user:user
             } %}
         </div>
+
+        {% if loop.first %}
+            <br>
+            {% include "debout/competence/micro.twig" with {
+                tag:tag,
+                vers:item,
+                user:user
+            } %}
+        {% endif %}
+
+        {# <div class="card card-body" style="display:block;">
+            {% include "debout/accueil/createTache.twig" with {
+                vers:item,
+                user:user
+            } %}
+        </div> #}
     </div>
 
     {% if not loop.last %}
         <br>
         <br>
-        <hr>
+        
     {% endif %}
     
 {% endfor %}
