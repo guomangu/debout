@@ -5,13 +5,19 @@
             .orderBy('dateCreated ASC')
             .all() %}
 
+
+
         {% if txt %}
+            {% set groupedtxt = txt|group(item => item.gens[0]) %}
+
             {# <br> #}
-            {% for item in txt %}
-                <span class="">
-                    <b>{{ item.title }}</b>
-                    <span style="font-size: small; border-radius:100px;" class="btn btn-outline-secondary">{{ item.gens[0].title }}</span>
-                </span>
+            {% for gens, itemt in groupedtxt %}
+                {% for t in itemt %}
+                    <span class="">
+                        {{ t.title }}
+                    </span>
+                {% endfor %}
+                <span style="font-size: small; border-radius:100px;" class="">({{ gens }})</span>
             {% endfor %}
         {% endif %}
    </div>

@@ -88,6 +88,40 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2025-07-27T06:07:13+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 2f801c4f-6b15-467c-bdf3-c15685392ce2 # vertag
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9a90b5b4-05f2-4a90-a6fc-999bbf57236d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-27T17:10:48+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7bd4bbd-6583-4218-8e04-0cf4afe65898 # genstag
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 02de1a53-f681-489b-bc99-ff51ed467e3e
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: e2e29395-298e-41cb-9a3f-26b65ba70c0e
         userCondition: null

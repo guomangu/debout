@@ -1,4 +1,17 @@
 
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
 <div id="add-overlay2222" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd7e6; z-index:99;">
     <div class="text-primary" style="    margin-top: 50vh;
     transform: translateY(-50%);
@@ -40,10 +53,10 @@
             {# <input type="hidden" id="secid33" name="sectionId" required> #}
 
             <input id="tagg33" type="hidden" name="fields[tagg][]" class="form-control" required>
-            <input type="hidden" id="userId33" name="fields[gens][]" class="form-control" required>
+            <input type="hidden" id="userId33" name="fields[gens][]" class="form-control" vzlue='{{user.id}}' required>
 
             <div class="mb-3">
-                {# <label id="title33" for="title" class="form-label"></label> #}
+                <label id="title33" for="title" class="form-label">TAG</label>
                 <input id="title" type="text" name="title" class="form-control" required>
             </div>
 
@@ -60,7 +73,7 @@
 </div>
 
 <script>    
-    function addoneVersion(id, title, userId) {
+    function addoneVersion(id) {
         // 1. On sélectionne le calque de chargement grâce à son nouvel id
         const loadingOverlay = document.getElementById('add-overlay2222');
 
@@ -72,7 +85,7 @@
 
         // document.getElementById('secid33').value=idsection;
         document.getElementById('tagg33').value=id;
-        document.getElementById('userId33').value=userId;
+        // document.getElementById('userId33').value=userId;
         // document.getElementById('title33').innerHTML='Ajouter une Version de ' + title;
     }
 </script>

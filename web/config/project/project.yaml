@@ -1,4 +1,4 @@
-dateModified: 1753586487
+dateModified: 1753639321
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -16,6 +16,7 @@ meta:
     0f030b2c-2afd-4400-8cf8-8d9f6e0f4d30: Vote # Vote
     1c5eafe9-3607-46fa-9bc3-ad3ab113db4f: arttag # arttag
     1f2c85dc-5cd1-4832-a32e-4c60d5535d27: dt # dt
+    2f801c4f-6b15-467c-bdf3-c15685392ce2: vertag # vertag
     3c5ed36b-c006-4f27-8b03-fc8650ea8a17: gens # gens
     3c780697-6783-459b-98c7-29237423bf8e: article # article
     4a5d9ad2-7db0-4763-b109-a7a2e264d13d: note # note
@@ -76,6 +77,7 @@ meta:
     d722116d-af1a-4bab-be40-011270cb86ae: abo # abo
     dd47950a-e2dc-4e5d-b507-006a2629150a: etape # etape
     e5bd54f7-a73b-46a5-bfc2-b7057fcaa455: vertag # vertag
+    e7bd4bbd-6583-4218-8e04-0cf4afe65898: genstag # genstag
     e7d3fd6a-2ef6-4dbd-872d-c8bf220ec16e: vot # vot
     e352bde4-e3c9-49ca-9794-0c9af2c3da2c: tagg # tagg
     e79726c5-a736-483f-a2f6-9fb057f93870: valide # valide
@@ -83,7 +85,7 @@ meta:
     edd5eb1b-ad48-4b1b-b88a-fda3189bce72: guuumod # guuumod
     f10abd48-cab0-4d9a-aa36-0daa17a9dea3: Valide # Valide
     f1017c71-c97e-4d79-84ba-5f9cde6dfd5d: Texte # Texte
-    f604862b-998a-42c2-b81f-5ba606dbfb05: vertag # vertag
+    f604862b-998a-42c2-b81f-5ba606dbfb05: Vertag # Vertag
 plugins:
   guest-entries:
     edition: standard
@@ -532,12 +534,12 @@ plugins:
                   - authorUid
                   - 0f378e12-6438-4246-853e-3f21d474d87b
           -
-            - f604862b-998a-42c2-b81f-5ba606dbfb05 # vertag
+            - f604862b-998a-42c2-b81f-5ba606dbfb05 # Vertag
             -
               __assoc__:
                 -
                   - sectionUid
-                  - f604862b-998a-42c2-b81f-5ba606dbfb05 # vertag
+                  - f604862b-998a-42c2-b81f-5ba606dbfb05 # Vertag
                 -
                   - allowGuestSubmissions
                   - '1'

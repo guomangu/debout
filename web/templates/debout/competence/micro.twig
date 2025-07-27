@@ -2,19 +2,19 @@
 
 {# tag, vers, user #}
 
-{% set art = craft.entries()
+{# {% set art = craft.entries()
     .section('artvers')
-    .tagg(tag.tagg[0].id)
+    .vertag(vers.id)
     .limit(9)
     .orderBy('dateCreated DESC')
-    .all() %}
+    .all() %} #}
 
 {# article #}
 
-{% for item in art %}
+{# {% for item in art %} #}
     {% set txts = craft.entries()
     .section('texte')
-    .obj(item.article[0].id)
+    .obj(vertag.version[0].id)
     .orderBy('or ASC')
     .all() %}
 
@@ -25,13 +25,21 @@
         {% set vali = craft.entries()
         .section('valide')
         .obj(texte.id)
-        .gens(user.id)
+        .vertag(vertag.id)
         .one() %}
 
 
         {% if vali == null and stop == false %}
             <div style="text-align: right; border-right-style: outset; padding:5px;">
-                {{texte.title}} 
+                <h6>{{texte.title}}
+                    {# <span style="font-size: small; border-radius:100px;" class="">({{ texte.gens[0].title }})</span> #}
+
+                </h6>
+                
+                {% include "debout/get/ALL.twig" with {
+                    obj:texte,
+                    opengu:false
+                } %}
 
                 <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                     {{ csrfInput() }}
@@ -52,7 +60,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <input id="ver" type="hidden" name="fields[version][]" class="form-control" required value="{{ vers.id }}">
+                        <input id="ver" type="hidden" name="fields[vertag][]" class="form-control" required value="{{ vertag.id }}">
                     </div>
 
                     <button type="submit" class="btn btn-outline-secondary">
@@ -67,7 +75,7 @@
             {% set stop = true %}
         {% endif %}
     {% endfor %}
-{% endfor %}
+{# {% endfor %} #}
 {# txt #}
 
 {% endblock %}

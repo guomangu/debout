@@ -2,20 +2,19 @@
 
 
 
-{% set vers = craft.entries()
-    .section('version')
-    .id(vers)
+{% set item = craft.entries()
+    .section('tagg')
+    .id(tagg)
     .one() %}
 
-{% if vers is null or vers[0].dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}
+{# {% if vers is null or vers[0].dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}
     {% include "debout/accueil/createVers.twig" with {
             tag:tag,
             user:user
         }
     %}
-{% endif %}
+{% endif %} #}
 
-{% set item = vers %}
 {# {% for item in vers %} #}
 <div class="" >
     <span><small>Etape du {{ item.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>

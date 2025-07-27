@@ -3,6 +3,8 @@ description: null
 fieldLayouts:
   e9a04b76-7cf0-4cc1-9316-41d403ce6a82:
     cardThumbAlignment: end
+    cardView:
+      - dateCreated
     tabs:
       -
         elementCondition: null
@@ -55,7 +57,24 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-07-14T20:36:15+00:00'
+            dateAdded: '2025-07-27T04:57:42+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 67053669-973b-4b91-b703-67ee8097172e # gens
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 26082ad7-8fe3-4eeb-946e-5ff7df50e553
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-27T05:25:25+00:00'
             editCondition: null
             elementCondition: null
             fieldUid: e352bde4-e3c9-49ca-9794-0c9af2c3da2c # tagg
@@ -67,7 +86,24 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ac439847-72a3-4d59-8bf5-7e6a02cd09a3
+            uid: 61515326-80e9-4ae8-b51a-e1702e7b0337
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-27T17:01:18+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7bd4bbd-6583-4218-8e04-0cf4afe65898 # genstag
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f49d78b2-c547-4eb6-9ca1-1012ba960998
             userCondition: null
             warning: null
             width: 100
