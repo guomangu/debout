@@ -1,4 +1,4 @@
-dateModified: 1753734756
+dateModified: 1753737975
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -37,6 +37,7 @@ meta:
     63d5e9c8-1466-486f-859a-fc37eb6e2a5b: image # image
     69c3f5ac-014f-4f64-9af1-bb369028c37e: obj # obj
     99ea5d91-1dc8-4cb0-893d-79ad72df9167: texte # texte
+    129d8224-05b7-4d26-8285-3303386e1006: groupe # groupe
     184e9cf2-7ee6-4f12-8061-7857317e846b: img # img
     221a2b9b-2b23-4323-9fd7-c62512c41c97: moment # moment
     262fd559-19c4-4ceb-9bfa-9c751e02f956: phone # phone

@@ -37,9 +37,7 @@
 
     {% if g and invited %}
 
-        {% include "debout/gens/present.twig" with {
-            'user': g
-        } %}   
+        <span class="card m-1 p-2">Agenda de <h3>{{ user.title }}</h3>
 
         {% include "debout/groupe/invitedlist.twig" with {
             "g": g,
@@ -49,17 +47,21 @@
             'obj': g
         } %}
 
+        </span>
+
         <br><br>
 
-        <small>Agenda:<br><br></small>
-        {% include "debout/accueil/listTag.twig" with {
-            'user': g
+        <small>Agenda :<br><br></small>
+        {% include "debout/groupe/listTag.twig" with {
+            'user': user,
+            'g': g
         } %}
 
         <br><br><br>
 
-        {% include "debout/accueil/createTag.twig" with {
-            'user': g
+        {% include "debout/groupe/createTag.twig" with {
+            'user': user,
+            'g': g
         } %}
 
         <br>

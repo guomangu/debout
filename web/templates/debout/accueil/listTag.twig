@@ -5,6 +5,7 @@
 {% set tags = craft.entries()
     .section('genstag')
     .gens(user)
+    .groupe(':empty:') 
     .limit(99)
     .orderBy('dateCreated DESC')
     .all() %}

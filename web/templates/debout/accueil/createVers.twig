@@ -53,7 +53,7 @@
         .section('vertag')
         .limit(3)
         .version(item.id)
-        .gens(user.id)
+        .genstag(tag.id)
         .orderBy('dateCreated DESC')
         .one() %}
     {% set vers = vers|filter(v => v.id != vertag.version[0].id) %}
