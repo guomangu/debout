@@ -10,7 +10,7 @@
     {# <span><small><p>car {{comp.title}}</p></small></span> #}
 
     <br>
-    <span><small>Dans le cadre de :</small></span>
+    <span><small>Dans le cadre de l'Objectif :</small></span>
     <div class="card card-body">
         {% include "debout/competence/listVers.twig" with {
             vers: v.tagg[0].id,
@@ -23,8 +23,8 @@
         <span><small><p>pour {{comp.version[0].tagg[0].title}}</p></small></span> #}
     </div>
     <br><br>
-    <small>Ressources pour apprendre :</small>
 
+    <small>Ressources pour apprendre :</small>
     {% include "debout/competence/formation.twig" with {
         obj: v.id,
         user: user

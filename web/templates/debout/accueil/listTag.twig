@@ -46,8 +46,14 @@
             border-radius: 15px;">
                 <div class="card card-body border-secondary">
                     <span><small>Objectif de {{hour}}h : </small></span>
-                    <b><h3>{{ item.tagg[0].title }}</b><a href="/o/{{ item.tagg[0].id }}"><button class="btn btn-light m-1" style="font: small-caption;">VOIR</button></h3></a>
-                    <small><b>{{ item.title }}</b></small>                 
+                    <b><h3>{{ item.tagg[0].title }}</b><a href="/o/{{ item.tagg[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button></h3></a>
+                    <small><b>{{ item.title }}</b></small>
+                    <br>
+                    {% include "debout/accueil/createVers.twig" with {
+                            tag:item,
+                            user:user
+                        }
+                    %}                 
                 </div>
 
                 <br>

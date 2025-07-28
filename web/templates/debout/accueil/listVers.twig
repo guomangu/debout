@@ -12,14 +12,14 @@
     .all() %}
 
 
-{% if vers[0] is null or vers[0].dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %}
-    {% include "debout/accueil/createVers.twig" with {
+{# {% if vers[0] is null or vers[0].dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %} #}
+    {# {% include "debout/accueil/createVers.twig" with {
             tag:tag,
-            vers:vers,
-            user:user
+            user:user,
+            vers:vers
         }
-    %}
-{% endif %}
+    %} #}
+{# {% endif %} #}
 
 
 {% for item in vers %}
@@ -27,7 +27,7 @@
     {# {% set item = item.version[0] %} #}
     <div class="" >
         <span><small>Etape {% if item.dateCreated|date('d-M-Y' , 'Europe/Paris') == now|date('d-M-Y', 'Europe/Paris') %}d'aujourd'hui{% endif %} du {{ item.dateCreated|date('d M', 'Europe/Paris') }} :</small></span>
-        <span><h3 style="justify-self: right;"><b>{{ item.version[0].title }}</b><a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1">VOIR</button></a></h3></span>
+        <span><h3 style="justify-self: right;"><b>{{ item.version[0].title }}</b><a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button></a></h3></span>
 
 
 

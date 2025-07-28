@@ -40,6 +40,35 @@
     .orderBy('dateCreated DESC')
     .all() %}
 
+{# <pre>
+    {{ dump(vers[0].id) }}
+</pre> #}
+
+
+
+{# //// #}
+
+
+{% set vertag = craft.entries()
+    .section('vertag')
+    .limit(3)
+    .version(vers[0].id)
+    .gens(user.id)
+    .orderBy('dateCreated DESC')
+    .one() %}
+
+
+    {# <pre>
+    {{ dump(vertag.version[0].id) }}
+</pre> #}
+
+{% set vers = vers|filter(v => v.id != vertag.version[0].id) %}
+{# <pre>
+    {{ dump(vers) }}
+</pre> #}
+
+{# ///// #}
+
 
 
 
@@ -56,9 +85,9 @@
 
         {# 1. Champ de sélection pour les TAGS #}
         {# Champ de sélection pour les TAGS sous forme de boutons #}
-        <div class="mb-3">
-            <label class="form-label">Choisissez un Travail :</label>
-            <div class="d-flex flex-wrap gap-2">
+        <div class="">
+            {# <label class="form-label">Choisissez un Travail :</label> #}
+            <div class="">
                 <button onclick="addoneVersion({{ tag.tagg[0].id }})" class="btn btn-outline-danger">
                     + Ajoutez un travail
                 </button>
@@ -81,15 +110,15 @@
                     >
                     <label class="btn btn-outline-secondary" for="tag-{{ ver.id }}">{{ ver.title }}</label>
                 {% endfor %}
+
+                | <button type="submit" class="btn btn-primary">Ajouter</button>
             </div>
         </div>
 
         {# 2. Champ pour le TITRE #}
-        <div class="mb-3">
             <input id="genstag" type="hidden" name="fields[genstag][]" class="form-control" required value="{{ tag.id }}">
             <input id="title" type="hidden" name="title" class="form-control" required value="version">
             <input id="obj" type="hidden" name="fields[tagg][]" class="form-control" required value="{{ tag.tagg[0].id }}">
-        </div>
 
         {# 3. Champ pour l'HEURE #}
         {# <div class="mb-3">
@@ -104,11 +133,10 @@
             </select>
         </div> #}
 
-        <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 {% else %}
-    <p>Aucun Travail n'est disponible pour le moment.</p>
-    <br>
+    {# <p>Aucun Travail n'est disponible pour le moment.</p> #}
+    {# <br> #}
     <button onclick="addoneVersion({{ tag.tagg[0].id }})" class="btn btn-outline-danger">
         + Ajoutez un travail
     </button>
