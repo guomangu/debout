@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: f49bff65-ae87-4925-a2e9-eb8766e99f21 # groupeinvitated
+handle: groupeinvitated
+maxAuthors: 1
+name: GroupeInvitated
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: groupeinvitated/_entry.twig
+    uriFormat: 'groupeinvitated/{slug}'
+type: channel

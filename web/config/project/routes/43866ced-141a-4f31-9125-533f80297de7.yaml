@@ -1,5 +1,5 @@
 siteUid: null
-sortOrder: 2
+sortOrder: 6
 template: debout/gens/gens.twig
 uriParts:
   - gens

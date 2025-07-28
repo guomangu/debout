@@ -1,4 +1,4 @@
-dateModified: 1753639321
+dateModified: 1753729403
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -26,6 +26,7 @@ meta:
     5e91ed90-f5e3-4aa8-9423-61a37bb77917: anno # anno
     07c9bcb9-821e-40fc-87b7-600d07df1385: real # real
     7df43cfb-822b-4393-9cea-f95c274c89bd: lieu # lieu
+    7f0b51b7-ce80-4a85-9d21-ed937eb1b5b5: groupe # groupe
     8af7f98b-7a5f-473f-a84f-4ce5ccb86560: Tagg # Tagg
     8dba8da5-80a5-4037-8275-09211e173f1f: alert # alert
     9c9f6981-8090-489f-8538-a1951cc17589: img # img
@@ -52,6 +53,7 @@ meta:
     4718b1b0-6cbc-46c1-a42f-40ba14078b4c: caracteristique # caracteristique
     75770ca1-8311-4f39-81c8-20e99b9bb03f: versionmoment # versionmoment
     085882e1-b95e-483d-9af0-41f4adbb0804: agenda # agenda
+    288720cd-c696-4ed1-8595-5c2408292324: Groupe # Groupe
     416946b7-7b50-49d0-81e1-beff9b17a49d: genstag # genstag
     438474b0-8857-43a4-8e54-c3ae4dcda3bc: tagg # tagg
     67053669-973b-4b91-b703-67ee8097172e: gens # gens
@@ -70,6 +72,7 @@ meta:
     b3130d18-b952-4e21-8f70-2aff973bb2b6: article # article
     bc6f2f8d-e16b-4597-9283-5b0a7f078ffe: caracteristique # caracteristique
     c3a81b8b-98ea-40b0-b2e5-37f85ba24937: valence # valence
+    cdeac634-80ff-4c60-a722-f5677bd26ab5: GroupeInvitated # GroupeInvitated
     cfdea3fe-70d2-49e7-aded-a86ea2b3a5f5: desc # desc
     d0d920c2-5803-4a13-90c1-49c76231a2a4: desc # desc
     d7c18dfa-8aad-4879-9efa-fe8b1a1dea2f: caracteristique # caracteristique
@@ -84,6 +87,7 @@ meta:
     ec4d61c5-22ab-448d-ae33-fefa9e004994: versionmoment # versionmoment
     edd5eb1b-ad48-4b1b-b88a-fda3189bce72: guuumod # guuumod
     f10abd48-cab0-4d9a-aa36-0daa17a9dea3: Valide # Valide
+    f49bff65-ae87-4925-a2e9-eb8766e99f21: groupeinvitated # groupeinvitated
     f1017c71-c97e-4d79-84ba-5f9cde6dfd5d: Texte # Texte
     f604862b-998a-42c2-b81f-5ba606dbfb05: Vertag # Vertag
 plugins:
@@ -616,6 +620,44 @@ plugins:
                 -
                   - sectionUid
                   - f10abd48-cab0-4d9a-aa36-0daa17a9dea3 # Valide
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 288720cd-c696-4ed1-8595-5c2408292324 # Groupe
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 288720cd-c696-4ed1-8595-5c2408292324 # Groupe
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - cdeac634-80ff-4c60-a722-f5677bd26ab5 # GroupeInvitated
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - cdeac634-80ff-4c60-a722-f5677bd26ab5 # GroupeInvitated
                 -
                   - allowGuestSubmissions
                   - '1'

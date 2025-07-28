@@ -48,21 +48,21 @@
 
 {# //// #}
 
-
-{% set vertag = craft.entries()
-    .section('vertag')
-    .limit(3)
-    .version(vers[0].id)
-    .gens(user.id)
-    .orderBy('dateCreated DESC')
-    .one() %}
-
+{% for item in vers %}
+    {% set vertag = craft.entries()
+        .section('vertag')
+        .limit(3)
+        .version(item.id)
+        .gens(user.id)
+        .orderBy('dateCreated DESC')
+        .one() %}
+    {% set vers = vers|filter(v => v.id != vertag.version[0].id) %}
+{% endfor %}
 
     {# <pre>
     {{ dump(vertag.version[0].id) }}
 </pre> #}
 
-{% set vers = vers|filter(v => v.id != vertag.version[0].id) %}
 {# <pre>
     {{ dump(vers) }}
 </pre> #}

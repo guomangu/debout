@@ -18,6 +18,7 @@ settings:
   showUnpermittedSections: false
   sources:
     - 'section:d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9' # Gens
+    - 'section:288720cd-c696-4ed1-8595-5c2408292324' # Groupe
   targetSiteId: null
   validateRelatedElements: true
   viewMode: list
