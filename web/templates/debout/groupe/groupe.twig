@@ -29,12 +29,25 @@
             'user': g
         } %}   
 
+        {% include "debout/groupe/invitedlist.twig" with {
+            "g": g,
+            "user": user
+        } %}
+        {% include "debout/get/conv.twig" with {
+            'obj': g
+        } %}
+
+        <br>
+
         {% include "debout/groupe/invited.twig" with {
             'admin': user,
             "g": g
         } %}
 
-        <small>Agenda:<br><br></small>
+        <br><br>
+
+
+        <small>Agenda :<br><br></small>
         {% include "debout/accueil/listTag.twig" with {
             'user': g
         } %}

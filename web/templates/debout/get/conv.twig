@@ -1,0 +1,22 @@
+ <div>
+        {% set txt = craft.entries()
+            .section('texte')
+            .obj(obj.id)
+            .orderBy('dateCreated ASC')
+            .all() %}
+
+
+        {% if txt %}
+            {# {% set groupedtxt = txt|group(item => item.gens[0]) %} #}
+
+            {# <br> #}
+            {% for t in txt %}
+                    <span class="">
+                        - {{ t.title }}
+                    </span>
+                    <span style="font-size: small; border-radius:100px;" class="">({{ t.gens[0].title }} a {{t.dateCreated|date('G', 'Europe/Paris')}}h le {{ t.dateCreated|date('d M', 'Europe/Paris') }})</span>
+                    <br>
+            {% endfor %}
+            <br>
+        {% endif %}
+   </div>

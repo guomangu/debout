@@ -1,0 +1,33 @@
+{% block content %}
+
+{% set groupeperso = craft.entries()
+    .section('groupe')
+    .admin(user.id)
+    .one() %}
+
+
+{% set invited = craft.entries()
+        .section('groupeinvitated')
+        .gens(user.id)
+        .limit(22)
+        .orderBy('dateCreated DESC')
+        .all() %}
+
+
+
+
+{% if groupeperso %}
+<li><a href="/g"><button  class="dropdown-item" type="button">{{groupeperso.title}}</button></a></li>
+{% endif %}
+
+{% for item in invited %}
+    <li><a href="/g/{{item.groupe[0].id}}"><button  class="dropdown-item" type="button">{{item.groupe[0].title}}</button></a></li>
+{% endfor %}
+
+
+
+
+
+
+
+{% endblock %}

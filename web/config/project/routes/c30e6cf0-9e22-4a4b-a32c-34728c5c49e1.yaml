@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 11
+template: debout/groupe/groupeid.twig
+uriParts:
+  - g/
+  -
+    - '*'
+    - '[^\/]+'
+uriPattern: 'g/<any:[^\/]+>'

@@ -29,11 +29,27 @@
     .id(id)
     .one() %}
 
-    {% if g %}
+    {% set invited = craft.entries()
+        .section('groupeinvitated')
+        .groupe(g.id)
+        .gens(user.id)
+        .one() %}
+
+    {% if g and invited %}
 
         {% include "debout/gens/present.twig" with {
             'user': g
         } %}   
+
+        {% include "debout/groupe/invitedlist.twig" with {
+            "g": g,
+            "user": user
+        } %}
+        {% include "debout/get/conv.twig" with {
+            'obj': g
+        } %}
+
+        <br><br>
 
         <small>Agenda:<br><br></small>
         {% include "debout/accueil/listTag.twig" with {
@@ -53,6 +69,8 @@
             {{ actionInput('guest-entries/save') }}
             {{ hiddenInput('sectionId', 20) }} 
             {{ hiddenInput('enabled', '1') }}
+            {{ redirectInput("/g") }}
+            
 
             <div class="mb-3">
                 <input id="title11" type="text" name="title" class="form-control" required>

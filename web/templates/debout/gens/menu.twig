@@ -40,7 +40,23 @@
 {# <a href="/profil/{{ user.id }}"><button class="btn btn-outline-primary">{{ user.title }}</button></a> #}
 {% endif %}
 
-<a href="/accueil"><button class="btn btn-outline-secondary">Accueil de <b>{{ user.title }}</b></button></a>
+<div class="btn-group">
+  <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Agendas de <b>{{ user.title }}</b></button>
+
+
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><a href="/accueil"><button  class="dropdown-item" type="button">Agenda personnel</button></a></li>
+    {% include "debout/accueil/listagendas.twig" with {
+        'user': user
+    } %}
+  </ul>
+</div>
+
+
+
+
+
+
 
 {% if user %}
     <a>{% include "debout/gens/jean.twig" %}</a>

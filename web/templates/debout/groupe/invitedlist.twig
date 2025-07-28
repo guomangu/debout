@@ -1,0 +1,45 @@
+{% block content %}
+
+
+
+
+
+{% set invited = craft.entries()
+        .section('groupeinvitated')
+        .groupe(g.id)
+        .orderBy('dateCreated DESC')
+        .all() %}
+
+{% set idmembres = invited|map(item => item.gens[0]) %}
+
+{# <div class="card card-body"> #}
+    <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            {{ csrfInput() }}
+            {{ actionInput('guest-entries/save') }}
+            {{ hiddenInput('sectionId', 7) }} 
+            {{ hiddenInput('enabled', '1') }}
+
+            <div class="mb-3">
+                <input id="obj11111" type="hidden" name="fields[obj][]" class="form-control" required value="{{ g.id }}">
+            </div>
+
+            <div class="mb-3">
+                <input id="user11" type="hidden" name="fields[gens][]" class="form-control" required value="{{ user.id }}">
+            </div>
+        
+            <div class="input-group">
+                <button class="btn btn-outline-secondary" type="submit">Envoyer!</button>
+
+                <input type="text" name="title" class="form-control" style="text-align:end;" placeholder="Conversez avec" required>
+                <button class="btn btn-outline-secondary" type="button">{{g.admin[0].title}}</button>
+                {% for gens in idmembres %}
+                    <button class="btn btn-outline-secondary" type="button">{{ gens.title }}</button>
+                {% endfor %}
+            </div>
+    </form>
+{# </div> #}
+
+
+
+
+{% endblock %}
