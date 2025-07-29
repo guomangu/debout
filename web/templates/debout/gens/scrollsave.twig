@@ -1,0 +1,64 @@
+<script>
+
+
+
+
+(function() {
+    /**
+     * Cette fonction est immédiatement exécutée pour créer un "scope" privé
+     * et éviter les conflits avec d'autres scripts.
+     */
+
+    // --- PARTIE 1 : Sauvegarder la position avant une action ---
+
+    // A. Pour la soumission de N'IMPORTE QUEL formulaire
+    document.addEventListener('submit', function(event) {
+        // On vérifie que c'est bien un formulaire pour être sûr
+        if (event.target.tagName === 'FORM') {
+            console.log('Formulaire soumis, sauvegarde du scroll...');
+            // On sauvegarde la position dans le stockage de session.
+            // C'est invisible pour le serveur et résiste aux redirections.
+            sessionStorage.setItem('scrollPosition', Math.round(window.scrollY));
+        }
+    });
+
+    // B. Pour les clics sur les liens <a>
+    document.addEventListener('click', function(event) {
+        // On cherche le lien <a> le plus proche de l'élément cliqué
+        const link = event.target.closest('a');
+
+        // Si on a trouvé un lien ET que ce lien ne quitte pas la page...
+        if (link && new URL(link.href).pathname === window.location.pathname) {
+            console.log('Lien interne cliqué, sauvegarde du scroll...');
+            // On sauvegarde la position. Le navigateur suivra le lien normalement.
+            sessionStorage.setItem('scrollPosition', Math.round(window.scrollY));
+        }
+    });
+
+
+    // --- PARTIE 2 : Restaurer la position au chargement de la page ---
+    document.addEventListener('DOMContentLoaded', function() {
+        // On récupère la position sauvegardée (que ce soit par un formulaire ou un lien)
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+
+        if (scrollPosition && parseInt(scrollPosition, 10) > 0) {
+            console.log('Position trouvée, restauration du scroll à :', scrollPosition);
+            // On scrolle la fenêtre à la position enregistrée
+            window.scrollTo({
+                top: parseInt(scrollPosition, 10),
+                behavior: 'auto' // 'auto' pour un repositionnement instantané
+            });
+
+            // On nettoie la donnée pour éviter un scroll non désiré
+            // si l'utilisateur recharge la page manuellement plus tard.
+            sessionStorage.removeItem('scrollPosition');
+        }
+    });
+
+})();
+
+
+
+
+
+</script>
