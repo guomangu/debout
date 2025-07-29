@@ -1,0 +1,55 @@
+{% block content %}
+
+
+
+{% set vertag = craft.entries()
+    .section('vertag')
+    .genstag(genstag.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+{% set vali = [] %}
+{% for item in vertag %}
+    {% set vali = vali|merge(craft.entries()
+    .section('valide')
+    .vertag(item.id)
+    .orderBy('dateCreated DESC')
+    .all()) %}
+    {# <pre>
+        {{ dump(vali) }}
+    </pre> #}
+{% endfor %}
+
+
+{% if vali %}
+    <div>
+
+        <span><small>Ressources déjà validées :</small></span>
+        <br>
+        {% for item in vali|sort((a, b) => b.dateCreated <=> a.dateCreated) %}
+            <br>
+            <div style="border-left: solid; padding: 5px;">
+                <span>Validé le : {{item.dateCreated|date('d M', 'Europe/Paris')}} a {{item.dateCreated|date('G', 'Europe/Paris')}}h</span>
+                <div class="card card-body">
+                    <span>{{item.title}}<small> par {{item.gens[0].title}}</small></span>
+                </div>
+                {% include "debout/get/ALL.twig" with {
+                    obj:item.obj[0],
+                    vertag:vertag,
+                    opengu:false,
+                    left:true
+                } %}
+            </div>
+            {# {% endif %} #}
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

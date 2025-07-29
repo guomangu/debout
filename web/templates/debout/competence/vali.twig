@@ -17,12 +17,12 @@
         {% for item in vali %}
             {# {% if vers.dateCreated|date('d-M-Y' , 'Europe/Paris') == item.dateCreated|date('d-M-Y', 'Europe/Paris') %} #}
                 {# <h6>{{ item.obj[0].title }}</h6> #}
-                {% include "debout/get/ALL.twig" with {
-                    obj:item.obj[0],
-                    vertag:vertag,
-                    opengu:false,
-                    left:true
-                } %}
+            {% include "debout/get/ALL.twig" with {
+                obj:item.obj[0],
+                vertag:vertag,
+                opengu:false,
+                left:true
+            } %}
             {# {% endif %} #}
         {% endfor %}
     </div>

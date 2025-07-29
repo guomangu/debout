@@ -38,7 +38,7 @@
 {% if groupedAgenda is empty %}<h3 class="text-center">Agenda vide</h3>{% endif %}
 {% for hour, itemsInHour in groupedAgenda %}
     {# On affiche l'heure une seule fois #}
-    <a href="h/{{ hour }}"><h3 class="btn btn-outline-secondary">{{ hour }}h </h3></a>
+    <a href="h/{{ hour }}" style="text-decoration-line: none; color:black;"><h1 class="card card-body">{{ hour }}h </h1></a>
     
     <div>
         {# Puis on boucle sur les items de cette heure #}
