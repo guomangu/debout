@@ -26,17 +26,27 @@
     {# {% set itemokaou = item %} #}
     {# {% set item = item.version[0] %} #}
     <div class="" >
-        <span><small>Travail depuis {% if item.dateCreated|date('d-M-Y' , 'Europe/Paris') == now|date('d-M-Y', 'Europe/Paris') %}d'aujourd'hui{% endif %} le <big>{{ item.dateCreated|date('d M', 'Europe/Paris') }}</big> :</small>
+        <span><h3 style="justify-self: right;"><span style="font-size: medium">({{item.gens[0].title}}) </span><b>{{ item.version[0].title }}</b><a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button>
+        </a></h3></span>
         
+        <div style="text-align: right;">
+        {% include "debout/get/justValide.twig" with {
+                obj:item,
+                vertag:item,
+                user:user
+            } %}
+        </div>
         
-        
-        
-        </span>
-        <span><h3 style="justify-self: right;"><span style="font-size: medium">({{item.gens[0].title}}) </span><b>{{ item.version[0].title }}</b><a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button></a></h3></span>
-
-
-
         {# <br> #}
+        
+        <span><small>Travail depuis {% if item.dateCreated|date('d-M-Y' , 'Europe/Paris') == now|date('d-M-Y', 'Europe/Paris') %}d'aujourd'hui{% endif %} le <big>{{ item.dateCreated|date('d M', 'Europe/Paris') }}</big> :</small>
+            
+        </span>
+        
+
+
+
+        <br>
         {# {% include "debout/get/ALL.twig" with {
             obj:item.version[0],
 

@@ -46,7 +46,7 @@
             <div class=" card-body" style="border-left: solid;
             padding: 10px;
             border-radius: 15px;">
-                <div class="card card-body border-secondary">
+                <div class="card card-body" style=" background-color:#00000012;">
                     <span><small>Objectif de {{hour}}h : </small></span>
                     <b><h3>{{ item.tagg[0].title }}</b><a href="/o/{{ item.tagg[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button></h3></a>
                     <small><b>{{ item.title }}</b></small>
@@ -55,7 +55,14 @@
                             tag:item,
                             user:user
                         }
-                    %}                 
+                    %}       
+
+
+                    <br>
+                    {% include "debout/accueil/listValide.twig" with {
+                        genstag: item,
+                        user: user
+                    } %}              
                 </div>
 
                 <br>

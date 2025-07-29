@@ -20,11 +20,13 @@
     </pre> #}
 {% endfor %}
 
+{% set vali = vali|sort((a, b) => b.dateCreated <=> a.dateCreated)|slice(0, 3) %}
+
 
 {% if vali %}
     <div>
 
-        <span><small>Ressources déjà validées :</small></span>
+        <span><small>3 Dernieres Etapes Terminé :</small></span>
         <br>
         {% for item in vali|sort((a, b) => b.dateCreated <=> a.dateCreated) %}
             <br>
