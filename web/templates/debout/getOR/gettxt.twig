@@ -1,9 +1,46 @@
+ {% block content %}
+ 
+ 
  <div>
-        {% set txt = craft.entries()
+
+        {% set tousLesParametres = craft.app.request.getQueryParams() %}
+
+        {% if tousLesParametres %}
+
+            {% set arrayusew = [] %}
+            {% for id, votes in tousLesParametres %}
+                {% set arrayusew = arrayusew|merge([ craft.entries()
+                .section('gens')
+                .title(id)
+                .orderBy('dateCreated ASC')
+                .one()
+                ])%}
+            {% endfor %}
+            {% set idAavoir = arrayusew|map(item => item.id) %}
+        {% endif %}
+            
+        {% if idAavoir %}
+            {% set txt = craft.entries()
+            .section('texte')
+            .obj(item)
+            .gens(idAavoir)
+            .orderBy('or ASC')
+            .all() %}
+        {% else %}
+            {% set txt = craft.entries()
             .section('texte')
             .obj(item)
             .orderBy('or ASC')
             .all() %}
+        {% endif %}
+        
+
+        
+
+
+
+
+
 
         {% if txt %}
             {# {% include "debout/get/selec.twig" with {
@@ -49,4 +86,13 @@
                 + Text
             </button>
         {% endif %}
+
+
+
+
    </div>
+
+
+
+
+   {% endblock %}
