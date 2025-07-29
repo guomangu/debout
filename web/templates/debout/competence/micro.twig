@@ -30,13 +30,13 @@
 
 
         {% if vali == null and stop == false %}
-            <div style="text-align: right; border-right-style: outset; padding:5px;">
+            {# <div style="text-align: right; border-right-style: outset; padding:5px;"> #}
                 {% include "debout/get/ALL.twig" with {
                     obj:texte,
                     vertag:vertag,
                     opengu:true
                 } %}
-            </div>
+            {# </div> #}
             <br>
             {% set stop = true %}
         {% endif %}

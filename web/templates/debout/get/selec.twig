@@ -4,11 +4,11 @@
 {% set txt = craft.entries()
         .section('texte')
         .obj(version.id)
-        .orderBy('dateCreated ASC')
+        .orderBy('or DESC')
         .all() %}
 
 {% set groupedv = txt|group(item => item.gens[0]) %}
-   
+{% set array = [] %}
 <div style="display:flex;">
 {% for gens, itemv in groupedv %}
 
@@ -27,15 +27,72 @@
             {% endfor %}
             
 
-            {# {% set array = array|merge([{ gens: gens, votes: votevalence }]) %} #}
-            {# <span>{{ gens }}: {{ votevalence }} votes</span> #}
             
-            <a class="btn btn-outline-secondary">{{gens}} | {{votevalence}} Votes</a>
+            
+            {# <a class="btn btn-outline-secondary">{{gens}} | {{votevalence}} Votes</a> #}
             {# <a class="btn btn-outline-secondary"></a> #}
         </div>
     {% endfor %}
+    
+    {# --- ÉTAPE 1: Essayer de trouver l'élément existant --- #}
+    {% set item_existant = array|filter(a => a.gens == gens)|first %}
+
+    {# --- ÉTAPE 2: Vérifier si l'élément a été trouvé --- #}
+    {% if item_existant %}
+        {% if votevalence %}
+            {# OUI, il existe : on met à jour sa valeur 'votes' #}
+            {# On crée un nouveau tableau sans l'ancien élément... #}
+            {% set tableau_sans_item = array|filter(a => a.gens != gens) %}
+            {# ...puis on y ajoute l'élément mis à jour. #}
+            {% set item_mis_a_jour = {'gens': gens, 'votes': item_existant.votes + votevalence} %}
+            {% set array = tableau_sans_item|merge([item_mis_a_jour]) %}
+        {% endif %}
+            
+    {% else %}
+        {# NON, il n'existe pas : on ajoute un nouvel élément au tableau #}
+        {% if votevalence %}
+        
+            {% set nouvel_item = {'gens': gens, 'votes': votevalence} %}
+            {% set array = array|merge([nouvel_item]) %}
+        
+        {% endif %}
+    {% endif %}
+
+{% endfor %}
+
+{% if array is not empty %}
+<div>
+<small>Qualite du texte :</small><br>
+{# ÉTAPE 1: On trie les éléments par nombre de votes, du plus grand au plus petit. #}
+{# C'est la base pour savoir qui enlever en premier (ceux à la fin de la liste). #}
+{% set items = array %}
+{% set sorted_items = items|sort((a, b) => b.votes <=> a.votes) %}
+{% set items_count = sorted_items|length %}
+
+{# ÉTAPE 2: On boucle pour créer plusieurs liens. On utilise une boucle numérique (de 0 à N-1) #}
+{# où `i` représente le nombre d'éléments à retirer de la fin de la liste. #}
+{% for i in 0..(items_count - 1) %}
+
+    {# ÉTAPE 3: On prend une "tranche" du tableau trié. #}
+    {# À chaque passage, on garde les `items_count - i` premiers éléments. #}
+    {# - Pour i=0, on garde tout le monde. #}
+    {# - Pour i=1, on garde tout le monde sauf le dernier. #}
+    {# - Pour i=2, on garde tout le monde sauf les deux derniers, etc. #}
+    {% set items_for_url = sorted_items|slice(0, items_count - i) %}
+    {# On s'assure qu'il y a des éléments avant de créer la chaîne de requête. #}
+    {% if items_for_url is not empty %}
+        {# ÉTAPE 4: On transforme ce nouveau tableau en une chaîne de requête URL valide. #}
+        {% set query_string = items_for_url|map(item => item.gens ~ '=' ~ item.votes)|join('&') %}
+
+        {# ÉTAPE 5: On génère le lien final pour cette étape. #}
+        <a href="?{{query_string}}" class="btn btn-outline-secondary">{{items_for_url[items_count - (i + 1)].gens}} | {{items_for_url[items_count - (i + 1)].votes}} Votes requis</a>
+    {% endif %}
 
 {% endfor %}
 </div>
+{% endif %}
+</div>
 <hr>
+
+
 {% endblock %}

@@ -24,11 +24,13 @@
     </div>
     <br><br>
 
-    <small>Ressources pour apprendre :</small>
+    
+    <small>Etapes : <hr></small>
     {% include "debout/get/selec.twig" with {
         version: v,
         user: user,
     } %}
+    <br>
     {% include "debout/competence/formation.twig" with {
         obj: v.id,
         user: user

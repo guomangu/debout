@@ -36,6 +36,14 @@
 
             opengu:false
         }   %} #}
+        <div>
+            {% include "debout/get/selec.twig" with {
+                version: item.version[0],
+                user: user,
+            } %}
+
+            
+        </div>
 
         <div>
             {% include "debout/competence/vali.twig" with {
@@ -48,7 +56,8 @@
             {% include "debout/competence/micro.twig" with {
                 genstag:tag,
                 vertag:item,
-                user:user
+                user:user,
+                quali:"trueeeeeeeeee"
             } %}
         {# {% endif %} #}
 

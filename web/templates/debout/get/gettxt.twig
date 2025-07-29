@@ -9,8 +9,8 @@
 
         {% if txt %}
             {% set groupedtxt = txt|group(item => item.gens[0]) %}
-
-            <div style="border-right: outset;padding: 5px;border-radius: 15px;">
+            {# <div style="border-right: outset;padding: 5px;border-radius: 15px;"> #}
+            <div style="">
             {% for gens, itemt in groupedtxt %}
                 {% for t in itemt %}
                     <span class="">
