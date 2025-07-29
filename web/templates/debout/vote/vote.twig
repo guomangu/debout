@@ -5,14 +5,22 @@
     .obj(obj.id)
     .all() %}
 
+{% set deja = false %}
 {% set count = 0 %}
 {% for vote in v %}
-    {% set count = count + vote.valence  %}
+    {% set count = count + vote.valence %}
+    {% if user.id == vote.gens[0].id %}
+        {% set deja = true %}
+    {% endif %}
 {% endfor %}
 
-{% if user.id not in v %}
+{% if not deja %}
     <button class="btn btn-outline-danger" onclick="addonevote({{ obj.id }})">
         + Vote ({{ count }})
+    </button>
+{% else %}
+    <button class="btn btn-outline-secondary">
+        {{ count }} vote
     </button>
 {% endif %}
 

@@ -10,14 +10,17 @@
         {% if txt %}
             {% set groupedtxt = txt|group(item => item.gens[0]) %}
 
-            {# <br> #}
+            <div style="border-right: outset;padding: 5px;border-radius: 15px;">
             {% for gens, itemt in groupedtxt %}
                 {% for t in itemt %}
                     <span class="">
                         {{ t.title }}
                     </span>
+                    {% if not loop.last %}<br>{% endif %}
                 {% endfor %}
                 <span style="font-size: small; border-radius:100px;" class="">({{ gens }})</span>
             {% endfor %}
+            </div>
         {% endif %}
+        
    </div>

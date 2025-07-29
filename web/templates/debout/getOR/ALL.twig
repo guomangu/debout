@@ -2,26 +2,12 @@
 
 {% if obj %}
 
-<div>
-    {% include "debout/getOR/gettxt.twig" with {
-        item:obj
-    } %}
+    <div>
+        {% include "debout/getOR/gettxt.twig" with {
+            item:obj
+        } %}
+    </div>
 
-
-    {# <hr style="border-block-color:rgb(0 20 255);">
-    <div style="place-self: flex-end;" class="m-2">
-        <span>
-            <div class="btn btn-outline-secondary">{{user.title}}</div> |  
-        </span>
-
-        <button onclick="addoneimg({{obj.id}})" class="btn btn-outline-danger" >
-            + Image
-        </button>
-        <button onclick="addonetxt({{obj.id}})" class="btn btn-outline-danger" >
-            + Text
-        </button>
-    </div> #}
-</div>
 {% endif %}
 
 

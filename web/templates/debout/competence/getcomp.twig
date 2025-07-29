@@ -25,6 +25,10 @@
     <br><br>
 
     <small>Ressources pour apprendre :</small>
+    {% include "debout/get/selec.twig" with {
+        version: v,
+        user: user,
+    } %}
     {% include "debout/competence/formation.twig" with {
         obj: v.id,
         user: user

@@ -1,0 +1,41 @@
+{% block content %}
+
+
+{% set txt = craft.entries()
+        .section('texte')
+        .obj(version.id)
+        .orderBy('dateCreated ASC')
+        .all() %}
+
+{% set groupedv = txt|group(item => item.gens[0]) %}
+   
+<div style="display:flex;">
+{% for gens, itemv in groupedv %}
+
+    {% set votevalence = 0 %}
+    {% for ttt in itemv %}
+        <div class="btn-group" style="display: -webkit-box; margin:3px;">
+        
+            {% set vote = craft.entries()
+            .section('vote')
+            .obj(ttt.id)
+            .orderBy('dateCreated ASC')
+            .all() %}
+        
+            {% for vvvv in vote %}
+                {% set votevalence = votevalence + vvvv.valence %}
+            {% endfor %}
+            
+
+            {# {% set array = array|merge([{ gens: gens, votes: votevalence }]) %} #}
+            {# <span>{{ gens }}: {{ votevalence }} votes</span> #}
+            
+            <a class="btn btn-outline-secondary">{{gens}} | {{votevalence}} Votes</a>
+            {# <a class="btn btn-outline-secondary"></a> #}
+        </div>
+    {% endfor %}
+
+{% endfor %}
+</div>
+<hr>
+{% endblock %}

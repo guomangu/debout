@@ -17,11 +17,13 @@
 
 
 {% if groupeperso %}
-<li><a href="/g"><button  class="dropdown-item" type="button">{{groupeperso.title}}</button></a></li>
+<li><a href="/g"><button  class="dropdown-item" style="display:inline-grid;" type="button">{{groupeperso.title}}</button></a></li>
+{% else %}
+<li><a href="/g"><button  class="dropdown-item" style="display:inline-grid;" type="button">Creer votre Groupe</button></a></li>
 {% endif %}
 
 {% for item in invited %}
-    <li><a href="/g/{{item.groupe[0].id}}"><button  class="dropdown-item" type="button">{{item.groupe[0].title}}</button></a></li>
+    <li><a href="/g/{{item.groupe[0].id}}"><button style="display:inline-grid;"  class="dropdown-item" type="button">{{item.groupe[0].title}}</button></a></li>
 {% endfor %}
 
 
