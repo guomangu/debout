@@ -5,7 +5,7 @@
 
 
 
-<form method="post" accept-charset="UTF-8" enctype="multipart/form-data" style="display: inline-flex;">
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data" >
     {{ csrfInput() }}
     {{ actionInput('guest-entries/save') }}
     {{ hiddenInput('sectionId', 19) }} 
@@ -51,7 +51,6 @@
 
 {% if validate %}
     <div>
-
         <span><small>3 Derniers Rapports:</small></span>
         {% for item in validate %}
             <br>

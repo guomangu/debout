@@ -67,7 +67,7 @@
 {# ////////////// #}
 
 
-<div id="loading-overlay" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:absolute; background-color: #faebd785; z-index:100;">
+<div id="loading-overlay" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd785; z-index:100;">
     <div class="spinner-border text-primary" style="margin-top: 50vh; margin-left:50vw;" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
@@ -80,7 +80,6 @@
 
 
 <script>
-    
     document.addEventListener('DOMContentLoaded', function() {
     
     // 1. On sélectionne le calque de chargement grâce à son nouvel id
@@ -102,6 +101,13 @@
         });
     });
 
+    const aaa = document.querySelectorAll('a');
+    aaa.forEach(aa => {
+        aa.addEventListener('click', function() {
+            // 4. Dès qu'un formulaire est soumis, on affiche le calque
+            loadingOverlay.style.display = 'block';
+        });
+    });
 });
 </script>
 

@@ -14,11 +14,11 @@
             {% for gens, itemt in groupedtxt %}
                 {% for t in itemt %}
                     <span class="">
-                        {{ t.title }}
+                        {{ t.title|capitalize  }}
                     </span>
                     {% if not loop.last %}<br>{% endif %}
                 {% endfor %}
-                <span style="font-size: small; border-radius:100px;" class="">({{ gens }})</span>
+                <span style="font-size: small; border-radius:100px;" class="">({{ gens  }})</span>
             {% endfor %}
             </div>
         {% endif %}

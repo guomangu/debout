@@ -13,7 +13,7 @@
             {# <br> #}
             {% for t in txt|reverse %}
                     <span class="">
-                        - {{ t.title }}
+                        - {{ t.title|capitalize  }}
                     </span>
                     <span style="font-size: small; border-radius:100px;" class="">(<b class="">{{ t.gens[0].title }}</b> le {{ t.dateCreated|date('d M', 'Europe/Paris') }} à {{t.dateCreated|date('G', 'Europe/Paris')}}h)</span>
                     <br>

@@ -38,7 +38,7 @@
 {% if groupedAgenda is empty %}<h3 class="text-center">Agenda vide</h3>{% endif %}
 {% for hour, itemsInHour in groupedAgenda %}
     {# On affiche l'heure une seule fois #}
-    <a href="h/{{ hour }}" style="text-decoration-line: none; color:black;"><h1 class="card card-body">{{ hour }}h </h1></a>
+    <a href="/h/{{ hour }}" style="text-decoration-line: none; color:black;"><h1 class="card card-body">{{ hour }}h </h1></a>
     
     <div>
         {# Puis on boucle sur les items de cette heure #}
@@ -48,8 +48,8 @@
             border-radius: 15px;">
                 <div class="card card-body" style=" background-color:#00000012;">
                     <span><small>Objectif de {{hour}}h : </small></span>
-                    <b><h3>{{ item.tagg[0].title }}</b><a href="/o/{{ item.tagg[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button></h3></a>
-                    <small><b>{{ item.title }}</b></small>
+                    <b><h3>{{ item.tagg[0].title|capitalize  }}</b><a href="/o/{{ item.tagg[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button></h3></a>
+                    <small><b>{{ item.title|capitalize  }}</b></small>
                     <br>
                     {% include "debout/accueil/createVers.twig" with {
                             tag:item,
@@ -58,14 +58,14 @@
                     %}       
 
 
-                    <br>
+                    {# <br> #}
                     {% include "debout/accueil/listValide.twig" with {
                         genstag: item,
                         user: user
                     } %}              
                 </div>
 
-                <br>
+                {# <br> #}
                 {% include "debout/accueil/listVers.twig" with {
                     tag: item,
                     user: user
