@@ -1,5 +1,5 @@
 siteUid: null
-sortOrder: 3
+sortOrder: 4
 template: debout/competence/competence.twig
 uriParts:
   - c/

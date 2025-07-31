@@ -1,0 +1,80 @@
+{% block content %}
+
+
+
+
+
+{% set tags = craft.entries()
+    .section('competence')
+    .limit(23)
+    .orderBy('random()')
+    .all() %}
+
+
+
+
+{% if tags is defined and tags|length %}
+    <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+        {{ csrfInput() }}
+        {{ actionInput('guest-entries/save') }}
+        {{ hiddenInput('sectionId', 23) }}
+        
+        {# Champ caché pour lier l'entrée à l'utilisateur actuel #}
+        {% if user is defined and user %}
+            {{ hiddenInput('fields[gens][]', user.id) }}
+        {% endif %}
+        <input id="title" type="hidden" name="fields[obj][]" class="form-control" required value="{{ obj.id }}">
+
+
+        {# 1. Champ de sélection pour les TAGS #}
+        {# Champ de sélection pour les TAGS sous forme de boutons #}
+        <div class="mb-3">
+            <label class="form-label">Choisissez une Competence :</label>
+            <div class="d-flex flex-wrap gap-2">
+                <button onclick="addoneTRUEcomp()" class="btn btn-outline-danger">
+                    + Ajoutez une Competence
+                </button>
+
+                
+                {% for tag in tags %}
+                    {# 
+                    Chaque "bouton" est une paire d'un input radio caché 
+                    et d'un label stylisé en bouton.
+                    #}
+                    <input 
+                        type="radio" 
+                        class="btn-check" 
+                        name="fields[competence][]" 
+                        id="tag-{{ tag.id }}" 
+                        value="{{ tag.id }}"
+                        autocomplete="off"
+                        required
+                        data-title="{{ tag.title|e('html_attr') }}"
+                    >
+                    <label class="btn btn-outline-secondary" for="tag-{{ tag.id }}">{{ tag.title }}</label>
+                {% endfor %}
+            </div>
+        </div>
+
+        {# 2. Champ pour le TITRE #}
+        <div class="mb-3">
+            <label for="title" class="form-label">Quel Fonction de cette Competence vous interesse ?</label>
+            <input id="title" type="text" name="title" class="form-control" required placeholder="Quel est la Raison ?">
+        </div>
+        
+
+        <button type="submit" class="btn btn-danger btn-lg d-inline-flex align-items-center">Ajouter l'activité</button>
+    </form>
+{% else %}
+    <p>Aucun tag n'est disponible pour le moment.</p>
+    <br>
+    <button onclick="addoneTRUEcomp()" class="btn btn-outline-danger">
+        + Ajoutez une Competence
+    </button>
+{% endif %}
+
+
+
+
+
+{% endblock %}

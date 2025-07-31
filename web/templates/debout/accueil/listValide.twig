@@ -35,12 +35,18 @@
                 <div class="card card-body">
                     <span>{{item.title|capitalize }}<small> par {{item.gens[0].title}}</small></span>
                 </div>
-                {% include "debout/get/ALL.twig" with {
-                    obj:item.obj[0],
-                    vertag:vertag,
-                    opengu:false,
-                    left:true
-                } %}
+                {% if item.obj[0].version[0].id %}
+                    <span><small>Travail Validé : </small></span><br>
+                    <span><b>{{item.obj[0].version[0]}}</b></span>
+                    <br>
+                {% else %}
+                    {% include "debout/get/ALL.twig" with {
+                        obj:item.obj[0],
+                        vertag:vertag,
+                        opengu:false,
+                        left:true
+                    } %}
+                {% endif %}
             </div>
             {# {% endif %} #}
         {% endfor %}

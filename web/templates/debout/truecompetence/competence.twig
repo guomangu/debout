@@ -1,0 +1,30 @@
+{% block content %}
+
+
+
+
+
+
+
+{% if obj %}
+
+
+
+<div style="text-align: center;">
+    <button class="btn btn-secondary btn-sm m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecompExample-{{obj.id}}" aria-expanded="false" aria-controls="collapsecompExample-{{obj.id}}">
+        Competences
+    </button>
+
+
+    <div class="card card-body collapse" id="collapsecompExample-{{ obj.id }}">
+        {% include "debout/truecompetence/listcomp.twig" with {
+            'obj': obj
+        } %}
+        {% include "debout/truecompetence/linkcomp.twig" with {
+            'obj': obj
+        } %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

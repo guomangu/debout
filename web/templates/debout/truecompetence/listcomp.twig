@@ -1,0 +1,36 @@
+{% block content %}
+
+
+
+
+{% set compall = craft.entries()
+    .section('compall')
+    .obj(obj.id)
+    .limit(3)
+    .orderBy('dateCreated ASC')
+    .all() %}
+
+
+
+<div>
+{% for comp in compall %}
+    <div class="card card-body" onclick="viewCOMP({{ comp.id }});">
+        <h6>{{ comp.competence[0].title }}</h6>
+        <small>{{ comp.title }}</small>
+    </div>
+    {# <hr> #}
+    <br>
+
+    {% include "debout/add/viewCOMP.twig" with {
+        comp:comp
+    }%}
+{% endfor %}
+</div>
+
+
+
+
+
+
+
+{% endblock %}

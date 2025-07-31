@@ -1,0 +1,89 @@
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+{% block content %}
+
+{% include "debout/gens/menu.twig" %}
+
+<div class="container mt-4">
+{% if user %}
+
+    {% include "debout/gens/present.twig" with {
+        'user': user
+    } %}   
+
+    <small id="agendaaa">Agenda:<br><br></small>
+     {# {% include "debout/accueil/listTag.twig" with {
+        'user': user
+    } %} #}
+
+(
+j1 vertag validé
+    h1 genstag
+    h2
+j2
+    h1
+    h2
+j3 -----
+    h1
+    h2
+)
+
+
+
+    {# {% set actuel = craft.entries()
+    .orderBy('dateCreated DESC')
+    .gens(user.id)
+    .groupBy('section.handle')
+    .limit(99)
+    .all() %} #}
+
+    {% set actuel = craft.entries().gens(user.id).orderBy('dateCreated DESC').limit(999).all()|group(entry => entry.section.handle) %}
+
+
+    {% if actuel %}
+        <pre>
+            {{ dump(actuel) }}
+        </pre>
+
+        {% for vertag in actuel.vertag %}
+            <div>
+                {{vertag.genstag[0].dt|date('G')}}h 
+                {{vertag.genstag[0].title}} <br>
+                {{vertag.version[0].tagg[0].title}}
+            
+                <div>
+                    {{vertag.version[0].title}}
+                    {{vertag.dateCreated|date('d M', 'Europe/Paris')}}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+
+    <br><br><br>
+
+    {% include "debout/accueil/createTag.twig" with {
+        'user': user
+    } %}
+
+    <br>
+{% else %}
+    <a href="/gens" style="position:fixed;left:50vw;top: 45vh;transform: translateY(-50%);transform: translateX(-50%);"><button class="btn btn-outline-danger" style="font-size: xx-large;"><ahahah>Connectez vous donc ?<ahahah></button></a>
+{% endif %}
+</div>
+
+
+{% endblock %}

@@ -1,5 +1,5 @@
 siteUid: null
-sortOrder: 10
+sortOrder: 12
 template: stackfr/article/article.twig
 uriParts:
   - article

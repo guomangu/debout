@@ -1,5 +1,5 @@
 siteUid: null
-sortOrder: 4
+sortOrder: 5
 template: debout/tag/tag.twig
 uriParts:
   - o/

@@ -1,0 +1,85 @@
+{% block content %}
+
+{# //////////////////// #}
+{# Si l'utilisateur est connecté, récupérer ses informations #}
+{% set emailDepuisCookie = craft.app.session.get('loggedInGensId') %}
+
+{# Vérifier si l'utilisateur est connecté #}
+{% if emailDepuisCookie is not null %}
+    {% set user = craft.entries().id(emailDepuisCookie).one() %}
+{# {% else %}
+    {% set user = craft.entries().id(257).one() %} #}
+{% endif %}
+{# ///////////////////// #}
+
+
+
+
+
+<div id="add-overlaytxt111comp{{comp.id}}" style="display:none; width:100vw; height:100vh; top:0px; left:0px; position:fixed; background-color: #faebd7e6; z-index:99;">
+    <div class="" style="    margin-top: 50vh;
+        transform: translateY(-50%);
+        width: 80vw;
+        place-self: center;" role="status">
+        
+
+
+
+
+        
+        {% set compall = craft.entries()
+            .section('compall')
+            .orderBy('dateCreated ASC')
+            .id(comp.id)
+            .one() %}
+
+
+        <div class="card-body">
+            <h3>Competence : <h3>{{compall.competence[0].title}}</h3>
+            <h6>{{compall.title}}</h6>
+
+            <hr>
+
+            {% include "debout/lien/alllien.twig" with {
+                'obj': compall,
+                'user': user
+            } %}
+
+            <hr>
+            {% include "debout/truecompetence/conv.twig" with {
+                "obj": compall,
+                "user": user
+            } %}
+            {% include "debout/get/conv.twig" with {
+                'obj': compall
+            } %}
+        </div>
+
+
+
+
+
+        <button type="button" class="btn btn-secondary m-3" onclick="document.getElementById('add-overlaytxt111comp{{comp.id}}').style.display='none';">
+            Annuler
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
