@@ -60,12 +60,12 @@
                         required
                         data-title="{{ personne.title|e('html_attr') }}"
                     >
-                    <label class="btn btn-outline-primary" for="tag-{{ personne.id }}">{{ personne.title }}</label>
+                    <label class="btn btn-outline-danger" for="tag-{{ personne.id }}">{{ personne.title }}</label>
                 {% endfor %}
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center">
+        <button type="submit" class="btn btn-danger btn-lg d-inline-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
             </svg>

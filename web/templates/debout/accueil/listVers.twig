@@ -28,6 +28,12 @@
     <div class="" >
         <span><h1 style="justify-self: right;"><span style="font-size: medium">({{item.gens[0].title}}) </span><b>{{ item.version[0].title|capitalize  }}</b><a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button>
         </a></h1></span>
+
+        {% include "debout/lien/alllien.twig" with {
+            'obj': item.version[0],
+            'user': user,
+            "public":true
+        } %}
         
         <div style="text-align: right;">
         {% include "debout/get/justValide.twig" with {

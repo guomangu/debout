@@ -57,7 +57,9 @@
             <div>
                 <div class="card card-body">
                     <span>Validé le : {{item.dateCreated|date('d M', 'Europe/Paris')}} a {{item.dateCreated|date('G', 'Europe/Paris')}}h</span>
-                    <span>{{item.title}}<small> par {{item.gens[0].title}}</small></span>
+                    <span>
+                        {{item.title}}<small> par {{item.gens[0].title}} </small>
+                    </span>
                 </div>
                 {# {% include "debout/get/ALL.twig" with {
                     obj:item.obj[0],

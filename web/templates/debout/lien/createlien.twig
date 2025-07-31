@@ -1,0 +1,28 @@
+{% block content %}
+{% if obj and user %}
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    {{ csrfInput() }}
+    {{ actionInput('guest-entries/save') }}
+    {{ hiddenInput('sectionId', 25) }} 
+    {{ hiddenInput('enabled', '1') }}
+
+    <div class="mb-3" style="display: inline-flex">
+        <input id="title11" type="text" name="title" class="form-control"  placeholder="Titre du lien" required>
+
+        <input id="title1gfds1" type="url" pattern="https://.*" name="fields[desc]" class="form-control" placeholder="https://exemple.com" required>
+    </div>
+
+    <input id="obj11111" type="hidden" name="fields[obj][]" class="form-control" value="{{ obj.id }}" required>
+
+    <input id="user11" type="hidden" name="fields[gens][]" class="form-control" required value="{{ user.id }}">
+
+
+    <button type="submit" class="btn btn-danger align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+        </svg>
+        Ajouter une ressource externe
+    </button>
+</form>
+{% endif %}
+{% endblock %}

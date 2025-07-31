@@ -1,4 +1,4 @@
-dateModified: 1753737975
+dateModified: 1753919387
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -15,6 +15,7 @@ meta:
   __names__:
     0f030b2c-2afd-4400-8cf8-8d9f6e0f4d30: Vote # Vote
     1c5eafe9-3607-46fa-9bc3-ad3ab113db4f: arttag # arttag
+    1e97a057-af73-48f8-80e0-184566f52a11: date # date
     1f2c85dc-5cd1-4832-a32e-4c60d5535d27: dt # dt
     2f801c4f-6b15-467c-bdf3-c15685392ce2: vertag # vertag
     3c5ed36b-c006-4f27-8b03-fc8650ea8a17: gens # gens
@@ -29,11 +30,13 @@ meta:
     7f0b51b7-ce80-4a85-9d21-ed937eb1b5b5: groupe # groupe
     8af7f98b-7a5f-473f-a84f-4ce5ccb86560: Tagg # Tagg
     8dba8da5-80a5-4037-8275-09211e173f1f: alert # alert
+    8e47e4aa-ba9a-49af-bd3b-1a699f76eb06: Lien # Lien
     9c9f6981-8090-489f-8538-a1951cc17589: img # img
     9c83564b-daca-48c5-b427-99f12a40d4d2: image # image
     9c632554-a190-480a-a78e-ad96ba997b07: pass # pass
     24f213a4-a991-4525-bca3-2df7a8363c59: mail # mail
     31c9f996-5cd8-4e53-bee4-a5b67a4d54f1: 'Public Schema' # Public Schema
+    38f568bf-d283-4577-b8dd-1e511f65e6e6: Compall # Compall
     63d5e9c8-1466-486f-859a-fc37eb6e2a5b: image # image
     69c3f5ac-014f-4f64-9af1-bb369028c37e: obj # obj
     99ea5d91-1dc8-4cb0-893d-79ad72df9167: texte # texte
@@ -46,6 +49,8 @@ meta:
     306dff20-c17b-4130-a8e4-6a9fad9bbf99: voyage # voyage
     318fcb02-663c-4be2-90f0-2b1bfe73a7c7: vote # vote
     380e1fd7-f86c-4a02-8444-9c55021cbd37: voyage # voyage
+    387d1627-9a8a-4f43-973b-1d5397c4d85d: competence # competence
+    711b54c2-6056-40f7-a9ce-72e5be6009a1: compall # compall
     952d3b04-497f-4276-8dd1-a70b114efa98: Artvers # Artvers
     973cf1c7-299c-4b63-a065-6dd23ea7314b: zone # zone
     994fb679-4658-4e19-ab52-b452a3e5ff05: userole # userole
@@ -67,6 +72,7 @@ meta:
     aaa18eea-f177-476e-bdac-282240f23be7: moment # moment
     abe94e59-a6b7-4073-be98-194ddcf3c177: or # or
     acf2011f-27b9-42d7-a21b-8d1501ade2f8: imgsvol # imgsvol
+    ad4cd43e-a674-4548-9eee-14ef6fc3a130: lien # lien
     ae4cfa98-5b15-4613-b8c9-67459f28d815: tag # tag
     b4ce6bb9-4b2f-494a-a3f9-372cd84da076: role # role
     b30a01d7-c759-48e9-8f48-21317d371ddc: a # a
@@ -80,17 +86,21 @@ meta:
     d8a4ec52-c969-4c7f-8e51-64ffd33f5eb9: Gens # Gens
     d722116d-af1a-4bab-be40-011270cb86ae: abo # abo
     dd47950a-e2dc-4e5d-b507-006a2629150a: etape # etape
+    e05199a5-99c8-4be8-9d2f-d5f408fab59f: Competence # Competence
     e5bd54f7-a73b-46a5-bfc2-b7057fcaa455: vertag # vertag
     e7bd4bbd-6583-4218-8e04-0cf4afe65898: genstag # genstag
     e7d3fd6a-2ef6-4dbd-872d-c8bf220ec16e: vot # vot
     e352bde4-e3c9-49ca-9794-0c9af2c3da2c: tagg # tagg
     e79726c5-a736-483f-a2f6-9fb057f93870: valide # valide
+    e4160549-a1f3-47e8-8962-498bce571df1: Deadline # Deadline
     ec4d61c5-22ab-448d-ae33-fefa9e004994: versionmoment # versionmoment
     edd5eb1b-ad48-4b1b-b88a-fda3189bce72: guuumod # guuumod
     f10abd48-cab0-4d9a-aa36-0daa17a9dea3: Valide # Valide
     f49bff65-ae87-4925-a2e9-eb8766e99f21: groupeinvitated # groupeinvitated
     f1017c71-c97e-4d79-84ba-5f9cde6dfd5d: Texte # Texte
     f604862b-998a-42c2-b81f-5ba606dbfb05: Vertag # Vertag
+    fbafa0b2-bb9a-480e-b1c4-c609bd0aa8c4: competence # competence
+    ff0999ad-d59c-497c-9d7a-3d37e50ce29a: deadline # deadline
 plugins:
   guest-entries:
     edition: standard
@@ -659,6 +669,82 @@ plugins:
                 -
                   - sectionUid
                   - cdeac634-80ff-4c60-a722-f5677bd26ab5 # GroupeInvitated
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 38f568bf-d283-4577-b8dd-1e511f65e6e6 # Compall
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 38f568bf-d283-4577-b8dd-1e511f65e6e6 # Compall
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - e05199a5-99c8-4be8-9d2f-d5f408fab59f # Competence
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - e05199a5-99c8-4be8-9d2f-d5f408fab59f # Competence
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - e4160549-a1f3-47e8-8962-498bce571df1 # Deadline
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - e4160549-a1f3-47e8-8962-498bce571df1 # Deadline
+                -
+                  - allowGuestSubmissions
+                  - '1'
+                -
+                  - enabledByDefault
+                  - '1'
+                -
+                  - runValidation
+                  - '1'
+                -
+                  - authorUid
+                  - 0f378e12-6438-4246-853e-3f21d474d87b
+          -
+            - 8e47e4aa-ba9a-49af-bd3b-1a699f76eb06 # Lien
+            -
+              __assoc__:
+                -
+                  - sectionUid
+                  - 8e47e4aa-ba9a-49af-bd3b-1a699f76eb06 # Lien
                 -
                   - allowGuestSubmissions
                   - '1'

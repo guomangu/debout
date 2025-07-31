@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: ff0999ad-d59c-497c-9d7a-3d37e50ce29a # deadline
+handle: deadline
+maxAuthors: 1
+name: Deadline
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: deadline/_entry.twig
+    uriFormat: 'deadline/{slug}'
+type: channel

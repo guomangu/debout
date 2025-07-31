@@ -1,0 +1,19 @@
+{% block content %}
+
+
+
+{% set liens = craft.entries()
+    .section('lien')
+    .limit(9)
+    .obj(obj.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+<div>
+    {% for lien in liens %}
+        <a href="{{ lien.desc }}" target="_blank;" onclick="window.location.reload();"><button class="btn btn-outline-secondary">{{lien.title}} (<b>{{lien.gens[0].title}}</b>)</button></a>
+    {% endfor %}
+</div>
+
+{% endblock %}
