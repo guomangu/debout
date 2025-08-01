@@ -80,35 +80,35 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+//     document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. On sélectionne le calque de chargement grâce à son nouvel id
-    const loadingOverlay = document.getElementById('loading-overlay');
+//     // 1. On sélectionne le calque de chargement grâce à son nouvel id
+//     const loadingOverlay = document.getElementById('loading-overlay');
 
-    // S'il n'existe pas, on arrête le script pour éviter des erreurs
-    if (!loadingOverlay) {
-        return;
-    }
+//     // S'il n'existe pas, on arrête le script pour éviter des erreurs
+//     if (!loadingOverlay) {
+//         return;
+//     }
 
-    // 2. On sélectionne TOUS les formulaires de la page
-    const forms = document.querySelectorAll('form');
+//     // 2. On sélectionne TOUS les formulaires de la page
+//     const forms = document.querySelectorAll('form');
     
-    // 3. On ajoute un "écouteur d'événement" sur chaque formulaire
-    forms.forEach(form => {
-        form.addEventListener('submit', function() {
-            // 4. Dès qu'un formulaire est soumis, on affiche le calque
-            loadingOverlay.style.display = 'block';
-        });
-    });
+//     // 3. On ajoute un "écouteur d'événement" sur chaque formulaire
+//     forms.forEach(form => {
+//         form.addEventListener('submit', function() {
+//             // 4. Dès qu'un formulaire est soumis, on affiche le calque
+//             loadingOverlay.style.display = 'block';
+//         });
+//     });
 
-    const aaa = document.querySelectorAll('a');
-    aaa.forEach(aa => {
-        aa.addEventListener('click', function() {
-            // 4. Dès qu'un formulaire est soumis, on affiche le calque
-            loadingOverlay.style.display = 'block';
-        });
-    });
-});
+//     const aaa = document.querySelectorAll('a');
+//     aaa.forEach(aa => {
+//         aa.addEventListener('click', function() {
+//             // 4. Dès qu'un formulaire est soumis, on affiche le calque
+//             loadingOverlay.style.display = 'block';
+//         });
+//     });
+// });
 </script>
 
 {% include "debout/gens/scrollsave.twig" %}
