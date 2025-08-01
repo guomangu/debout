@@ -6,29 +6,32 @@
     .section('valide')
     .vertag(vertag.id)
     .orderBy('dateCreated DESC')
-    .all() %}
-
+    .one() %}
 
 {% if vali %}
     <div style="border-left: solid; padding: 5px; border-radius: 15px;">
-
         <span><small>Ressources déjà validées :</small></span>
         <br>
-        {# {% for item in vali %} #}
-            {# {% if vers.dateCreated|date('d-M-Y' , 'Europe/Paris') == item.dateCreated|date('d-M-Y', 'Europe/Paris') %} #}
-                {# <h6>{{ item.obj[0].title }}</h6> #}
+        <div>
             {% include "debout/get/ALL.twig" with {
-                obj:vali[0].obj[0],
+                obj:vali.obj[0],
                 vertag:vertag,
                 opengu:false,
                 left:true
             } %}
-            {% include "debout/valide/getvalide.twig" with {
+            {# {% include "debout/valide/getvalide.twig" with {
                 obj:vali[0].obj[0],
                 user:user,
                 date:date
                 
-            } %}
+            } %} #}
+            <div class="card card-body">
+                <span>Validé le : {{vali.dateCreated|date('d M', 'Europe/Paris')}} a {{item.dateCreated|date('G', 'Europe/Paris')}}h</span>
+                <span>
+                    {{vali.title}}<small> par {{vali.gens[0].title}} </small>
+                </span>
+            </div>
+        </div>
     </div>
 {% endif %}
 
