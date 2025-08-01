@@ -13,7 +13,7 @@
     <h6>{{ currentDate }}</h6>
     <div class="">
         {% for genstag in genstagsajd %}
-            <div class="card card-body">
+            <div class="card card-body border-dark">
                 <div style="display: ruby;">
                     {{genstag.dt|date('G')}}h :
                     {{genstag.tagg[0].title|capitalize}}

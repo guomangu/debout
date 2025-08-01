@@ -27,15 +27,20 @@
             <div class="btn btn-outline-secondary">{{user.title}}</div> |  
         </span> #}
 
-        <button onclick="addoneimg({{obj.id}})" class="btn btn-outline-danger" >
+        <button onclick="addoneimg({{obj.id}})" class="btn btn-outline-danger btn-sm" >
             + Image
         </button>
-        <button onclick="addonetxt({{obj.id}})" class="btn btn-outline-danger" >
+        <button onclick="addonetxt({{obj.id}})" class="btn btn-outline-danger btn-sm" >
             + Text
         </button>
         {% include "debout/vote/vote.twig" with {
             obj:obj,
             user:user
+        } %}
+        {% include "debout/lien/alllien.twig" with {
+            'obj': obj,
+            'user': user,
+            "public":true,
         } %}
 
         

@@ -1,0 +1,51 @@
+{% block content %}
+
+{% if obj and user %}
+
+{% if date %}
+
+    {% set validate = craft.entries
+        .section("valide")
+        .gens(user.id)
+        .obj(obj.id)
+        .after(date)
+        .orderBy("dateCreated DESC")
+        .limit(1).all() %}
+
+
+{% else %}
+        
+    {% set validate = craft.entries
+        .section("valide")
+        .gens(user.id)
+        .obj(obj.id)
+        .orderBy("dateCreated DESC")
+        .limit(1).all()
+    %}
+
+{% endif %}
+
+
+
+{% if validate %}
+    <div>
+        {% for item in validate %}
+            <br>
+            <div>
+                <div class="card card-body">
+                    <span>Validé le : {{item.dateCreated|date('d M', 'Europe/Paris')}} a {{item.dateCreated|date('G', 'Europe/Paris')}}h</span>
+                    <span>
+                        {{item.title}}<small> par {{item.gens[0].title}} </small>
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+
+{% endif %}
+{% endblock %}

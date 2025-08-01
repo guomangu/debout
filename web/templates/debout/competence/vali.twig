@@ -10,7 +10,7 @@
 
 
 {% if vali %}
-    <div style="border-left: solid; padding: 5px;">
+    <div style="border-left: solid; padding: 5px; border-radius: 15px;">
 
         <span><small>Ressources déjà validées :</small></span>
         <br>
@@ -23,8 +23,12 @@
                 opengu:false,
                 left:true
             } %}
-            {# {% endif %} #}
-        {# {% endfor %} #}
+            {% include "debout/valide/getvalide.twig" with {
+                obj:vali[0].obj[0],
+                user:user,
+                date:date
+                
+            } %}
     </div>
 {% endif %}
 

@@ -1,7 +1,7 @@
 {% block content %}
 
 {% if obj %}
-<div style="text-align: right;">
+{# <div style="text-align: right;"> #}
     {% if public %}
         <button class="btn btn-secondary btn-sm m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{obj.id}}" aria-expanded="false" aria-controls="collapseExample-{{obj.id}}">
             Ressources PUBLICS {% if ajd %}d'aujourd'hui{% endif %}
@@ -24,6 +24,6 @@
             'user': user
         } %}
     </div>
-</div>
+{# </div> #}
 {% endif %}
 {% endblock %}

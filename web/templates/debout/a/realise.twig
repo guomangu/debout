@@ -50,6 +50,7 @@
                             <div class="card card-body">
                                 {% include "debout/competence/vali.twig" with {
                                     vertag: item,
+                                    date:item.dateCreated|date('Y-m-d', 'Europe/Paris')
                                 } %}
                             </div>
                         </div>

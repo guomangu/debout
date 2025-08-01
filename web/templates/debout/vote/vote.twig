@@ -15,11 +15,11 @@
 {% endfor %}
 
 {% if not deja %}
-    <button class="btn btn-outline-danger" onclick="addonevote({{ obj.id }})">
+    <button class="btn btn-outline-danger btn-sm" onclick="addonevote({{ obj.id }})">
         + Vote ({{ count }})
     </button>
 {% else %}
-    <button class="btn btn-outline-secondary">
+    <button class="btn btn-outline-secondary btn-sm">
         {{ count }} vote
     </button>
 {% endif %}
