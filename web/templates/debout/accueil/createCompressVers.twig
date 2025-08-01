@@ -1,0 +1,36 @@
+{% block content %}
+
+
+
+
+
+
+
+
+{% if genstag and user %}
+
+
+
+<div style="text-align: center;">
+    <button class="btn btn-secondary btn-sm m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseversVExample-{{genstag.id}}" aria-expanded="false" aria-controls="collapseversVExample-{{genstag.id}}">
+        Ajouter un Travail
+    </button>
+
+
+    <div class="card card-body collapse" id="collapseversVExample-{{ genstag.id }}">
+        {% include "debout/accueil/createVers.twig" with {
+                tag:genstag,
+                user:user,
+                reuz:true
+            }
+        %}      
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

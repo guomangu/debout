@@ -1,36 +1,24 @@
-{# {% block content %}
- <form class="m-0" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
-    {{ csrfInput() }}
-    {{ actionInput('guest-entries/save') }}
-    {{ hiddenInput('sectionId', 10) }} 
-    {{ hiddenInput('enabled', '1') }}
-
-    
-
-    <input id="" type="hidden" name="fields[tagg][]" class="form-control" required value="{{ tag.id }}">
-    <input id="" type="hidden" name="fields[gens][]" class="form-control" required value="{{ user.id }}">
-
-    {# {% set startHour = now|date('Y-m-d H:i', 'Europe/Paris') %}
-
-    <div class="mb-3" style="display:flex;">
-        <input id="" type="text" name="title" class="form-control m-1" required placeholder="Quel Etape voulez vous passer Aujourd'hui ?">
-    
-        <button type="submit" class="btn btn-outline-danger d-inline-flex align-items-center m-1">
-            
-            {% set startHour = now|date('d M', 'Europe/Paris') %}
-
-           <span style="font-size: small;"><small>Ajouter l'Etape du {{ startHour }}</small></span>
-        </button>
-    </div>
-</form>
-{% endblock %}
- #}
-
-
-
-
-
 {% block content %}
+
+
+
+
+
+
+
+
+
+{# //////////////////////////////////////// #}
+
+
+
+
+
+
+
+
+
+
 
 
 {% set vers = craft.entries()
@@ -48,6 +36,8 @@
 
 {# //// #}
 
+{% if not reuz %}
+
 {% for item in vers %}
     {% set vertag = craft.entries()
         .section('vertag')
@@ -59,16 +49,7 @@
     {% set vers = vers|filter(v => v.id != vertag.version[0].id) %}
 {% endfor %}
 
-    {# <pre>
-    {{ dump(vertag.version[0].id) }}
-</pre> #}
-
-{# <pre>
-    {{ dump(vers) }}
-</pre> #}
-
-{# ///// #}
-
+{% endif %}
 
 
 

@@ -1,0 +1,38 @@
+{% block content %}
+
+{% if user %}
+
+
+
+
+
+{% set genstagsajd = craft.entries().section("genstag").gens(user.id).orderBy('dt DESC').limit(99).all() %}
+
+
+    {% set currentDate = now|date('d M', 'Europe/Paris') %}
+    <h6>{{ currentDate }}</h6>
+    <div class="card card-body">
+        {% for genstag in genstagsajd %}
+            <div style="display: ruby;">
+                {{genstag.dt|date('G')}}h
+                {{genstag.tagg[0].title|capitalize}}
+
+                {% include "debout/accueil/createCompressVers.twig" with {
+                    genstag:genstag,
+                    user:user
+                }%}      
+            </div>
+            {% if not loop.last %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+
+{% endif %}
+
+
+
+
+{% endblock %}

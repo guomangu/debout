@@ -31,22 +31,10 @@
 
     <p>A faire:</p>
 
-    {% set genstagsajd = craft.entries().section("genstag").gens(user.id).orderBy('dt DESC').limit(99).all() %}
+    {% include "debout/a/faire.twig" with {
+        'user': user
+    } %}
 
-
-    {% set currentDate = now|date('d M', 'Europe/Paris') %}
-    <h6>{{ currentDate }}</h6>
-    <div class="card card-body">
-        {% for genstag in genstagsajd %}
-            <div>
-                {{genstag.dt|date('G')}}h
-                {{genstag.tagg[0].title|capitalize}}
-            </div>
-            {% if not loop.last %}
-                <hr>
-            {% endif %}
-        {% endfor %}
-    </div>
 
 
 
@@ -58,50 +46,9 @@
     <p>Realisé :</p>
 
 
-    {% set genstags = craft.entries().section("genstag").gens(user.id).limit(99).all() %}
-    {% set genstagIds = genstags|column('id') %}
-    {% set vertags = craft.entries().section("vertag").gens(user.id).relatedTo({ targetElement: genstagIds }).limit(999).all() %}
-    {% set vertagsGroupesParGenstagId = vertags|group(v => v.genstag[0].id) %}
-    
-    {% set genstagsAvecEnfants = [] %}
-    {% for genstag in genstags %}
-        {% set sesVertags = vertagsGroupesParGenstagId[genstag.id] ?? [] %}
-
-        {# On fusionne l'objet 'genstag' avec notre nouvelle propriété 'vertags' #}
-        {% set nouvelObjetGenstag = genstag|merge({'vertag': sesVertags}) %}
-
-        {# On ajoute ce nouvel objet complet au tableau final #}
-        {% set genstagsAvecEnfants = genstagsAvecEnfants|merge([nouvelObjetGenstag]) %}
-    {% endfor %}
-
-
-
-    {# {% for genstag in genstagsAvecEnfants %} #}
-    <div style="border-left: solid; padding: 5px;">
-    {% for dt, genstags in genstagsAvecEnfants|group(gt => gt.dateCreated|date('d M', 'Europe/Paris'))  %}
-        {% for genstag in genstags %}
-            {% for datecreat, vts in genstag.vertag|group(vt => vt.dateCreated|date('d M', 'Europe/Paris')) %}
-                <h6>{{datecreat}}</h6>
-                <div class="card card-body">
-                    {% for dt, vt in vts|group(v => v.genstag[0].dt|date('G')) %}
-                        <h6>{{dt}}h</h6>
-                        <div >
-                        {% for item in vt %}
-                            <div>   
-                                {{item.tagg[0].title|capitalize}}
-                            </div>
-                            {% if not loop.last %}
-                                <hr>
-                            {% endif %}
-                        {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-                <br>
-            {% endfor %}
-        {% endfor %}
-    {% endfor %}
-    </div>
+    {% include "debout/a/realise.twig" with {
+        'user': user
+    } %}
 
 
 

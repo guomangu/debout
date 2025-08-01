@@ -1,0 +1,80 @@
+{% block content %}
+
+{% if user %}
+
+
+
+{# 1. On récupère les IDs des 'genstags' de l'utilisateur #}
+{% set genstagIds = craft.entries()
+    .section("genstag")
+    .gens(user.id)
+    .ids() %}
+
+{# 2. On récupère tous les 'vertags' liés, triés par date de création (du plus récent au plus ancien) #}
+{# C'est l'étape clé : le tri se fait ici, directement et efficacement. #}
+{% set vertagsTries = craft.entries()
+    .section("vertag")
+    .gens(user.id)
+    .relatedTo({ targetElement: genstagIds })
+    .orderBy('dateCreated DESC')
+    .limit(999)
+    .all() %}
+
+{# 3. On groupe les résultats par jour pour préparer l'affichage #}
+{% set vertagsGroupesParJour = vertagsTries|group(v => v.dateCreated|date('d M', 'Europe/Paris')) %}
+
+
+{# ---- AFFICHAGE ---- #}
+{# La structure d'affichage reste la même, mais elle est alimentée par nos données triées et groupées. #}
+
+<div style="border-left: solid; padding: 5px;">
+    
+    {# Boucle sur chaque groupe de jours (ex: '01 Aug', '31 Jul', etc.) #}
+    {% for datecreat, vertagsDuJour in vertagsGroupesParJour %}
+        
+        <h6>{{ datecreat }}</h6>
+        <div class="card card-body">
+
+            {# On regroupe les 'vertags' de ce jour par l'heure définie dans le 'genstag' parent #}
+            {% for dt, vertagsDeLheure in vertagsDuJour|group(v => v.genstag[0].dt|date('G')) %}
+                
+                <h6>{{ dt }}h</h6>
+                <div>
+                    
+                    {# On boucle enfin sur chaque 'vertag' individuel #}
+                    {% for item in vertagsDeLheure %}
+                        <div> 
+                            <span>{{ item.tagg[0].title|capitalize }}</span>
+                            <h6>{{ item.version[0].title|capitalize }}</h6>
+
+                            <div class="card card-body">
+                                {% include "debout/competence/vali.twig" with {
+                                    vertag: item,
+                                } %}
+                            </div>
+                        </div>
+                        {% if not loop.last %}
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+
+    {% endfor %}
+</div>
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

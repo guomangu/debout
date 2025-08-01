@@ -1,0 +1,34 @@
+{% block content %}
+
+
+<div class="card card-body" style="display:block; background-color:#00000017;">
+    <div>
+        {% include "debout/get/selec.twig" with {
+            version: item.version[0],
+            user: user,
+        } %}
+    </div>
+
+
+
+    <div>
+        {% include "debout/competence/vali.twig" with {
+            vertag:item,
+        } %}
+    </div>
+
+    <br>
+
+    <div>
+    {% include "debout/competence/micro.twig" with {
+        genstag:tag,
+        vertag:item,
+        user:user,
+        quali:"trueeeeeeeeee"
+    } %}
+    </div>
+</div>
+
+
+
+{% endblock %}
