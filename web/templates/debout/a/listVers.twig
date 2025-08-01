@@ -1,0 +1,77 @@
+{% block content %}
+
+
+
+{% set vertag = craft.entries()
+    .section('vertag')
+    .limit(3)
+    .after(currentDate)
+    .tagg(tag.tagg[0].id)
+    .genstag(tag.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+
+
+{# {% if vers[0] is null or vers[0].dateCreated|date('d-M-Y' , 'Europe/Paris') != now|date('d-M-Y', 'Europe/Paris') %} #}
+    {# {% include "debout/accueil/createVers.twig" with {
+            tag:tag,
+            user:user,
+            vers:vers
+        }
+    %} #}
+{# {% endif %} #}
+{% for item in vertag %}
+    <hr>
+    {# {% set itemokaou = item %} #}
+    {# {% set item = item.version[0] %} #}
+    <div style="" >
+        <span><h3 style="justify-self: right;"><span style="font-size: medium">({{item.gens[0].title}}) </span><b>{{ item.version[0].title|capitalize  }}</b><a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button>
+        </a></h3></span>
+        
+        <div>
+            {% include "debout/lien/alllien.twig" with {
+                'obj': item.version[0],
+                'user': user,
+                "public":true,
+                "ajd":currentDate
+            } %}
+        </div>
+
+        <div>
+            {% include "debout/conv/conv.twig" with {
+                "obj": item,
+                "user": user
+            } %}
+        </div>
+        
+        <br>
+        <div class="card card-body" style="display:block; background-color:#00000017;">
+            <div>
+                {% include "debout/get/selec.twig" with {
+                    version: item.version[0],
+                    user: user,
+                } %}
+                {% include "debout/competence/vali.twig" with {
+                    vertag:item,
+                } %}
+                {% include "debout/competence/micro.twig" with {
+                    genstag:tag,
+                    vertag:item,
+                    user:user,
+                    quali:"trueeeeeeeeee"
+                } %}
+            </div>
+
+            
+        </div>
+    </div>
+
+    {% if not loop.last %}
+        <br>
+        <br>
+        <br>
+    {% endif %}
+    
+{% endfor %}
+
+{% endblock %}

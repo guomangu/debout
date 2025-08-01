@@ -83,13 +83,13 @@
                         type="radio" 
                         class="btn-check" 
                         name="fields[version][]" 
-                        id="tag-{{ ver.id }}" 
+                        id="tag{{tag}}-{{ ver.id }}" 
                         value="{{ ver.id }}"
                         autocomplete="off"
                         required
                         data-title="{{ ver.title|e('html_attr') }}"
                     >
-                    <label class="btn btn-outline-secondary" for="tag-{{ ver.id }}">{{ ver.title }}</label>
+                    <label class="btn btn-outline-secondary" for="tag{{tag}}-{{ ver.id }}">{{ ver.title }}</label>
                 {% endfor %}
 
                 | <button type="submit" class="btn btn-danger">Ajouter</button>

@@ -1,0 +1,15 @@
+{% block content %}
+
+
+
+{% include "debout/conv/createmsg.twig" with {
+    "obj": obj,
+    "user": user
+} %}
+{% include "debout/get/conv.twig" with {
+    'obj': obj
+} %}
+
+
+
+{% endblock %}

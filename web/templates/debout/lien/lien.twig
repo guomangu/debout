@@ -1,14 +1,22 @@
 {% block content %}
 
 
-
+{% if ajd %}
+{% set liens = craft.entries()
+    .section('lien')
+    .after(ajd)
+    .limit(9)
+    .obj(obj.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+{% else %}
 {% set liens = craft.entries()
     .section('lien')
     .limit(9)
     .obj(obj.id)
     .orderBy('dateCreated DESC')
     .all() %}
-
+{% endif %}
 
 <div>
     {% for lien in liens %}

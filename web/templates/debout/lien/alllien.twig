@@ -1,13 +1,13 @@
 {% block content %}
 
 {% if obj %}
-<div style="text-align: center;">
+<div style="text-align: right;">
     {% if public %}
-        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{obj.id}}" aria-expanded="false" aria-controls="collapseExample-{{obj.id}}">
-            Ressources PUBLICS
+        <button class="btn btn-secondary btn-sm m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{obj.id}}" aria-expanded="false" aria-controls="collapseExample-{{obj.id}}">
+            Ressources PUBLICS {% if ajd %}d'aujourd'hui{% endif %}
         </button>
     {% else %}
-        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{obj.id}}" aria-expanded="false" aria-controls="collapseExample-{{obj.id}}">
+        <button class="btn btn-secondary btn-sm m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{obj.id}}" aria-expanded="false" aria-controls="collapseExample-{{obj.id}}">
             Ressources PRIVEES
         </button>
     {% endif %}
@@ -15,7 +15,8 @@
 
     <div class="card card-body collapse" id="collapseExample-{{ obj.id }}">
         {% include "debout/lien/lien.twig" with {
-            'obj': obj
+            'obj': obj,
+            'ajd':ajd
         } %}
         <hr>
         {% include "debout/lien/createlien.twig" with {
