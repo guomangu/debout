@@ -38,7 +38,7 @@
             {# On regroupe les 'vertags' de ce jour par l'heure définie dans le 'genstag' parent #}
             {% for dt, vertagsDeLheure in vertagsDuJour|group(v => v.genstag[0].dt|date('G')) %}
                 
-                <h6>{{ dt }}h</h6>
+                <h3>{{ dt }}h</h3>
                 <div>
                     
                     {# On boucle enfin sur chaque 'vertag' individuel #}
@@ -47,18 +47,23 @@
                             <span>{{ item.tagg[0].title|capitalize }}</span>
                             <h6>{{ item.version[0].title|capitalize }}</h6>
 
-                            <div class="card card-body">
-                                {% include "debout/competence/vali.twig" with {
+                            <div class="">
+                                {% include "debout/competence/vali3.twig" with {
                                     vertag: item,
-                                    date:item.dateCreated|date('Y-m-d', 'Europe/Paris')
+                                    date:item.dateCreated|date('Y-m-d', 'Europe/Paris'),
+                                    user:user
                                 } %}
                             </div>
                         </div>
                         {% if not loop.last %}
-                            <hr>
+                            <br><br>
                         {% endif %}
                     {% endfor %}
                 </div>
+                {% if not loop.last %}
+                    <br>
+                    <hr>
+                {% endif %}
             {% endfor %}
         </div>
         <br>

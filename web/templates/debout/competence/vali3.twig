@@ -1,0 +1,51 @@
+{% block content %}
+
+
+{% if user %}
+    {% set vali = craft.entries()
+    .section('valide')
+    .gens(user.id)
+    .vertag(vertag.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+{% else %}
+{% set vali = craft.entries()
+    .section('valide')
+    .vertag(vertag.id)
+    .orderBy('dateCreated DESC')
+    .all() %}
+{% endif %}
+{% if vali %}
+    {% for val in vali %}
+        <div style="border-left: solid; padding: 5px; border-radius: 15px;">
+            <span><small>Ressources déjà validées :</small></span>
+            <br>
+            <div>
+                {% include "debout/get/ALL.twig" with {
+                    obj:val.obj[0],
+                    vertag:vertag,
+                    opengu:false,
+                    left:true
+                } %}
+                {# {% include "debout/valide/getvalide.twig" with {
+                    obj:vali[0].obj[0],
+                    user:user,
+                    date:date
+                    
+                } %} #}
+                <div class="card card-body">
+                    <span>Validé le : {{val.dateCreated|date('d M', 'Europe/Paris')}} a {{val.dateCreated|date('G', 'Europe/Paris')}}h</span>
+                    <span>
+                        {{val.title}}<small> par {{val.gens[0].title}} </small>
+                    </span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+
+
+{% endblock %}

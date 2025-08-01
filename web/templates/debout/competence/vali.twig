@@ -1,13 +1,20 @@
 {% block content %}
 
 
-
+{% if user %}
+    {% set vali = craft.entries()
+    .section('valide')
+    .gens(user.id)
+    .vertag(vertag.id)
+    .orderBy('dateCreated DESC')
+    .one() %}
+{% else %}
 {% set vali = craft.entries()
     .section('valide')
     .vertag(vertag.id)
     .orderBy('dateCreated DESC')
     .one() %}
-
+{% endif %}
 {% if vali %}
     <div style="border-left: solid; padding: 5px; border-radius: 15px;">
         <span><small>Ressources déjà validées :</small></span>
@@ -26,7 +33,7 @@
                 
             } %} #}
             <div class="card card-body">
-                <span>Validé le : {{vali.dateCreated|date('d M', 'Europe/Paris')}} a {{item.dateCreated|date('G', 'Europe/Paris')}}h</span>
+                <span>Validé le : {{vali.dateCreated|date('d M', 'Europe/Paris')}} a {{vali.dateCreated|date('G', 'Europe/Paris')}}h</span>
                 <span>
                     {{vali.title}}<small> par {{vali.gens[0].title}} </small>
                 </span>

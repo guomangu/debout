@@ -6,7 +6,7 @@
 
 
 
-{% set genstagsajd = craft.entries().section("genstag").gens(user.id).orderBy('dt DESC').limit(99).all() %}
+{% set genstagsajd = craft.entries().section("genstag").gens(user.id).orderBy('dt ASC').limit(99).all() %}
 
 
     {% set currentDate = now|date('d M', 'Europe/Paris') %}
