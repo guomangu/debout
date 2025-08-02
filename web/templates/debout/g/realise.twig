@@ -38,6 +38,7 @@
             {% for dt, vertagsDeLheure in vertagsDuJour|group(v => v.genstag[0].dt|date('G')) %}
                 
                 <h3>{{ dt }}h</h3>
+                <br>
                 <div>
                     
                     {# On boucle enfin sur chaque 'vertag' individuel #}
