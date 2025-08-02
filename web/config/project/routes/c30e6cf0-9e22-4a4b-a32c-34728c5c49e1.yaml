@@ -1,6 +1,6 @@
 siteUid: null
 sortOrder: 7
-template: debout/groupe/groupeid.twig
+template: debout/g/groupeid.twig
 uriParts:
   - g/
   -

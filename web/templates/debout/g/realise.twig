@@ -1,0 +1,86 @@
+{% block content %}
+
+{% if user and g %}
+
+
+
+{# 1. On récupère les IDs des 'genstags' de l'utilisateur #}
+{% set genstagIds = craft.entries()
+    .section("genstag")
+    .groupe(g.id)
+    .ids() %}
+
+{# 2. On récupère tous les 'vertags' liés, triés par date de création (du plus récent au plus ancien) #}
+{# C'est l'étape clé : le tri se fait ici, directement et efficacement. #}
+{% set vertagsTries = craft.entries()
+    .section("vertag")
+    .relatedTo({ targetElement: genstagIds })
+    .orderBy('dateCreated DESC')
+    .limit(999)
+    .all() %}
+
+{# 3. On groupe les résultats par jour pour préparer l'affichage #}
+{% set vertagsGroupesParJour = vertagsTries|group(v => v.dateCreated|date('d M', 'Europe/Paris')) %}
+
+
+{# ---- AFFICHAGE ---- #}
+{# La structure d'affichage reste la même, mais elle est alimentée par nos données triées et groupées. #}
+
+<div style="border-left: solid; padding: 5px;">
+    
+    {# Boucle sur chaque groupe de jours (ex: '01 Aug', '31 Jul', etc.) #}
+    {% for datecreat, vertagsDuJour in vertagsGroupesParJour %}
+        
+        <h2>{{ datecreat }}</h2>
+        <div class="card card-body">
+
+            {# On regroupe les 'vertags' de ce jour par l'heure définie dans le 'genstag' parent #}
+            {% for dt, vertagsDeLheure in vertagsDuJour|group(v => v.genstag[0].dt|date('G')) %}
+                
+                <h3>{{ dt }}h</h3>
+                <div>
+                    
+                    {# On boucle enfin sur chaque 'vertag' individuel #}
+                    {% for item in vertagsDeLheure %}
+                        <div> 
+                            <span>{{ item.tagg[0].title|capitalize }}</span>
+                            <h6>{{ item.version[0].title|capitalize }}</h6>
+
+                            <div class="">
+                                {% include "debout/competence/vali3.twig" with {
+                                    vertag: item,
+                                    date:item.dateCreated|date('Y-m-d', 'Europe/Paris'),
+                                    user:user,
+                                    g:g
+                                } %}
+                            </div>
+                        </div>
+                        {% if not loop.last %}
+                            <br><br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% if not loop.last %}
+                    <br>
+                    <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+
+    {% endfor %}
+</div>
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

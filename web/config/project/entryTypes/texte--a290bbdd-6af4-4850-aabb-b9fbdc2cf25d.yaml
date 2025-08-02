@@ -88,6 +88,23 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2025-08-02T02:26:54+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 129d8224-05b7-4d26-8285-3303386e1006 # groupe
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 10af109b-7010-444a-9509-303c044d8bbd
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: e74a8a23-2104-494d-844f-23dd5709b303
         userCondition: null

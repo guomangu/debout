@@ -6,7 +6,6 @@
     .section('vertag')
     .limit(3)
     .after(currentDate)
-    .tagg(tag.tagg[0].id)
     .genstag(tag.id)
     .orderBy('dateCreated DESC')
     .all() %}
@@ -39,7 +38,7 @@
 
         <div>
             {% include "debout/conv/conv.twig" with {
-                "obj": item,
+                "obj": item.version[0],
                 "user": user
             } %}
         </div>
@@ -56,7 +55,6 @@
                     user:user
                 } %}
                 {% include "debout/competence/micro.twig" with {
-                    genstag:tag,
                     vertag:item,
                     user:user,
                     quali:"trueeeeeeeeee"
@@ -76,3 +74,4 @@
 {% endfor %}
 
 {% endblock %}
+

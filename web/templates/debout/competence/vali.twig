@@ -1,20 +1,13 @@
 {% block content %}
 
 
-{% if user %}
+
+
     {% set vali = craft.entries()
-    .section('valide')
-    .gens(user.id)
-    .vertag(vertag.id)
-    .orderBy('dateCreated DESC')
-    .one() %}
-{% else %}
-{% set vali = craft.entries()
-    .section('valide')
-    .vertag(vertag.id)
-    .orderBy('dateCreated DESC')
-    .one() %}
-{% endif %}
+        .section('valide')
+        .vertag(vertag.id)
+        .orderBy('dateCreated DESC')
+        .one() %}
 {% if vali %}
     <div style="border-left: solid; padding: 5px; border-radius: 15px;">
         <span><small>Ressources déjà validées :</small></span>

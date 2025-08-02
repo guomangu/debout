@@ -1,20 +1,11 @@
 {% block content %}
 
 
-{% if user %}
     {% set vali = craft.entries()
-    .section('valide')
-    .gens(user.id)
-    .vertag(vertag.id)
-    .orderBy('dateCreated DESC')
-    .all() %}
-{% else %}
-{% set vali = craft.entries()
-    .section('valide')
-    .vertag(vertag.id)
-    .orderBy('dateCreated DESC')
-    .all() %}
-{% endif %}
+        .section('valide')
+        .vertag(vertag.id)
+        .orderBy('dateCreated DESC')
+        .all() %}
 {% if vali %}
     {% for val in vali %}
         <div style="border-left: solid; padding: 5px; border-radius: 15px;">

@@ -11,20 +11,17 @@
 
 {# article #}
 
-{% if user %}
+
+
+
+
+
+
     {% set txts = craft.entries()
     .section('texte')
-    .gens(user.id)
-    .obj(vertag.version[0].id)
+    .obj(vertag.id)
     .orderBy('or ASC')
     .all() %}
-{% else %}
-    {% set txts = craft.entries()
-    .section('texte')
-    .obj(vertag.version[0].id)
-    .orderBy('or ASC')
-    .all() %}
-{% endif %}
 
 
 
@@ -50,14 +47,13 @@
             {% set stop = true %}
         {% else %}
             {% if loop.last %}
-                <button onclick="addonetxt({{vertag.version[0].id}})" class="btn btn-outline-danger btn-sm" >
+                <button onclick="addonetxt({{vertag.id}} )" class="btn btn-outline-danger btn-sm" >
                     + Prochaine Etape
                 </button>
-            
             {% endif %}
         {% endif %}
     {% else %}
-        <button onclick="addonetxt({{vertag.version[0].id}})" class="btn btn-outline-danger btn-sm" >
+        <button onclick="addonetxt({{vertag.id}} )" class="btn btn-outline-danger btn-sm" >
             + Prochaine Etape
         </button>
     {% endfor %}
