@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 6541da90-0fe9-4fb9-bb77-d8f0066a0986 # compaidant
+handle: compaidant
+maxAuthors: 1
+name: CompAidant
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  b30a01d7-c759-48e9-8f48-21317d371ddc: # a
+    enabledByDefault: true
+    hasUrls: true
+    template: compaidant/_entry.twig
+    uriFormat: 'compaidant/{slug}'
+type: channel

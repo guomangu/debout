@@ -14,17 +14,19 @@
 
 <div>
 {% for comp in compall %}
-    <div class="card card-body" onclick="viewCOMP({{ comp.id }});">
-        <h6>{{ comp.competence[0].title }}</h6>
-        <small>{{ comp.title }}</small>
+    <div class="" onclick="viewCOMP({{ comp.id }});">
+        <h3>{{ comp.competence[0].title }} <small>({{ comp.title }})</small></h3>
+        
+        {% include "debout/conv/conv.twig" with {
+            "obj": comp.competence[0],
+            "user": user
+        } %}
     </div>
-    {# <hr> #}
-    <br>
 
-    {% include "debout/add/viewCOMP.twig" with {
-        comp:comp
-    }%}
+    <hr>
 {% endfor %}
+
+
 </div>
 
 

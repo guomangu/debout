@@ -1,4 +1,4 @@
-dateModified: 1754101614
+dateModified: 1754169009
 email:
   fromEmail: az@gmail.com
   fromName: a
@@ -26,6 +26,7 @@ meta:
     5b2a3494-480f-4bdf-802b-744f47813ea7: Article # Article
     5e91ed90-f5e3-4aa8-9423-61a37bb77917: anno # anno
     07c9bcb9-821e-40fc-87b7-600d07df1385: real # real
+    7c301401-e64e-436c-bcef-3dbd9fdb000b: CompAidant # CompAidant
     7df43cfb-822b-4393-9cea-f95c274c89bd: lieu # lieu
     7f0b51b7-ce80-4a85-9d21-ed937eb1b5b5: groupe # groupe
     8af7f98b-7a5f-473f-a84f-4ce5ccb86560: Tagg # Tagg
@@ -57,6 +58,7 @@ meta:
     1414ef98-f838-4a14-8d53-afefb8aecb9d: Genstag # Genstag
     3589b5bf-6fb3-43bb-8294-37d78c659f0b: Version # Version
     4718b1b0-6cbc-46c1-a42f-40ba14078b4c: caracteristique # caracteristique
+    6541da90-0fe9-4fb9-bb77-d8f0066a0986: compaidant # compaidant
     75770ca1-8311-4f39-81c8-20e99b9bb03f: versionmoment # versionmoment
     085882e1-b95e-483d-9af0-41f4adbb0804: agenda # agenda
     288720cd-c696-4ed1-8595-5c2408292324: Groupe # Groupe

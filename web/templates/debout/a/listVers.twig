@@ -24,15 +24,21 @@
     {# {% set itemokaou = item %} #}
     {# {% set item = item.version[0] %} #}
     <div style="" >
-        <span><h3 style="justify-self: right;"><span style="font-size: medium">({{item.gens[0].title}}) </span><b>{{ item.version[0].title|capitalize  }}</b><a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button>
-        </a></h3></span>
+        <span><h3 style="justify-self: right;"><span style="font-size: medium">({{item.gens[0].title}}) </span><b>{{ item.version[0].title|capitalize  }}</b>
+        {# <a href="/c/{{ item.version[0].id }}"><button class="btn btn-outline-secondary m-1" style="font: small-caption;">VOIR</button>
+        </a> #}
         
-        <div>
+        </h3></span>
+        
+        <div style="text-align-last: end;">
             {% include "debout/lien/alllien.twig" with {
                 'obj': item.version[0],
                 'user': user,
                 "public":true,
                 "ajd":currentDate
+            } %}
+            {% include "debout/truecompetence/competence.twig" with {
+                obj:item.version[0]
             } %}
         </div>
 

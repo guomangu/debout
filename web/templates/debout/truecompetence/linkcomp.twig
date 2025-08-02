@@ -1,7 +1,12 @@
 {% block content %}
 
 
+<button class="btn btn-secondary btn-sm m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecomp22Example-{{obj.id}}" aria-expanded="false" aria-controls="collapsecomp22Example-{{obj.id}}">
+    Ajouter une Competences
+</button>
 
+
+<div class="card card-body collapse" id="collapsecomp22Example-{{ obj.id }}">
 
 
 {% set tags = craft.entries()
@@ -14,6 +19,11 @@
 
 
 {% if tags is defined and tags|length %}
+
+
+
+
+
     <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
         {{ csrfInput() }}
         {{ actionInput('guest-entries/save') }}
@@ -75,6 +85,6 @@
 
 
 
-
+</div>
 
 {% endblock %}
