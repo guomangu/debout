@@ -1,9 +1,0 @@
-siteUid: null
-sortOrder: 10
-template: stackfr/profil/ami.twig
-uriParts:
-  - ami/
-  -
-    - '*'
-    - '[^\/]+'
-uriPattern: 'ami/<any:[^\/]+>'

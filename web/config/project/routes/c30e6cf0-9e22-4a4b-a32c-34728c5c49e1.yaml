@@ -1,5 +1,5 @@
 siteUid: null
-sortOrder: 7
+sortOrder: 5
 template: debout/g/groupeid.twig
 uriParts:
   - g/

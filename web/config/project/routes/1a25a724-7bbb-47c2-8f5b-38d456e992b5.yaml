@@ -1,9 +1,0 @@
-siteUid: null
-sortOrder: 5
-template: debout/tag/tag.twig
-uriParts:
-  - o/
-  -
-    - '*'
-    - '[^\/]+'
-uriPattern: 'o/<any:[^\/]+>'

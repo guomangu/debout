@@ -1,9 +1,0 @@
-siteUid: null
-sortOrder: 4
-template: debout/competence/competence.twig
-uriParts:
-  - c/
-  -
-    - '*'
-    - '[^\/]+'
-uriPattern: 'c/<any:[^\/]+>'

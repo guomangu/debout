@@ -1,5 +1,5 @@
 siteUid: null
-sortOrder: 6
+sortOrder: 4
 template: debout/g/groupe.twig
 uriParts:
   - g

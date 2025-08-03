@@ -1,9 +1,0 @@
-siteUid: null
-sortOrder: 3
-template: debout/h/h.twig
-uriParts:
-  - h/
-  -
-    - '*'
-    - '[^\/]+'
-uriPattern: 'h/<any:[^\/]+>'

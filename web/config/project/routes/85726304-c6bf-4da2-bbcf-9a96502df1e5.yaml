@@ -1,6 +1,0 @@
-siteUid: null
-sortOrder: 2
-template: debout/accueil/accueil.twig
-uriParts:
-  - accueil
-uriPattern: accueil
