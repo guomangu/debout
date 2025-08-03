@@ -1,0 +1,78 @@
+<script>
+(function() {
+  // La clé pour sessionStorage. Le nom indique qu'on stocke plusieurs IDs.
+  const STORAGE_KEY = 'openCollapseIds';
+
+  /**
+   * Partie 1 : Sauvegarder les IDs de TOUS les parents .collapse.
+   */
+  document.addEventListener('submit', function(event) {
+    const parentIds = [];
+    let currentElement = event.target; // On part du formulaire
+
+    // On boucle tant qu'on trouve des éléments parents
+    while (currentElement && currentElement.parentElement) {
+      // On cherche le parent .collapse le plus proche de l'élément actuel
+      const collapseParent = currentElement.closest('.collapse');
+
+      // Si on en trouve un
+      if (collapseParent) {
+        // S'il a un ID et qu'on ne l'a pas déjà ajouté, on le stocke
+        if (collapseParent.id && !parentIds.includes(collapseParent.id)) {
+          parentIds.push(collapseParent.id);
+        }
+        // On déplace notre point de départ au-dessus du collapse trouvé pour chercher le suivant
+        currentElement = collapseParent.parentElement;
+      } else {
+        // Si on ne trouve plus de parent .collapse, on arrête la recherche
+        break;
+      }
+    }
+
+    // Si on a trouvé au moins un ID, on stocke le tableau en format JSON
+    if (parentIds.length > 0) {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(parentIds));
+    }
+  });
+
+  /**
+   * Partie 2 : Restaurer l'état au chargement de la page.
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    // On récupère la chaîne JSON des IDs
+    const storedIdsJson = sessionStorage.getItem(STORAGE_KEY);
+
+    if (storedIdsJson) {
+      try {
+        // On la retransforme en tableau JavaScript
+        const idsToOpen = JSON.parse(storedIdsJson);
+
+        // Si c'est bien un tableau avec des éléments
+        if (Array.isArray(idsToOpen) && idsToOpen.length > 0) {
+          // On boucle sur chaque ID sauvegardé
+          idsToOpen.forEach(id => {
+            const collapseToOpen = document.getElementById(id);
+            if (collapseToOpen) {
+              // On ouvre le collapse
+              collapseToOpen.classList.add('show');
+
+              // On met à jour son bouton déclencheur
+              const triggerButton = document.querySelector(`[data-bs-toggle="collapse"][data-bs-target="#${id}"], a[href="#${id}"]`);
+              if (triggerButton) {
+                triggerButton.setAttribute('aria-expanded', 'true');
+                triggerButton.classList.remove('collapsed');
+              }
+            }
+          });
+        }
+      } catch (e) {
+        console.error("Erreur lors de la lecture des IDs de collapse depuis le sessionStorage:", e);
+      } finally {
+        // On nettoie le sessionStorage dans tous les cas pour éviter les réouvertures non désirées.
+        sessionStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  });
+
+})();
+</script>

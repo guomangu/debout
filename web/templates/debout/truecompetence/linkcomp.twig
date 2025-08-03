@@ -55,13 +55,13 @@
                         type="radio" 
                         class="btn-check" 
                         name="fields[competence][]" 
-                        id="tag-{{ tag.id }}" 
+                        id="tagcomp-{{ tag.id }}-{{ obj.id }}" 
                         value="{{ tag.id }}"
                         autocomplete="off"
                         required
                         data-title="{{ tag.title|e('html_attr') }}"
                     >
-                    <label class="btn btn-outline-secondary" for="tag-{{ tag.id }}">{{ tag.title }}</label>
+                    <label class="btn btn-outline-secondary" for="tagcomp-{{ tag.id }}-{{ obj.id }}">{{ tag.title }}</label>
                 {% endfor %}
             </div>
         </div>

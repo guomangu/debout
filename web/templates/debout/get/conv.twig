@@ -2,8 +2,8 @@
         {% set txt = craft.entries()
             .section('article')
             .obj(obj.id)
-            .limit(9)
-            .orderBy('dateCreated ASC')
+            .limit(6)
+            .orderBy('dateCreated DESC')
             .all() %}
 
 
@@ -11,7 +11,7 @@
             {# {% set groupedtxt = txt|group(item => item.gens[0]) %} #}
 
             {# <br> #}
-            {% for t in txt|reverse %}
+            {% for t in txt %}
                     <span class="">
                         - {{ t.title|capitalize  }}
                     </span>
