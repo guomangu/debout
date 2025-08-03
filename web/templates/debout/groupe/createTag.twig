@@ -27,10 +27,10 @@
         {# 1. Champ de sélection pour les TAGS #}
         {# Champ de sélection pour les TAGS sous forme de boutons #}
         <div class="mb-3">
-            <label class="form-label">Choisissez un Objectif :</label>
+            <label class="form-label">Choisissez un Projet :</label>
             <div class="d-flex flex-wrap gap-2">
                 <button onclick="addoneTAG()" class="btn btn-outline-danger">
-                    + Ajoutez un Objectif
+                    + Ajoutez un Projet
                 </button>
 
                 
@@ -56,7 +56,7 @@
 
         {# 2. Champ pour le TITRE #}
         <div class="mb-3">
-            <label for="title" class="form-label">Pourquoi cet Objectif ?</label>
+            <label for="title" class="form-label">Pourquoi ce Projet ?</label>
             <input id="title" type="text" name="title" class="form-control" required placeholder="Quel est votre Motivation ?">
         </div>
         
@@ -74,7 +74,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-danger btn-lg d-inline-flex align-items-center">Ajouter l'activité</button>
+        <button type="submit" class="btn btn-danger btn-lg d-inline-flex align-items-center">Ajouter le Projet</button>
     </form>
 {% else %}
     <p>Aucun tag n'est disponible pour le moment.</p>
