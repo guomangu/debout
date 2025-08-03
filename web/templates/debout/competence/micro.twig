@@ -20,7 +20,7 @@
     {% set txts = craft.entries()
     .section('texte')
     .obj(vertag.id)
-    .orderBy('or ASC')
+    .orderBy('dateCreated ASC')
     .all() %}
 
 

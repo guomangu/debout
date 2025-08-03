@@ -31,14 +31,28 @@
         </h3></span>
         
         <div style="text-align-last: end;">
+            {% include "debout/truecompetence/competence.twig" with {
+                obj:item.version[0]
+            } %}
             {% include "debout/lien/alllien.twig" with {
                 'obj': item.version[0],
                 'user': user,
                 "public":true,
                 "ajd":currentDate
             } %}
-            {% include "debout/truecompetence/competence.twig" with {
-                obj:item.version[0]
+        </div>
+
+        <br>
+
+        <div class="card card-body" style="display:block; background-color:#00000017;">
+            {% include "debout/competence/vali.twig" with {
+                vertag:item,
+                user:user
+            } %}
+            {% include "debout/competence/micro.twig" with {
+                vertag:item,
+                user:user,
+                quali:"trueeeeeeeeee"
             } %}
         </div>
 
@@ -49,26 +63,7 @@
             } %}
         </div>
         
-        <br>
-        <div class="card card-body" style="display:block; background-color:#00000017;">
-            <div>
-                {# {% include "debout/get/selec.twig" with {
-                    version: item.version[0],
-                    user: user,
-                } %} #}
-                {% include "debout/competence/vali.twig" with {
-                    vertag:item,
-                    user:user
-                } %}
-                {% include "debout/competence/micro.twig" with {
-                    vertag:item,
-                    user:user,
-                    quali:"trueeeeeeeeee"
-                } %}
-            </div>
-
-            
-        </div>
+        
     </div>
 
     {% if not loop.last %}

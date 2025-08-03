@@ -75,7 +75,12 @@
             'g':g
         } %}
 
+        <br>
 
+        {% include "debout/groupe/createTag.twig" with {
+            'user': user,
+            'g': g
+        } %}
 
         <br>
     {% else %}

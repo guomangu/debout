@@ -1,6 +1,6 @@
  <div>
         {% set txt = craft.entries()
-            .section('texte')
+            .section('article')
             .obj(obj.id)
             .limit(9)
             .orderBy('dateCreated ASC')

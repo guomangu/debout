@@ -20,8 +20,9 @@
         {% if user is defined and user %}
             {{ hiddenInput('fields[gens][]', user.id) }}
         {% endif %}
-        <input id="title" type="hidden" name="fields[groupe][]" class="form-control" required value="{{ g.id }}">
-
+        {% if g %}
+            <input id="title" type="hidden" name="fields[groupe][]" class="form-control" required value="{{ g.id }}">
+        {% endif %}
 
         {# 1. Champ de sélection pour les TAGS #}
         {# Champ de sélection pour les TAGS sous forme de boutons #}
